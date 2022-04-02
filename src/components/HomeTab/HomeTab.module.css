@@ -1,3 +1,28 @@
 .homeTab {
-    
+  display: flex;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+
+  color: #000000;
+
+  border-left: 5px solid black;
+  border-radius: 10px;
+}
+
+.hoemTab__titleItem {
+  padding: 12px 20px;
+  background: #ffffff;
+}
+
+.hoemTab__titleItem:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+.homeTab__transaction {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

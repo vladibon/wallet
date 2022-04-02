@@ -1,0 +1,13 @@
+.homeTabItem__flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homeTabItem__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: #000000;
+}
