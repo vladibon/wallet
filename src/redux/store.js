@@ -14,7 +14,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
 import { authReducer } from './auth/auth-slice';
-import { isModalOpenReducer } from './global/reducers-global';
+import { globalReducer } from './global/global-slice';
 import { emptySplitApi } from 'redux/mainAPISlice';
 
 const authPersistConfig = {
@@ -25,6 +25,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  global: globalReducer,
   [emptySplitApi.reducerPath]: emptySplitApi.reducer,
 });
 
