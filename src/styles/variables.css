@@ -1,4 +1,57 @@
 :root {
-  --color-tomato: tomato;
+  /* Fonts */
+  --main-font: 'Montserrat', sans-serif;
+  --title-font: 'Poppins', sans-serif;
+  
+  /* Text Colors */
+  --title-black-color: #000000;
+  --text-white-color: #ffffff;
+  --header-grey-color: #bdbdbd;
+  --balance-grey-color: #a6a6a6;
+  --earnings-green-color: #24cca7;
+  --expenditure-red-color: #ff6596;
+  
+  /* Modal Text Colors */
+  --main-grey-color: #bdbdbd;
+  --grey-color: #e0e0e0;
+  
+  /* Backgroung Color */
+  --primary-bg-color: rgba(231, 234, 242, 1);
+  --main-currency-bg-color: #4A56E2;
+  --header-currency-bg-color: #6E78E8;
+  --modal-list-bg-color: rgba(255, 255, 255, 0.7);
+  
+  /* Btn Color */
+  --btn-primary-color: #ffffff;
+  --btn-primary-bg-color: #24cca7;
+  --btn-secondary-color: #4a56e2;
+  --btn-secondary-bg-color: transparent;
+  
+  /* Statistics Color */
+  --stat-main-color: #fed057;
+  --stat-food-color: #ffd8d0;
+  --stat-car-color: #FD9498;
+  --stat-self-color: #C5BAFF;
+  --stat-children-color: #6E78E8;
+  --stat-home-color: #4A56E2;
+  --stat-education-color: #81E1FF;
+  --stat-leisure-color: #24CCA7;
+  --stat-other-color: #00AD84;
+  
+  /* Border */
+  --btn-primary-border: 1px solid currentColor;
+  --btn-secondary-border: 1px solid #4a56e2;
+  --model-border: 1px solid #e0e0e0;
+  
+  /* Shadows */
+  --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Animations */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --modal-animation: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Breakpoints */
+  --mobile: 320px;
+  --tablet: 768px;
+  --desktop: 1280px;
 }
