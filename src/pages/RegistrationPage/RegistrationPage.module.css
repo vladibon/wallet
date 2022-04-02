@@ -1,0 +1,154 @@
+.registrationContainer {
+  max-width: 320px;
+  background-color: white;
+}
+
+.header {
+  padding-top: 113px;
+  justify-content: center;
+  display: flex;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logoWallet {
+  position: absolute;
+  left: 70px;
+  top: 128px;
+  width: 30px;
+  height: 30px;
+}
+.form {
+  padding-top: 60px;
+}
+
+.btnRegistr {
+  margin: 0 auto;
+  /* margin-top: 40px;
+  margin-bottom: 20px; */
+  display: block;
+  cursor: pointer;
+}
+
+.btnEnter {
+  margin: 0 auto;
+  margin-top: 20px;
+  display: block;
+  cursor: pointer;
+}
+
+.finApp {
+  font-size: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .RegistrationPage {
+    background-color: #e5e5e5;
+
+    padding-top: 60px;
+    padding-left: 115px;
+  }
+
+  /* .imgContainer {
+    display: flex;
+  } */
+  .imgFrame {
+    background-image: url('images/Frame.svg');
+    width: 275px;
+    height: 250px;
+  }
+
+  .logoWallet {
+    position: relative;
+    left: 33%;
+    top: -30px;
+  }
+
+  .registrationContainer {
+    margin-top: 50px;
+    max-width: 535px;
+    min-height: 616px;
+    margin-left: 110px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+  }
+
+  .finApp {
+    font-size: 30px;
+    line-height: 1.5;
+    font-weight: 400;
+    display: block;
+    padding-left: 50px;
+    margin-top: 100px;
+  }
+}
+
+.authLabel {
+  position: relative;
+  width: 280px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.input {
+  width: 280px;
+  height: 34px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-left: 55px;
+  font-size: 18px;
+  line-height: 27px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px, solid;
+  border-color: #e7eaf2;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  bottom: 3px;
+}
+
+@media screen and (max-width: 1280px) {
+  .imgContainer {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .RegistrationPage {
+    display: flex;
+    margin-top: 0;
+  }
+
+  .finApp {
+    margin-top: 31px;
+    margin-bottom: 60px;
+  }
+
+  .imgContainer {
+    background-color: #e5e5e5;
+    text-align: center;
+    max-width: 550px;
+  }
+
+  .imgFrame {
+    width: 450px;
+    height: 410px;
+    margin-left: 20px;
+    margin-top: 75px;
+  }
+  .header {
+    padding-top: 40px;
+  }
+
+  .registrationContainer {
+    margin-top: 0;
+  }
+  .form {
+    padding: 0;
+    margin-left: 65px;
+  }
+}
