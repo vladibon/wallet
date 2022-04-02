@@ -1,7 +1,4 @@
-@import 'styles/shared';
-
 .container {
-  @extend %flexCentered;
   padding-top: 100px;
   z-index: 1200;
 }
