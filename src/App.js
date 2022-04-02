@@ -9,13 +9,15 @@ const DashboardPage = lazy(() =>
 
 function App() {
   // const dispatch = useDispatch();
-  // const getContact = () => {
+  // const set = () => {
   //   dispatch(setUser({ user: { name: 'uuu', email: '@jhh' }, token: 'j8d8d8s8ds' }));
   // };
-  // getContact();
+
   return (
     <Suspense fallback={<Loading />}>
       <DashboardPage />
+      {/* <button onClick={set}>set</button>
+      <button onClick={() => dispatch(resetUser())}>reset</button> */}
     </Suspense>
   );
 }

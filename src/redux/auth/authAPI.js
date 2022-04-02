@@ -1,10 +1,10 @@
-import { emptySplitApi } from '../mainAPISlice';
+import { emptySplitApi } from 'redux/mainAPISlice';
 
 const authAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     createUser: builder.mutation({
       query: ({ user }) => ({
-        url: `/users/signup`,
+        url: `/auth/signup`,
         method: 'POST',
         providesTags: ['Users'],
         body: user,
@@ -12,7 +12,7 @@ const authAPI = emptySplitApi.injectEndpoints({
     }),
     logInUser: builder.mutation({
       query: ({ user }) => ({
-        url: `/users/login`,
+        url: `/auth/login`,
         method: 'POST',
         providesTags: ['Users'],
         body: user,
@@ -20,7 +20,7 @@ const authAPI = emptySplitApi.injectEndpoints({
     }),
     logOutUser: builder.mutation({
       query: () => ({
-        url: `/users/logout`,
+        url: `/auth/logout`,
         method: 'POST',
         providesTags: ['Users'],
       }),

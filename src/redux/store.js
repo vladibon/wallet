@@ -13,7 +13,8 @@ import {
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import { authReducer } from 'redux/auth/auth-slice';
+import { authReducer } from './auth/auth-slice';
+import { isModalOpenReducer } from './global/reducers-global';
 import { emptySplitApi } from 'redux/mainAPISlice';
 
 const authPersistConfig = {
