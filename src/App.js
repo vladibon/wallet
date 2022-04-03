@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react';
-import Loading from 'components/Loading';
 import { setUser, resetUser, openModal, closeModal } from './redux';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,7 +16,7 @@ function App() {
   };
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={null}>
       <DashboardPage />
       <button onClick={set}>set</button>
       <button onClick={() => dispatch(resetUser())}>reset</button>

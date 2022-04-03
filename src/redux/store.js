@@ -10,8 +10,7 @@ import {
   PURGE,
 } from 'redux-persist';
 
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { authReducer } from './auth/auth-slice';
 import { globalReducer } from './global/global-slice';
