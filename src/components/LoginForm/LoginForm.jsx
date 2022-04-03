@@ -15,6 +15,7 @@ export default function LoginForm() {
         <div className={s.authForm}>
           <div className={s.logo}>
             <svg className={s.logoIcon}>
+              <use href=""></use>
               <path
                 d='M3.52 7.143 18.72 2.889l-.805-1.668C17.387.137 16.103-.31 15.045.23L1.44 7.143h2.08ZM23.262 2.857c-.183 0-.366.027-.549.082l-3.472 1.039L8.64 7.143h17.279l-.65-2.605c-.249-1.016-1.09-1.68-2.006-1.68Z'
                 fill='#24CCA7'

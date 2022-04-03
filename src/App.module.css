@@ -3,7 +3,7 @@
         background-color: #e7eaf2;
         background-repeat: no-repeat;
         background-image: url(./images/pink_elipse.svg);
-        background-position: top -150px right -150px;
+        background-position: top -130px right -265px;
     }
 
     body::after {
@@ -17,5 +17,15 @@
         background-image: url(./images/purple_elipse.svg);
         background-position: bottom -130px left -142px;
         z-index: -1;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    body {
+        background-position: top -150px right -150px;
+    }
+
+    body::after {
+        background-position: bottom -130px left -142px;
     }
 }
