@@ -8,7 +8,7 @@
   line-height: 1.5;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color var(--animation), transform var(--animation);
+  transition: color var(--animation), background-color var(--animation), transform var(--animation);
 }
 
 @media (min-width: 768px) {
@@ -18,10 +18,9 @@
 }
 
 .btn:hover {
-  background-color: var(--earnings-green-color);
+  background-color: var(--main-currency-bg-color);
   color: var(--text-white-color);
-  transform: scale(1.1);
-  transition: background-color var(--animation), color var(--animation), scale var(--animation);
+  transform: scale(1.05);
 }
 
 .btn__primary {
