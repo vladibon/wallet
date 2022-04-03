@@ -1,14 +1,15 @@
 .btn {
-  display: block;
+  display: inline-block;
   border-radius: 20px;
   width: 280px;
   height: 50px;
-  font-family: var(--main-font);
   font-size: 18px;
-  line-height: 1.5;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color var(--animation), background-color var(--animation), transform var(--animation);
+  background-color: var(--btn-primary-bg-color);
+  transform: scale(1);
+  color: var(--btn-primary-color);
+  transition: background-color var(--animation), color var(--animation), transform var(--animation);
 }
 
 @media (min-width: 768px) {
@@ -18,23 +19,25 @@
 }
 
 .btn:hover {
-  background-color: var(--main-currency-bg-color);
-  color: var(--text-white-color);
+  background-color: var(--btn-secondary-color);
+  color: var(--btn-primary-color);
   transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
 
 .btn__primary {
   composes: btn;
-  color: var(--text-white-color);
-  background-color: var(--earnings-green-color);
   border: none;
 }
 
 .btn__secondary {
   composes: btn;
-  color: var(--main-currency-bg-color);
-  background-color: var(--text-white-color);
-  border: 1px solid var(--main-currency-bg-color);
+  color: var(--btn-secondary-color);
+  background-color: var(--btn-primary-color);
+  border: var(--btn-secondary-border);
 }
 
 .btn__secondary-logout {
