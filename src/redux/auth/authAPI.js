@@ -4,7 +4,7 @@ const authAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     createUser: builder.mutation({
       query: ({ user }) => ({
-        url: `/auth/signup`,
+        url: `/api/auth/signup`,
         method: 'POST',
         providesTags: ['Users'],
         body: user,
@@ -12,7 +12,7 @@ const authAPI = emptySplitApi.injectEndpoints({
     }),
     logInUser: builder.mutation({
       query: ({ user }) => ({
-        url: `/auth/login`,
+        url: `/api/auth/login`,
         method: 'POST',
         providesTags: ['Users'],
         body: user,
@@ -20,14 +20,14 @@ const authAPI = emptySplitApi.injectEndpoints({
     }),
     logOutUser: builder.mutation({
       query: () => ({
-        url: `/auth/logout`,
+        url: `/api/auth/logout`,
         method: 'POST',
         providesTags: ['Users'],
       }),
     }),
     getCurrenthUser: builder.query({
       query: () => ({
-        url: `/users/current`,
+        url: `/api/users/current`,
         providesTags: ['Users'],
       }),
     }),

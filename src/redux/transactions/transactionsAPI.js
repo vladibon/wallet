@@ -3,12 +3,12 @@ import { emptySplitApi } from '../mainAPISlice';
 const transactionsAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     getTransactions: builder.query({
-      query: () => `/transactions`,
+      query: () => `/api/transactions`,
       providesTags: ['Transactions'],
     }),
     addTransaction: builder.mutation({
       query: ({ transaction }) => ({
-        url: `/transactions`,
+        url: `/api/transactions`,
         method: 'POST',
         body: transaction,
       }),
