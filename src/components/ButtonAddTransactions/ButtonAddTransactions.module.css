@@ -1,0 +1,25 @@
+@import '../../styles/variables.css';
+
+.button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  background-color: var(--earnings-green-color);
+  border: none;
+  color: var(--text-white-color);
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: var(--tablet)) {
+  .button {
+    right: 40px;
+    bottom: 40px;
+  }
+}
