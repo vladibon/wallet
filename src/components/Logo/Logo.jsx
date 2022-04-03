@@ -8,6 +8,7 @@ export function Logo() {
         <use href='#icon-logo'></use>
       </svg>
       <span className={s.logoText}>Wallet</span>
+      <ReactSprite />
     </span>
   );
 }
