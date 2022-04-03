@@ -1,13 +1,13 @@
-import HomeTabItem from './HomeTabItem';
+import HomeTabItems from './HomeTabItems';
 import s from './HomeTab.module.css';
 
 function HomeTab({ items }) {
   return (
-    <div>
+    <>
       <ul className={s.homeTab}>
         {items.map(item => (
-          <li key={item.id}>
-            <HomeTabItem
+          <li className={s.homeTab__items} key={item.id}>
+            <HomeTabItems
               date={item.date}
               type={item.type}
               category={item.category}
@@ -18,7 +18,7 @@ function HomeTab({ items }) {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 
