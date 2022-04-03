@@ -1,15 +1,29 @@
 @import './variables.css';
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 h1,
 h2,
 h3,
 h4,
 p {
   margin: 0;
+}
+
+p {
+padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+link {
+  text-decoration: none;
+}
+
+body {
+  color: var(--title-black-color);
+  font-family: var(--main-font);
+  background-color: var(--primary-bg-color);
 }
