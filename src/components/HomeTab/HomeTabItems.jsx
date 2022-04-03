@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './HomeTabItems.module.css';
 
 function HomeTabItems(props) {
@@ -39,7 +40,13 @@ function HomeTabItems(props) {
       </li>
       <li className={s.homeTabItems__listCell}>
         <span className={s.homeTabItems__listTitle}>Сумма</span>
-        <span className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight}`}>
+        <span
+          className={
+            type === '+'
+              ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
+              : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
+          }
+        >
           {formatSum}
         </span>
       </li>
@@ -50,5 +57,20 @@ function HomeTabItems(props) {
     </ul>
   );
 }
+
+HomeTabItems.propTypes = {
+  date: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['+', '-']).isRequired,
+  category: PropTypes.oneOf([
+    'Разное',
+    'Регулярный доход',
+    'Машина',
+    'Продукты',
+    'Нерегулярный доход',
+  ]).isRequired,
+  comment: PropTypes.string.isRequired,
+  sum: PropTypes.number.isRequired,
+  balance: PropTypes.number.isRequired,
+};
 
 export default HomeTabItems;

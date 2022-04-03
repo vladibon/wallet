@@ -32,8 +32,16 @@
 
 .homeTab__items {
   width: 350px;
-  border-left: 5px solid #24cca7;
+
   border-radius: 5px 10px 10px 5px;
+}
+
+.income {
+  border-left: 5px solid #24cca7;
+}
+
+.expense {
+  border-left: 5px solid #ff6596;
 }
 
 .homeTab__items:not(:last-child) {

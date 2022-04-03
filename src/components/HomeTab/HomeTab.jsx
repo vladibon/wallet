@@ -20,7 +20,14 @@ function HomeTab({ items }) {
           </ul>
         </li>
         {items.map(item => (
-          <li className={s.homeTab__items} key={item.id}>
+          <li
+            className={
+              item.type === '+'
+                ? `${s.homeTab__items}  ${s.income}`
+                : `${s.homeTab__items}  ${s.expense}`
+            }
+            key={item.id}
+          >
             <HomeTabItems
               date={item.date}
               type={item.type}
