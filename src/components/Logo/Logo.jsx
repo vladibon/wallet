@@ -1,7 +1,7 @@
 import s from './Logo.module.css';
 import { ReactComponent as ReactSprite } from 'images/sprite.svg';
 
-export function Logo() {
+export default function Logo() {
   return (
     <span className={s.logo}>
       <svg className={s.logoIcon}>
