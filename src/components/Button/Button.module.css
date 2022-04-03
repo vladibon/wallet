@@ -3,7 +3,9 @@
   border-radius: 20px;
   width: 280px;
   height: 50px;
+  font-family: var(--main-font);
   font-size: 18px;
+  line-height: 1.5;
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color var(--animation), transform var(--animation);
