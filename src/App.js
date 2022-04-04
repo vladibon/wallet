@@ -1,7 +1,11 @@
-import { Suspense, lazy } from 'react';
-import { setUser, resetUser, openModal, closeModal } from './redux';
+import { Suspense, lazy, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ButtonAddTransactions from 'components/ButtonAddTransactions';
+import Modal from 'components/Modal';
+import ModalAddTransaction from 'components/ModalAddTransaction';
+import { setUser, resetUser, openModal, closeModal } from './redux';
 
+const LoginForm = lazy(() => import('components/LoginForm'));
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
 );
@@ -15,14 +19,32 @@ function App() {
     dispatch(setUser({ user: { name: 'uuu', email: '@jhh' }, token: 'j8d8d8s8ds' }));
   };
 
+  // Andrii
+  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
+  const toggleModalAddTransaction = () => {
+    setShowModalAddTransaction(showModalAddTransaction => !showModalAddTransaction);
+  };
+
   return (
     <Suspense fallback={null}>
       <DashboardPage />
+      <LoginForm />
       <button onClick={set}>set</button>
       <button onClick={() => dispatch(resetUser())}>reset</button>
       <button onClick={() => dispatch(openModal())}>show</button>
       <button onClick={() => dispatch(closeModal())}>hide</button>
       {isModalOpen && <p>MODAL</p>}
+
+      {/* Andrii */}
+      <ButtonAddTransactions onClick={toggleModalAddTransaction} />
+      {showModalAddTransaction && (
+        <Modal onClose={toggleModalAddTransaction}>
+          <ModalAddTransaction
+            onClose={toggleModalAddTransaction}
+            onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
+          />
+        </Modal>
+      )}
     </Suspense>
   );
 }
