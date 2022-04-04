@@ -42,10 +42,30 @@
 
 .btn__secondary-logout {
   composes: btn__secondary;
-  width: 160px;
+  width: 100px;
 }
 
 .btn__primary-logout {
   composes: btn__primary;
-  width: 160px;
+  width: 100px;
+}
+
+@media (min-width: 400px) {
+  .btn__secondary-logout {
+    width: 130px;
+  }
+
+  .btn__primary-logout {
+    width: 130px;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn__secondary-logout {
+    width: 160px;
+  }
+
+  .btn__primary-logout {
+    width: 160px;
+  }
 }
