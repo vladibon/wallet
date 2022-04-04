@@ -13,9 +13,7 @@
   font-size: 16px;
   line-height: 1.5;
 
-  color: #000000;
-
-  background: #e7eaf2;
+  color: var(--title-black-color);
 }
 
 .homeTab__hidden {
@@ -37,11 +35,11 @@
 }
 
 .income {
-  border-left: 5px solid #24cca7;
+  border-left: var(--hometab-border-income);
 }
 
 .expense {
-  border-left: 5px solid #ff6596;
+  border-left: var(--hometab-border-expense);
 }
 
 .homeTab__items:not(:last-child) {
@@ -62,10 +60,10 @@
     font-size: 18px;
     line-height: 1.5;
 
-    color: #000000;
+    color: var(--title-black-color);
 
     border-radius: 30px;
-    background: #ffffff;
+    background: var(--hometab-primary-bg-color);
   }
 
   .homeTab__title {
@@ -107,8 +105,8 @@
   }
 
   .homeTab__items:not(:last-child) {
-    border-bottom: 1px solid #dcdcdf;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+    border-bottom: var(--hometab-border-hr);
+    box-shadow: var(--hometab-hr-shadow);
     margin: 0;
   }
 }
