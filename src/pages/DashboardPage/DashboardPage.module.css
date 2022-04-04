@@ -4,3 +4,8 @@
   z-index: 1200;
   color: var(--color-tomato); */
 }
+
+.homeTab__img {
+  height: 300px;
+  width: 300px;
+}

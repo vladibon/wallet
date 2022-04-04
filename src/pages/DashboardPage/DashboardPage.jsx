@@ -6,7 +6,12 @@ import s from './DashboardPage.module.css';
 function DashboardPage() {
   return (
     <main className={s.main}>
-      <HomeTab items={transactions} />
+      {transactions ? (
+        <HomeTab items={transactions} />
+      ) : (
+          
+        // <img className={s.homeTab__img} src='../../images/home-tab-bg.png' alt='Transactions'></img>
+      )}
     </main>
   );
 }
