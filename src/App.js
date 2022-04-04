@@ -34,7 +34,6 @@ function App() {
       <button onClick={() => dispatch(openModal())}>show</button>
       <button onClick={() => dispatch(closeModal())}>hide</button>
       {isModalOpen && <p>MODAL</p>}
-
       <ButtonAddTransactions onClick={toggleModalAddTransaction} />
       {showModalAddTransaction && (
         <Modal onClose={toggleModalAddTransaction}>
