@@ -1,8 +1,12 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import { useGetCurrenthUserQuery, setUser } from 'redux/index';
+
+import PublicRoute from 'components/PublicRoute';
+import PrivateRoute from 'components/PrivateRoute';
 
 import Modal from 'components/Modal';
 import ModalLogout from 'components/ModalLogout';
@@ -10,6 +14,10 @@ import ModalAddTransaction from 'components/ModalAddTransaction';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
+);
+const LoginPage = lazy(() => import('pages/LoginPage' /* webpackChunkName: "login-page" */));
+const RegisterPage = lazy(() =>
+  import('pages/RegisterPage' /* webpackChunkName: "register-page" */),
 );
 
 function App() {
@@ -27,7 +35,33 @@ function App() {
   return (
     <>
       <Suspense fallback={null}>
-        <DashboardPage />
+        <Routes>
+          <Route
+            path='/home/*'
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path='/register'
+            element={
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path='/login'
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route path='*' element={<Navigate to='/home' />} />
+        </Routes>
       </Suspense>
 
       {isModalLogoutOpen && <Modal children={<ModalLogout />} />}

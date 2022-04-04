@@ -21,7 +21,6 @@ const authAPI = emptySplitApi.injectEndpoints({
     logOutUser: builder.mutation({
       query: () => ({
         url: `/auth/logout`,
-        method: 'POST',
         providesTags: ['Users'],
       }),
     }),
