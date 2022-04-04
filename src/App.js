@@ -5,6 +5,7 @@ import Modal from 'components/Modal';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { setUser, resetUser, openModal, closeModal } from './redux';
 
+const LoginForm = lazy(() => import('components/LoginForm'));
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
 );
@@ -27,6 +28,7 @@ function App() {
   return (
     <Suspense fallback={null}>
       <DashboardPage />
+      <LoginForm />
       <button onClick={set}>set</button>
       <button onClick={() => dispatch(resetUser())}>reset</button>
       <button onClick={() => dispatch(openModal())}>show</button>
