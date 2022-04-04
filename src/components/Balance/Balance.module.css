@@ -1,0 +1,37 @@
+.balance {
+  padding: 8px 32px;
+  width: 280px;
+  height: 80px;
+  background-color: var(--btn-primary-color);
+  border-radius: 30px;
+}
+
+@media (min-width: 768px) {
+  .balance {
+    padding-left: 40px;
+    width: 336px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .balance {
+    width: 395px;
+  }
+}
+
+.balance__title {
+  font-family: var(--main-font);
+  color: var(--balance-grey-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.balance__sum {
+  font-family: var(--title-font);
+  color: var(--title-black-color);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.5;
+}

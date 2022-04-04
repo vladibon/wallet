@@ -35,7 +35,6 @@ function App() {
       <button onClick={() => dispatch(closeModal())}>hide</button>
       {isModalOpen && <p>MODAL</p>}
 
-      {/* Andrii */}
       <ButtonAddTransactions onClick={toggleModalAddTransaction} />
       {showModalAddTransaction && (
         <Modal onClose={toggleModalAddTransaction}>
