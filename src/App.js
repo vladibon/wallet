@@ -1,7 +1,6 @@
 import { Suspense, lazy, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
-import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 import Modal from 'components/Modal';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { setUser, resetUser, openModal, closeModal } from './redux';
@@ -33,7 +32,6 @@ function App() {
       <button onClick={() => dispatch(openModal())}>show</button>
       <button onClick={() => dispatch(closeModal())}>hide</button>
       {isModalOpen && <p>MODAL</p>}
-      <DoughnutChart />
       {/* Andrii */}
       <ButtonAddTransactions onClick={toggleModalAddTransaction} />
       {showModalAddTransaction && (
