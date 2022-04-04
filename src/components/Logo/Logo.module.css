@@ -1,0 +1,29 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logoIcon {
+  width: 30px;
+  height: 30px;
+  margin-right: 16px;
+}
+
+.logoText {
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--title-black-color);
+}
+
+@media screen and (min-width: 767px) {
+  .logoIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  .logoText {
+    font-size: 30px;
+  }
+}
