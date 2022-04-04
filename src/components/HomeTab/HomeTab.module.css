@@ -1,3 +1,5 @@
+@value mobile from '../';
+
 .homeTab {
   display: flex;
   justify-content: space-around;
