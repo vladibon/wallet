@@ -15,7 +15,7 @@ export default function Header() {
       <Logo />
 
       <div className={s.nav}>
-        <div className={s.name}>{user.name}</div>
+        <div className={s.name}>{user?.name}</div>
         <div className={s.logout} onClick={() => dispatch(openModalLogout())}>
           <svg className={s.logoutIcon}>
             <use href={`${Icons}#icon-logout`} />

@@ -36,45 +36,51 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route
-            path='/home/*'
-            element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          ></Route>
-          <Route
-            path='/register'
-            element={
-              <PublicRoute restricted>
-                <RegisterPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path='/login'
-            element={
-              <PublicRoute restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route path='*' element={<Navigate to='/home' />} />
-        </Routes>
-      </Suspense>
+      {!isFetching ? (
+        <>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route
+                path='/home/*'
+                element={
+                  <PrivateRoute>
+                    <DashboardPage />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path='/register'
+                element={
+                  <PublicRoute restricted>
+                    <RegisterPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path='/login'
+                element={
+                  <PublicRoute restricted>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route path='*' element={<Navigate to='/home' />} />
+            </Routes>
+          </Suspense>
 
-      {showModalLogout && <Modal children={<ModalLogout />} />}
-      {showModalAddTransaction && (
-        <Modal
-          children={
-            <ModalAddTransaction
-              onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
+          {showModalLogout && <Modal children={<ModalLogout />} />}
+          {showModalAddTransaction && (
+            <Modal
+              children={
+                <ModalAddTransaction
+                  onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
+                />
+              }
             />
-          }
-        />
+          )}
+        </>
+      ) : (
+        <p>...loading</p>
       )}
     </>
   );
