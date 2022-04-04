@@ -11,6 +11,7 @@ import PrivateRoute from 'components/PrivateRoute';
 import Modal from 'components/Modal';
 import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
+import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -21,7 +22,8 @@ const RegisterPage = lazy(() =>
 );
 
 function App() {
-  const { isModalLogoutOpen, isModalAddTransactionOpen } = useSelector(state => state.global);
+  const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
+  const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const dispatch = useDispatch();
   const { data, isFetching } = useGetCurrenthUserQuery();
 
@@ -64,8 +66,8 @@ function App() {
         </Routes>
       </Suspense>
 
-      {isModalLogoutOpen && <Modal children={<ModalLogout />} />}
-      {isModalAddTransactionOpen && (
+      {showModalLogout && <Modal children={<ModalLogout />} />}
+      {showModalAddTransaction && (
         <Modal
           children={
             <ModalAddTransaction
