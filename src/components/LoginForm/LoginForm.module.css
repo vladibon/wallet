@@ -46,6 +46,7 @@ p {
   position: absolute;
   left: 10px;
   bottom: 3px;
+  fill: var(--grey-color);
   cursor: pointer;
 }
 
