@@ -49,3 +49,13 @@ body {
     z-index: -1;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  body {
+    background-position: top -150px right -150px;
+  }
+
+  body::after {
+    background-position: bottom -130px left -152px;
+  }
+}

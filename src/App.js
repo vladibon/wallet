@@ -13,6 +13,7 @@ import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
 
+const LoginPage = lazy(() => import('components/LoginPage'));
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
 );
