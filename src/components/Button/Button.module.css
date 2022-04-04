@@ -1,0 +1,51 @@
+.btn {
+  display: inline-block;
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: var(--btn-primary-bg-color);
+  transform: scale(1);
+  color: var(--btn-primary-color);
+  transition: background-color var(--animation), color var(--animation), transform var(--animation);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    width: 300px;
+  }
+}
+
+.btn:hover {
+  background-color: var(--btn-secondary-color);
+  color: var(--btn-primary-color);
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn__primary {
+  composes: btn;
+  border: none;
+}
+
+.btn__secondary {
+  composes: btn;
+  color: var(--btn-secondary-color);
+  background-color: var(--btn-primary-color);
+  border: var(--btn-secondary-border);
+}
+
+.btn__secondary-logout {
+  composes: btn__secondary;
+  width: 160px;
+}
+
+.btn__primary-logout {
+  composes: btn__primary;
+  width: 160px;
+}
