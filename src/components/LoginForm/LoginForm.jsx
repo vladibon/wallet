@@ -3,7 +3,29 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { useLogInUserMutation, setUser } from 'redux/index';
+
 export default function LoginForm() {
+  const [loginUser, { data, error }] = useLogInUserMutation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data));
+    } else if (error) {
+      console('Your request failed');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
+
+  const onLoginSubmit = e => {
+    const user = { email: 'aaa@gmail.com', password: '1234567' };
+    loginUser({ user });
+  };
+
   return (
     <div className={s.authForm}>
       <div className={s.logo}>
@@ -23,10 +45,10 @@ export default function LoginForm() {
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
-        <button className={s.logBtn} type='submit'>
+        <button className={s.logBtn} type='button' onClick={onLoginSubmit}>
           log in
         </button>
-        <button className={s.regBtn} type='submit'>
+        <button className={s.regBtn} type='button'>
           sign up
         </button>
       </form>

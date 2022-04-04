@@ -1,32 +1,20 @@
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import s from './LoginPage.module.css';
+import React from 'react';
+import LoginForm from 'components/LoginForm';
 
-import { useLogInUserMutation, setUser } from 'redux/index';
-
-function LoginPage() {
-  const [loginUser, { data, error }] = useLogInUserMutation();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setUser(data));
-    } else if (error) {
-      console('Your request failed');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
-
-  const onLoginSubmit = e => {
-    const user = { email: 'aaa@gmail.com', password: '1234567' };
-    loginUser({ user });
-  };
-
+export default function LoginPage() {
   return (
-    <main>
-      <p style={{ fontSize: 200 }}>LOGIN!!!!</p>
-      <button onClick={onLoginSubmit}>login</button>
-    </main>
+    <div className={s.container}>
+      <div className={s.heroContainer}>
+        <div className={s.loginImage}></div>
+
+        <div className={s.spanContainer}>
+          <span className={s.title}>Finance App</span>
+        </div>
+      </div>
+      <div className={s.desktopContainer}>
+        <LoginForm />
+      </div>
+    </div>
   );
 }
-
-export default LoginPage;
