@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import { setUser, resetUser, openModal, closeModal } from './redux';
 import { useDispatch, useSelector } from 'react-redux';
 
-const LoginForm = lazy(() => import('components/LoginForm'));
+const LoginPage = lazy(() => import('components/LoginPage'));
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
 );
@@ -18,6 +18,7 @@ function App() {
 
   return (
     <Suspense fallback={null}>
+      <LoginPage />
       <DashboardPage />
       <button onClick={set}>set</button>
       <button onClick={() => dispatch(resetUser())}>reset</button>
