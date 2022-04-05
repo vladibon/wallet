@@ -1,0 +1,115 @@
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: unset;
+}
+
+.container {
+  width: 100%;
+}
+
+.spanContainer {
+  font-size: 0%;
+  margin-top: -10px;
+}
+
+.authLink {
+  outline: none;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    background-color: var(--text-white-color);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-color: var(--primary-bg-color);
+  }
+  .container {
+    padding: 60px 114px;
+    padding-left: 114px;
+  }
+  .heroContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .loginImage {
+    position: absolute;
+    margin-right: 265px;
+    width: 250px;
+    height: 260.26px;
+    background-image: url(../../images/Main_reg_img.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .title {
+    display: block;
+    margin-top: 107px;
+    margin-left: 280px;
+    font-family: var(--title-font);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    background-color: var(--primary-bg-color);
+  }
+  .container {
+    display: flex;
+    padding: 0;
+    max-width: 1600px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .desktopContainer {
+    display: block;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    padding-top: 52px;
+    margin-right: auto;
+    margin-left: auto;
+    background: var(--desktop-bg-color);
+    backdrop-filter: blur(50px);
+  }
+
+  .heroContainer {
+    max-width: 100%;
+    padding-top: 150px;
+  }
+  .spanContainer {
+    display: block;
+    width: 560px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 77px;
+    margin-top: 463px;
+  }
+
+  .title {
+    margin: 0;
+    padding: 0;
+  }
+
+  .loginImage {
+    margin: 0;
+    width: 435px;
+    height: 420px;
+    background-image: url(../../images/Main_reg_img.svg);
+    background-position: top 0px right 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}

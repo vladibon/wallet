@@ -40,7 +40,7 @@ export default function LoginForm() {
         </label>
 
         <label className={s.authLabel}>
-          <input className={s.input} placeholder='Пароль' name='password' type='password'></input>
+          <input className={s.input} placeholder='Password' name='password' type='password'></input>
           <svg width='16' height='21' className={s.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
           </svg>
