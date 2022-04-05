@@ -1,6 +1,24 @@
-/* .main {
-  width: 200px;
-  padding-top: 100px;
-  z-index: 1200;
-  color: var(--color-tomato);
-} */
+.dashboardPage__section {
+  padding-top: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboardPage__section {
+    padding-top: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboardPage {
+    display: flex;
+  }
+
+  .dashboardPage__section {
+    width: 37%;
+    height: 100vh;
+    padding-top: 40px;
+
+    border-right: var(--hometab-border-hr-section);
+    box-shadow: var(--hometab-hr-section-shadow);
+  }
+}

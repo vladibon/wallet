@@ -36,8 +36,7 @@ function App() {
 
   return (
     <>
-      {/* !isFetching */}
-      {true ? (
+      {!isFetching ? (
         <>
           <Suspense fallback={null}>
             <Routes>

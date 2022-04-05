@@ -49,7 +49,7 @@
 @media screen and (min-width: 767px) {
   .header {
     height: 80px;
-    padding: 0 20px;
+    padding: 0 32px;
   }
 
   .name::after {
@@ -64,5 +64,11 @@
   .logoutText {
     display: block;
     margin-left: 8px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    padding: 0 16px;
   }
 }
