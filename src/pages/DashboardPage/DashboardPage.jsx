@@ -8,19 +8,23 @@ import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import HomeTab from 'components/HomeTab';
 
 import transactions from 'components/HomeTab/hometab.json';
+import Balance from 'components/Balance';
 
-import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
+// import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 
 function DashboardPage() {
   const dispatch = useDispatch();
 
   return (
-    <main className={s.main}>
+    <>
       <Header />
-      <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
-      <HomeTab items={transactions} />
-      <DoughnutChart />
-    </main>
+      <main className='container'>
+        <Balance />
+        <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
+        <HomeTab items={transactions} />
+        {/* <DoughnutChart /> */}
+      </main>
+    </>
   );
 }
 

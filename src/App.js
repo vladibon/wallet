@@ -36,16 +36,17 @@ function App() {
 
   return (
     <>
-      {!isFetching ? (
+      {/* !isFetching */}
+      {true ? (
         <>
           <Suspense fallback={null}>
             <Routes>
               <Route
                 path='/home/*'
                 element={
-                  <PrivateRoute>
-                    <DashboardPage />
-                  </PrivateRoute>
+                  // <PrivateRoute>
+                  <DashboardPage />
+                  // </PrivateRoute>
                 }
               ></Route>
               <Route

@@ -3,8 +3,8 @@
     "id": "1",
     "date": "04.01.19",
     "type": "-",
-    "category": "Разное",
-    "comment": "Подарок жене",
+    "category": "Miscellaneous",
+    "comment": "Gift for wife",
     "sum": 300.0,
     "balance": 6900.0
   },
@@ -12,8 +12,8 @@
     "id": "2",
     "date": "05.01.19",
     "type": "+",
-    "category": "Регулярный доход",
-    "comment": "Бонус за январь",
+    "category": "Regular income",
+    "comment": "January Bonus",
     "sum": 8000.0,
     "balance": 14900.0
   },
@@ -21,8 +21,8 @@
     "id": "3",
     "date": "07.01.19",
     "type": "-",
-    "category": "Машина",
-    "comment": "Масло",
+    "category": "Car",
+    "comment": "Oil",
     "sum": 1000.0,
     "balance": 13900.0
   },
@@ -30,8 +30,8 @@
     "id": "4",
     "date": "07.01.19",
     "type": "-",
-    "category": "Продукты",
-    "comment": "Овощи на неделю",
+    "category": "Products",
+    "comment": "Vegetables for the week",
     "sum": 280.0,
     "balance": 13870.0
   },
@@ -39,8 +39,8 @@
     "id": "5",
     "date": "07.01.19",
     "type": "+",
-    "category": "Нерегулярный доход",
-    "comment": "Подарок на др",
+    "category": "Irregular income",
+    "comment": "Birthday gift",
     "sum": 1000.0,
     "balance": 14870.0
   }

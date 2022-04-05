@@ -6,14 +6,12 @@ function HomeTab({ items }) {
     <ul className={s.homeTab}>
       <li className={s.homeTab__hidden}>
         <ul className={s.homeTab__title}>
-          <li className={s.homeTab__titleCell}>Дата</li>
-          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellCenter}`}>Тип</li>
-          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>Категория</li>
-          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>
-            Комментарий
-          </li>
-          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Сумма</li>
-          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Баланс</li>
+          <li className={s.homeTab__titleCell}>Date</li>
+          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellCenter}`}>Type</li>
+          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>Category</li>
+          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>Comment</li>
+          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Sum</li>
+          <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Balance</li>
         </ul>
       </li>
       {items.map(item => (

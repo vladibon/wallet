@@ -1,9 +1,12 @@
 .balance {
   padding: 8px 32px;
-  width: 280px;
+  max-width: 335px;
   height: 80px;
   background-color: var(--btn-primary-color);
   border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {

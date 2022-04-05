@@ -1,6 +1,7 @@
 .homeTab {
   display: flex;
   justify-content: space-around;
+
   flex-wrap: wrap;
 
   list-style: none;
@@ -30,6 +31,7 @@
 
 .homeTab__items {
   width: 350px;
+  margin-bottom: 8px;
 
   border-radius: 5px 10px 10px 5px;
 }
@@ -40,10 +42,6 @@
 
 .expense {
   border-left: var(--hometab-border-expense);
-}
-
-.homeTab__items:not(:last-child) {
-  margin-bottom: 8px;
 }
 
 /* @media screen 768px*/
