@@ -18,9 +18,14 @@
   /* Backgroung Color */
   --primary-bg-color: rgba(231, 234, 242, 1);
   --secondary-bg-color: #ffffff;
+  --desktop-bg-color: rgba(255, 255, 255, 0.4);
   --main-currency-bg-color: #4a56e2;
   --header-currency-bg-color: #6e78e8;
   --modal-list-bg-color: rgba(255, 255, 255, 0.7);
+  --hometab-title-bg-color: #6e78e8;
+  --hometab-primary-bg-color: #ffffff;
+  --hometab-bg-color: transparent;
+  --secondary-bg-color: #ffffff;
 
   /* Btn Color */
   --btn-primary-color: #ffffff;
@@ -43,9 +48,13 @@
   --btn-primary-border: 1px solid currentColor;
   --btn-secondary-border: 1px solid #4a56e2;
   --model-border: 1px solid #e0e0e0;
+  --hometab-border-income: 5px solid #24cca7;
+  --hometab-border-expense: 5px solid #ff6596;
+  --hometab-border-hr: 1px solid #dcdcdf;
 
   /* Shadows */
   --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  --hometab-hr-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 
   /* Animations */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);

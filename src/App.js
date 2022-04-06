@@ -1,51 +1,88 @@
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ButtonAddTransactions from 'components/ButtonAddTransactions';
-import Modal from 'components/Modal';
-import ModalAddTransaction from 'components/ModalAddTransaction';
-import { setUser, resetUser, openModal, closeModal } from './redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-const LoginForm = lazy(() => import('components/LoginForm'));
+import { store } from 'redux/store';
+import { useGetCurrenthUserQuery, setUser } from 'redux/index';
+
+import PublicRoute from 'components/PublicRoute';
+import PrivateRoute from 'components/PrivateRoute';
+
+import Modal from 'components/Modal';
+import ModalLogout from 'components/ModalLogout';
+import ModalAddTransaction from 'components/ModalAddTransaction';
+import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
+
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
 );
+const LoginPage = lazy(() => import('pages/LoginPage' /* webpackChunkName: "login-page" */));
+const RegisterPage = lazy(() =>
+  import('pages/RegisterPage' /* webpackChunkName: "register-page" */),
+);
 
 function App() {
-  // const state = useSelector(state => state);
-  const { isModalOpen } = useSelector(state => state.global);
+  const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
+  const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const dispatch = useDispatch();
-  const set = () => {
-    // console.log(state);
-    dispatch(setUser({ user: { name: 'uuu', email: '@jhh' }, token: 'j8d8d8s8ds' }));
-  };
+  const { data, isFetching } = useGetCurrenthUserQuery();
 
-  // Andrii
-  const [showModalAddTransaction, setShowModalAddTransaction] = useState(false);
-  const toggleModalAddTransaction = () => {
-    setShowModalAddTransaction(showModalAddTransaction => !showModalAddTransaction);
-  };
+  useEffect(() => {
+    const token = store.getState().auth?.token;
+
+    if (!token && !data) return;
+    else dispatch(setUser({ user: data, token }));
+  }, [data, dispatch]);
 
   return (
-    <Suspense fallback={null}>
-      <DashboardPage />
-      <LoginForm />
-      <button onClick={set}>set</button>
-      <button onClick={() => dispatch(resetUser())}>reset</button>
-      <button onClick={() => dispatch(openModal())}>show</button>
-      <button onClick={() => dispatch(closeModal())}>hide</button>
-      {isModalOpen && <p>MODAL</p>}
+    <>
+      {!isFetching ? (
+        <>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route
+                path='/home/*'
+                element={
+                  <PrivateRoute>
+                    <DashboardPage />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path='/register'
+                element={
+                  <PublicRoute restricted>
+                    <RegisterPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path='/login'
+                element={
+                  <PublicRoute restricted>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route path='*' element={<Navigate to='/home' />} />
+            </Routes>
+          </Suspense>
 
-      {/* Andrii */}
-      <ButtonAddTransactions onClick={toggleModalAddTransaction} />
-      {showModalAddTransaction && (
-        <Modal onClose={toggleModalAddTransaction}>
-          <ModalAddTransaction
-            onClose={toggleModalAddTransaction}
-            onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
-          />
-        </Modal>
+          {showModalLogout && <Modal children={<ModalLogout />} />}
+          {showModalAddTransaction && (
+            <Modal
+              children={
+                <ModalAddTransaction
+                  onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
+                />
+              }
+            />
+          )}
+        </>
+      ) : (
+        <p>...loading</p>
       )}
-    </Suspense>
+    </>
   );
 }
 

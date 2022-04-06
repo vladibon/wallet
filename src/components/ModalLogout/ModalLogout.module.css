@@ -1,0 +1,47 @@
+.modal {
+  background-color: #fff;
+  width: 90vw;
+  max-width: 440px;
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.title {
+  font-family: var(--title-font);
+  color: var(--title-black-color);
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.wrapper {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 400px) {
+  .wrapper {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    max-width: 540px;
+    padding: 40px 80px 60px;
+  }
+
+  .title {
+    font-size: 30px;
+    margin-bottom: 60px;
+  }
+
+  .wrapper {
+    width: 350px;
+  }
+}
