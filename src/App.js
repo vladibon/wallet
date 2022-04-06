@@ -5,6 +5,8 @@ import Modal from 'components/Modal';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { setUser, resetUser, openModal, closeModal } from './redux';
 
+import axios from 'axios';
+
 // =========
 // import Currency from 'components/Currency';
 // import axios from 'axios';
@@ -54,14 +56,11 @@ function App() {
   );
 }
 
-// ===========
-const BASE_URL = `https://api.privatbank.ua/p24api`;
+async function fetchCurrency() {
+  const { data } = await axios('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
 
-function fetchCurrency() {
-  return fetch(`${BASE_URL}/pubinfo?json&exchange&coursid=5`).then(r => console.log(r.json()));
+  return console.log(data);
 }
-
 fetchCurrency();
 
-// ===============
 export default App;
