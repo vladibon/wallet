@@ -22,7 +22,7 @@ export default function LoginForm() {
   }, [data, error]);
 
   const onLoginSubmit = e => {
-    const user = { email: 'aaa@gmail.com', password: '1234567' };
+    const user = { email: 'eee@gmail.com', password: '1234567' };
     loginUser({ user });
   };
 
