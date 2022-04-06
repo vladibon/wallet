@@ -11,6 +11,8 @@ import transactions from 'components/HomeTab/hometab.json';
 
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 
+import DiagramTable from 'components/DiagramTable'
+
 function DashboardPage() {
   const dispatch = useDispatch();
 
@@ -20,6 +22,7 @@ function DashboardPage() {
       <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
       <HomeTab items={transactions} />
       <DoughnutChart />
+      <DiagramTable/>
     </main>
   );
 }
