@@ -1,9 +1,9 @@
 import s from './Balance.module.css';
 import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/selectors';
+import { selectBalance } from 'redux/selectors';
 
 function Balance() {
-  const { balance } = useSelector(selectUser);
+  const balance = useSelector(selectBalance);
 
   return (
     <div className={s.balance}>

@@ -12,7 +12,7 @@ export const emptySplitApi = createApi({
     },
   }),
 
-  tagTypes: ['Users', 'Transactions', 'Categories'],
+  tagTypes: ['Users', 'Finance', 'Categories'],
   reducerPath: 'mainAPISlice',
   endpoints: () => ({}),
 });
