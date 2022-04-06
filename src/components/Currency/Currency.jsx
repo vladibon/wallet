@@ -1,18 +1,18 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CurrencyItem from './CurrencyItem';
 import fetchCurrency from 'api/currencyAPI';
 
 import s from './Currency.module.css';
 
-function Currency({ currency }) {
-  // const [currency, setCurrency] = useState([]);
+function Currency() {
+  const [currency, setCurrency] = useState([]);
 
-  // useEffect(() => {
-  //   if (!query) {
-  //     return;
-  //   }
-
-  // })
+  useEffect(() => {
+    async function fethcData() {
+      setCurrency(await fetchCurrency());
+    }
+    fethcData();
+  }, []);
 
   return (
     <div className={s.table__container}>
@@ -26,7 +26,7 @@ function Currency({ currency }) {
         </thead>
         <tbody className={s.table__body}>
           {currency.map(el => (
-            <CurrencyItem ccy={el.ccy} buy={el.buy} sale={el.sale} />
+            <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
           ))}
         </tbody>
       </table>

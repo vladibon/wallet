@@ -6,7 +6,7 @@ function DashboardPage() {
   return (
     <main className={s.main}>
       <Header />
-      <Currency></Currency>
+      <Currency />
     </main>
   );
 }
