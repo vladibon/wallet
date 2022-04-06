@@ -5,6 +5,11 @@ import Modal from 'components/Modal';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { setUser, resetUser, openModal, closeModal } from './redux';
 
+// =========
+// import Currency from 'components/Currency';
+// import axios from 'axios';
+// ==========
+
 const LoginForm = lazy(() => import('components/LoginForm'));
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -49,4 +54,14 @@ function App() {
   );
 }
 
+// ===========
+const BASE_URL = `https://api.privatbank.ua/p24api`;
+
+function fetchCurrency() {
+  return fetch(`${BASE_URL}/pubinfo?json&exchange&coursid=5`).then(r => console.log(r.json()));
+}
+
+fetchCurrency();
+
+// ===============
 export default App;
