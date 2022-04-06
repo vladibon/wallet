@@ -2,6 +2,7 @@ import s from './LoginForm.module.css';
 import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -48,9 +49,11 @@ export default function LoginForm() {
         <button className={s.logBtn} type='button' onClick={onLoginSubmit}>
           log in
         </button>
-        <button className={s.regBtn} type='button'>
-          sign up
-        </button>
+        <Link to='/register' className={s.authLink}>
+          <button className={s.regBtn} type='button'>
+            sign up
+          </button>
+        </Link>
       </form>
     </div>
   );

@@ -2,6 +2,7 @@ import s from './RegisterForm.module.css';
 import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import { Link } from 'react-router-dom';
 
 export default function RegisterForm() {
   return (
@@ -50,9 +51,11 @@ export default function RegisterForm() {
         <button className={s.regBtn} type='button'>
           sign up
         </button>
-        <button className={s.logBtn} type='button'>
-          log in
-        </button>
+        <Link to='/login' className={s.authLink}>
+          <button className={s.logBtn} type='button'>
+            log in
+          </button>
+        </Link>
       </form>
     </div>
   );
