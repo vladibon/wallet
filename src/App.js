@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { store } from 'redux/store';
-import { useGetCurrenthUserQuery, setUser } from 'redux/index';
+import { useGetCurrenthUserQuery, setUser, resetUser } from 'redux/index';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
@@ -32,9 +32,7 @@ function App() {
 
   useEffect(() => {
     const token = store.getState().auth?.token;
-
-    if (!token && !data) return;
-    else dispatch(setUser({ user: data, token }));
+    data ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
   }, [data, dispatch]);
 
   return (

@@ -1,15 +1,15 @@
 import s from './ButtonAddTransactions.module.css';
 import { ReactComponent as AddIcon } from './add.svg';
-import PropTypes from 'prop-types';
 
-export default function ButtonAddTransactions({ onClick }) {
+import { useDispatch } from 'react-redux';
+import { openModalAddTransaction } from 'redux/index';
+
+export default function ButtonAddTransactions() {
+  const dispatch = useDispatch();
+
   return (
-    <button type='button' className={s.button} onClick={onClick}>
+    <button type='button' className={s.button} onClick={() => dispatch(openModalAddTransaction())}>
       <AddIcon width='20' height='20' fill='#ffffff' />
     </button>
   );
 }
-
-ButtonAddTransactions.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};

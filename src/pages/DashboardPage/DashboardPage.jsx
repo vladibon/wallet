@@ -1,10 +1,8 @@
 import s from './DashboardPage.module.css';
-import { useDispatch } from 'react-redux';
 
-import { openModalAddTransaction } from 'redux/index';
 import Header from 'components/Header';
+import Balance from 'components/Balance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
-
 import HomeTab from 'components/HomeTab';
 
 import transactions from 'components/HomeTab/hometab.json';
@@ -12,13 +10,12 @@ import transactions from 'components/HomeTab/hometab.json';
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 
 function DashboardPage() {
-  const dispatch = useDispatch();
-
   return (
     <main className={s.main}>
       <Header />
-      <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
+      <ButtonAddTransactions />
       <HomeTab items={transactions} />
+      <Balance />
       <DoughnutChart />
     </main>
   );
