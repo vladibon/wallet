@@ -13,6 +13,7 @@ import {
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { authReducer } from './auth/auth-slice';
+import { categoriesReducer } from './categories/categories-slice';
 import { globalReducer } from './global/global-slice';
 import { emptySplitApi } from 'redux/mainAPISlice';
 
@@ -24,6 +25,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  categories: categoriesReducer,
   global: globalReducer,
   [emptySplitApi.reducerPath]: emptySplitApi.reducer,
 });
