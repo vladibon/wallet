@@ -1,86 +1,178 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ReactComponent as CloseIcon } from './close.svg';
+
+import Datetime from 'react-datetime';
+import 'moment/locale/fr';
+import 'react-datetime/css/react-datetime.css';
 import s from './ModalAddTransaction.module.css';
 
-export default function ContactForm({ onSubmit, onClose }) {
+import { selectCategories } from 'redux/selectors';
+import { useAddTransactionMutation, closeModalWindow } from 'redux/index';
+
+export default function ContactForm() {
+  const dispatch = useDispatch();
+  const [type, setType] = useState(false);
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  const [coment, setComent] = useState('');
+  const [comment, setComment] = useState('');
 
-  const handleNameChange = e => {
-    const { name, value } = e.target;
+  const { income, expense } = useSelector(selectCategories);
+  const [addTransaction] = useAddTransactionMutation();
+
+  useEffect(() => {
+    if (type) {
+      setCategories(income);
+      setCategory(income[0]);
+    } else {
+      setCategories(expense);
+      setCategory(expense[0]);
+    }
+  }, [expense, income, type]);
+
+  const handleInputChange = e => {
+    const { name, value, checked } = e.target;
 
     switch (name) {
+      case 'type':
+        setType(checked);
+        break;
+
       case 'amount':
         setAmount(value);
+        break;
+
+      case 'category':
+        setCategory(value);
         break;
 
       case 'date':
         setDate(value);
         break;
 
-      case 'coment':
-        setComent(value);
+      case 'comment':
+        setComment(value);
         break;
 
       // no default
     }
   };
-
+  // console.log(income, expense);
   const reset = () => {
+    setType(false);
+    setCategory([]);
     setAmount('');
     setDate('');
-    setComent('');
+    setComment('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(amount, date, coment);
-    reset();
+
+    const transaction = {
+      date,
+      type,
+      category,
+      comment,
+      amount,
+    };
+
+    addTransaction({ transaction }).then(({ data, error }) => {
+      if (data) {
+        console.log('Success', data);
+        dispatch(closeModalWindow());
+        reset();
+      } else if (error) {
+        console.log(error.data.message);
+      }
+    });
   };
+
+  // let inputProps = { name: 'date' };
 
   return (
     <div className={s.modal}>
-      <p className={s.title}>Добавить транзакцию</p>
-      <button type='button' className={s.btnClose} onClick={onClose}>
-        <CloseIcon width='16' height='16' fill='#000000' />
-      </button>
+      <p className={s.title}>Add transaction</p>
+
       <form className={s.form} onSubmit={handleSubmit}>
-        <label>
-          <input type='radio' name='transaction' value='income' />
-          Доход
-        </label>
-        <label>
-          <input type='radio' name='transaction' value='outgo' checked />
-          Расход
-        </label>
+        <div className={s.formCheckbox}>
+          <span className={s.formCheckbox__label}>Income</span>
+          <span className={s.formCheckbox__toggle}>
+            <input
+              name='type'
+              type='checkbox'
+              className={s.checkbox}
+              id='checkbox'
+              checked={type}
+              onChange={handleInputChange}
+            />
+            <label htmlFor='checkbox'></label>
+          </span>
+          <span className={s.formCheckbox__label}>Expence</span>
+        </div>
+        <select
+          className={s.formCategories}
+          name='category'
+          value={category}
+          onChange={handleInputChange}
+        >
+          {categories.map(el => (
+            <option key={el} value={el}>
+              {el}
+            </option>
+          ))}
+        </select>
         <input
+          className={s.formInput}
           type='number'
           name='amount'
           value={amount}
-          onChange={handleNameChange}
+          min='0.01'
+          step='0.01'
+          onChange={handleInputChange}
           placeholder='0.00'
           required
         />
-        <input type='date' name='date' value={date} onChange={handleNameChange} required />
+        {/* <Datetime
+          inputProps={inputProps}
+          value={date}
+          onChange={handleInputChange}
+          dateFormat='DD.MM.YYYY'
+          timeFormat={false}
+        /> */}
         <input
-          type='text'
-          name='coment'
-          value={coment}
-          onChange={handleNameChange}
-          placeholder='Комментарий'
+          className={s.formDate}
+          type='date'
+          name='date'
+          value={date}
+          onChange={handleInputChange}
+          required
         />
-        <button type='submit'>ДОБАВИТЬ</button>
-        <button type='button' onClick={onClose}>
-          ОТМЕНА
+        <textarea
+          className={s.formComent}
+          name='comment'
+          value={comment}
+          onChange={handleInputChange}
+          placeholder='Comment'
+        />
+        <button className={s.formAddBtn} type='submit'>
+          ADD
+        </button>
+        <button
+          className={s.formCancelBtn}
+          type='button'
+          onClick={() => dispatch(closeModalWindow())}
+        >
+          CANCEL
         </button>
       </form>
     </div>
   );
 }
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
-  onClose: PropTypes.func,
-};
+// ContactForm.propTypes = {
+//   onSubmit: PropTypes.func,
+//   onClose: PropTypes.func,
+// };
