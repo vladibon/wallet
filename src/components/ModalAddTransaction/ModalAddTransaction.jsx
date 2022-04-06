@@ -1,17 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ReactComponent as CloseIcon } from './close.svg';
+
 import Datetime from 'react-datetime';
 import 'moment/locale/fr';
 import 'react-datetime/css/react-datetime.css';
 import s from './ModalAddTransaction.module.css';
 
-export default function ContactForm({ onSubmit, onClose }) {
+import { selectCategories } from 'redux/selectors';
+import { useAddTransactionMutation, closeModalWindow } from 'redux/index';
+
+export default function ContactForm() {
+  const dispatch = useDispatch();
   const [type, setType] = useState(false);
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  const [coment, setComent] = useState('');
+  const [comment, setComment] = useState('');
+
+  const { income, expense } = useSelector(selectCategories);
+  const [addTransaction] = useAddTransactionMutation();
+
+  useEffect(() => {
+    if (type) {
+      setCategories(income);
+      setCategory(income[0]);
+    } else {
+      setCategories(expense);
+      setCategory(expense[0]);
+    }
+  }, [expense, income, type]);
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
@@ -33,26 +52,42 @@ export default function ContactForm({ onSubmit, onClose }) {
         setDate(value);
         break;
 
-      case 'coment':
-        setComent(value);
+      case 'comment':
+        setComment(value);
         break;
 
       // no default
     }
   };
-
+  // console.log(income, expense);
   const reset = () => {
     setType(false);
     setCategory([]);
     setAmount('');
     setDate('');
-    setComent('');
+    setComment('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(type, category, amount, date, coment);
-    reset();
+
+    const transaction = {
+      date,
+      type,
+      category,
+      comment,
+      amount,
+    };
+
+    addTransaction({ transaction }).then(({ data, error }) => {
+      if (data) {
+        console.log('Success', data);
+        dispatch(closeModalWindow());
+        reset();
+      } else if (error) {
+        console.log(error.data.message);
+      }
+    });
   };
 
   // let inputProps = { name: 'date' };
@@ -60,9 +95,6 @@ export default function ContactForm({ onSubmit, onClose }) {
   return (
     <div className={s.modal}>
       <p className={s.title}>Add transaction</p>
-      <button type='button' className={s.btnClose} onClick={onClose}>
-        <CloseIcon width='16' height='16' fill='#000000' />
-      </button>
 
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.formCheckbox}>
@@ -86,14 +118,11 @@ export default function ContactForm({ onSubmit, onClose }) {
           value={category}
           onChange={handleInputChange}
         >
-          <option value='main'>Main</option>
-          <option value='food'>Food</option>
-          <option value='car'>Car</option>
-          <option value='development'>Development</option>
-          <option value='children'>Children</option>
-          <option value='home'>Home</option>
-          <option value='education'>Education</option>
-          <option value='oher'>Other</option>
+          {categories.map(el => (
+            <option key={el} value={el}>
+              {el}
+            </option>
+          ))}
         </select>
         <input
           className={s.formInput}
@@ -123,15 +152,19 @@ export default function ContactForm({ onSubmit, onClose }) {
         />
         <textarea
           className={s.formComent}
-          name='coment'
-          value={coment}
+          name='comment'
+          value={comment}
           onChange={handleInputChange}
-          placeholder='Coment'
+          placeholder='Comment'
         />
         <button className={s.formAddBtn} type='submit'>
           ADD
         </button>
-        <button className={s.formCancelBtn} type='button' onClick={onClose}>
+        <button
+          className={s.formCancelBtn}
+          type='button'
+          onClick={() => dispatch(closeModalWindow())}
+        >
           CANCEL
         </button>
       </form>
@@ -139,7 +172,7 @@ export default function ContactForm({ onSubmit, onClose }) {
   );
 }
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
-  onClose: PropTypes.func,
-};
+// ContactForm.propTypes = {
+//   onSubmit: PropTypes.func,
+//   onClose: PropTypes.func,
+// };

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  income: null,
-  expense: null,
+  income: [],
+  expense: [],
 };
 
 const categoriesSlice = createSlice({
@@ -10,8 +10,8 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     setCategories: (state, action) => {
-      state.income = action.payload.income;
-      state.expense = action.payload.expense;
+      state.income = [...action.payload.income];
+      state.expense = [...action.payload.expense];
     },
   },
 });

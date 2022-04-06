@@ -12,6 +12,7 @@ import Modal from 'components/Modal';
 import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
+import SaveCategoriesHook from 'hooks/SaveCategoriesHook';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -26,6 +27,8 @@ function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const dispatch = useDispatch();
   const { data, isFetching } = useGetCurrenthUserQuery();
+
+  SaveCategoriesHook();
 
   useEffect(() => {
     const token = store.getState().auth?.token;
@@ -69,15 +72,7 @@ function App() {
           </Suspense>
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
-          {showModalAddTransaction && (
-            <Modal
-              children={
-                <ModalAddTransaction
-                  onSubmit={(amount, date) => console.log(`Amount-${amount}. Date-${date}`)}
-                />
-              }
-            />
-          )}
+          {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
         </>
       ) : (
         <p>...loading</p>
