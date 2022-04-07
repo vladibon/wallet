@@ -12,6 +12,7 @@ import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
 import SaveCategoriesHook from 'hooks/SaveCategoriesHook';
+import Header from 'components/Header';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <>
+      <Header />
       {!isFetching ? (
         <>
           <Suspense fallback={null}>

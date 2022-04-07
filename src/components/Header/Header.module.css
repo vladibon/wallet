@@ -25,12 +25,17 @@ align-items: center;
   display: none;
 }
 
-.logout {
+.logoutBtn {
   display: flex;
   align-items: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
 }
 
-.logout:hover {
+.logoutBtn:hover {
   color: var(--main-currency-bg-color);
   fill: currentColor;
 }
