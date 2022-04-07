@@ -1,18 +1,21 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CurrencyItem from './CurrencyItem';
-import fetchCurrency from 'api/currencyAPI';
+import { fetchCurrency } from 'api/currencyAPI';
 
 import s from './Currency.module.css';
 
-function Currency({ currency }) {
-  // const [currency, setCurrency] = useState([]);
+function Currency() {
+  const [exchanges, setExchanges] = useState([]);
 
-  // useEffect(() => {
-  //   if (!query) {
-  //     return;
-  //   }
-
-  // })
+  useEffect(() => {
+    fetchCurrency()
+      .then(data => {
+        setExchanges([...data]);
+      })
+      .catch(error => {
+        throw Error;
+      });
+  }, []);
 
   return (
     <div className={s.table__container}>
@@ -25,8 +28,8 @@ function Currency({ currency }) {
           </tr>
         </thead>
         <tbody className={s.table__body}>
-          {currency.map(el => (
-            <CurrencyItem ccy={el.ccy} buy={el.buy} sale={el.sale} />
+          {exchanges.map(el => (
+            <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
           ))}
         </tbody>
       </table>
@@ -35,30 +38,3 @@ function Currency({ currency }) {
 }
 
 export default Currency;
-
-// <table className={s.table}>
-//   <thead className={s.table__title_row}>
-//     <tr>
-//       <th className={s.table__title}>Currency</th>
-//       <th className={s.table__title}>Purchase</th>
-//       <th className={s.table__title}>Sale</th>
-//     </tr>
-//   </thead>
-//   <tbody className={s.table__body}>
-//     <tr className={s.table__row}>
-//       <td className={s.table__text}>USD</td>
-//       <td className={s.table__text}></td>
-//       <td className={s.table__text}>27.65</td>
-//     </tr>
-//     <tr className={s.table__row}>
-//       <td className={s.table__text}>EUR</td>
-//       <td className={s.table__text}>30.00</td>
-//       <td className={s.table__text}>30.10</td>
-//     </tr>
-//     <tr className={s.table__row}>
-//       <td className={s.table__text}>RUB</td>
-//       <td className={s.table__text}>00.00</td>
-//       <td className={s.table__text}>00.00</td>
-//     </tr>
-//   </tbody>
-// </table>
