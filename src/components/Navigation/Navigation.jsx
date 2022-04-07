@@ -7,7 +7,7 @@ export default function Navigation() {
   return (
     <nav className={s.nav}>
       <NavLink
-        to="/home"
+        to=''
         className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
       >
         <div className={s.linkBtn}>
@@ -17,14 +17,12 @@ export default function Navigation() {
             </svg>
           </div>
 
-          <div className={s.textBox}>
-            Home
-          </div>
+          <div className={s.textBox}>Home</div>
         </div>
       </NavLink>
 
       <NavLink
-        to="/statistics"
+        to='statistics'
         className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
       >
         <div className={s.linkBtn}>
@@ -34,15 +32,15 @@ export default function Navigation() {
             </svg>
           </div>
 
-          <div className={s.textBox}>
-            Statistics
-          </div>
+          <div className={s.textBox}>Statistics</div>
         </div>
       </NavLink>
 
       <NavLink
-        to="/currency"
-        className={({ isActive }) => (isActive ? classNames(s.link, s.linkNone, s.active) : classNames(s.link, s.linkNone))}
+        to='currency'
+        className={({ isActive }) =>
+          isActive ? classNames(s.link, s.linkNone, s.active) : classNames(s.link, s.linkNone)
+        }
       >
         <div className={s.linkBtn}>
           <div className={s.iconBox}>
@@ -51,9 +49,7 @@ export default function Navigation() {
             </svg>
           </div>
 
-          <div className={s.textBox}>
-            Currency
-          </div>
+          <div className={s.textBox}>Currency</div>
         </div>
       </NavLink>
     </nav>

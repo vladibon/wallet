@@ -16,9 +16,10 @@
   line-height: 1.5;
   font-weight: 400;
   color: var(--header-currency-bg-color);
+  transition: color var(--animation), background-color var(--animation);
 }
 
-.active, 
+.active,
 .link:hover {
   font-weight: 700;
   color: var(--main-currency-bg-color);
