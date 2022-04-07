@@ -2,6 +2,7 @@ import s from './LoginForm.module.css';
 import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -22,7 +23,7 @@ export default function LoginForm() {
   }, [data, error]);
 
   const onLoginSubmit = e => {
-    const user = { email: 'aaa@gmail.com', password: '1234567' };
+    const user = { email: 'eee@gmail.com', password: '1234567' };
     loginUser({ user });
   };
 
@@ -40,7 +41,7 @@ export default function LoginForm() {
         </label>
 
         <label className={s.authLabel}>
-          <input className={s.input} placeholder='Пароль' name='password' type='password'></input>
+          <input className={s.input} placeholder='Password' name='password' type='password'></input>
           <svg width='16' height='21' className={s.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
           </svg>
@@ -48,9 +49,11 @@ export default function LoginForm() {
         <button className={s.logBtn} type='button' onClick={onLoginSubmit}>
           log in
         </button>
-        <button className={s.regBtn} type='button'>
-          sign up
-        </button>
+        <Link to='/register' className={s.authLink}>
+          <button className={s.regBtn} type='button'>
+            sign up
+          </button>
+        </Link>
       </form>
     </div>
   );

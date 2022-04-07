@@ -1,9 +1,8 @@
-import { Suspense, lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Suspense, lazy } from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { store } from 'redux/store';
-import { useGetCurrenthUserQuery, setUser } from 'redux/index';
+import { FetchCurrentUser } from 'hooks/FetchCurrentUser';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
@@ -23,19 +22,11 @@ const RegisterPage = lazy(() =>
 );
 
 function App() {
+  SaveCategoriesHook();
+  const isFetching = FetchCurrentUser();
+
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
-  const dispatch = useDispatch();
-  const { data, isFetching } = useGetCurrenthUserQuery();
-
-  SaveCategoriesHook();
-
-  useEffect(() => {
-    const token = store.getState().auth?.token;
-
-    if (!token && !data) return;
-    else dispatch(setUser({ user: data, token }));
-  }, [data, dispatch]);
 
   return (
     <>
