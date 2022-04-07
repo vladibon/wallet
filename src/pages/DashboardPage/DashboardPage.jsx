@@ -7,8 +7,6 @@ import Header from 'components/Header';
 import Balance from 'components/Balance';
 import HomeTab from 'components/HomeTab';
 
-import transactions from 'components/HomeTab/hometab.json';
-
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 
 function DashboardPage() {
@@ -23,7 +21,7 @@ function DashboardPage() {
 
         <Suspense>
           <Routes>
-            <Route path='hometab' element={<HomeTab items={transactions} />} />
+            <Route path='hometab' element={<HomeTab />} />
             <Route path='diagram' element={<DoughnutChart />} />
           </Routes>
         </Suspense>

@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import s from './HomeTabItems.module.css';
 
 function HomeTabDesktop(props) {
   const { date, type, category, comment, sum, balance } = props;
