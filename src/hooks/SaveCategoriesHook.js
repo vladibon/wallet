@@ -7,7 +7,7 @@ const SaveCategoriesHook = () => {
   const { data } = useGetCategoriesQuery();
   const categories = useSelector(selectCategories);
 
-  if (categories?.income && categories?.expense && data) {
+  if (categories?.income?.length && categories?.expense?.length && data) {
     return;
   } else {
     if (!data) return;
