@@ -1,6 +1,7 @@
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
+import Currency from 'components/Currency';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import HomeTab from 'components/HomeTab';
 import transactions from 'components/HomeTab/hometab.json';
@@ -19,6 +20,7 @@ function DashboardPage() {
         <ButtonAddTransactions />
         <HomeTab items={transactions} />
         <Balance />
+        <Currency />
         <DoughnutChart />
         <DiagramTable />
       </main>
