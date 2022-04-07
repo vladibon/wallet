@@ -1,27 +1,29 @@
-import { useDispatch } from 'react-redux';
-import { openModalAddTransaction } from 'redux/index';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
+import Balance from 'components/Balance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import HomeTab from 'components/HomeTab';
 import transactions from 'components/HomeTab/hometab.json';
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 import s from './DashboardPage.module.css';
 
-function DashboardPage() {
-  const dispatch = useDispatch();
+import DiagramTable from 'components/DiagramTable'
 
+function DashboardPage() {
   return (
     <>
       <Header />
 
       <main className={s.main}>
         <Navigation />
-        <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
+        <ButtonAddTransactions />
         <HomeTab items={transactions} />
+        <Balance />
         <DoughnutChart />
+        <DiagramTable/>
       </main>
     </>
+      
   );
 }
 

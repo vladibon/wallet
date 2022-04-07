@@ -1,0 +1,30 @@
+.sectionDoughnut {
+  width: 280px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: var(--title-font);
+  list-style: 1.5;
+  margin-bottom: 10px;
+}
+
+.doughnut {
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .sectionDoughnut {
+    width: 336px;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sectionDoughnut {
+    width: 288px;
+  }
+}

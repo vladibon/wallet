@@ -1,18 +1,20 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+// import { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { UserData } from './data';
+import s from './DoughnutChart.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
 export const data = {
-  labels: UserData.map(data => data.userTransaction),
+  labels: [],
+  // UserData.map(data => data.userTransaction),
   datasets: [
     {
-      label: '# of Votes',
+      label: 'Transactions',
       data: UserData.map(data => data.userLost),
       backgroundColor: [
-        ' #FED057',
+        '#FED057',
         '#FFD8D0',
         '#FD9498',
         '#C5BAFF',
@@ -26,20 +28,13 @@ export const data = {
   ],
 };
 
-export const options = {
-  plugins: {
-    legend: {
-      position: 'right',
-      rtl: true,
-      labels: {
-        usePointStyle: true,
-        pointStyle: 'circle',
-        padding: 20,
-      },
-    },
-  },
-};
 export function DoughnutChart() {
-  return <Doughnut  options={options} data={data} />;
-  
+  return (
+    <div className={s.sectionDoughnut}>
+      <h2 className={s.title}>Statistics</h2>
+      <div className={s.doughnut}>
+        <Doughnut data={data} />
+      </div>
+    </div>
+  );
 }
