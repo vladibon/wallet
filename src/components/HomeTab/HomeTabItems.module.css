@@ -1,0 +1,107 @@
+.homeTabItems__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* border-radius: 0 10px 10px 0; */
+}
+
+.homeTabItems__listCell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 20px 12px 15px;
+  border-radius: 0 10px 10px 0;
+  background: var(--hometab-primary-bg-color);
+}
+
+.homeTabItems__listCell:first-child {
+  background: var(--hometab-title-bg-color);
+}
+
+.homeTabItems__listCell:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+.homeTabItems__listTitle {
+  margin-right: 5px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: var(--title-black-color);
+}
+
+.homeTabItems__listMeaning {
+  text-align: end;
+}
+
+.homeTabItems__listMeaningWeight {
+  font-weight: 700;
+}
+
+.income {
+  color: var(--earnings-green-color);
+}
+
+.expense {
+  color: var(--expenditure-red-color);
+}
+
+/* @media screen 768px*/
+
+@media screen and (min-width: 768px) {
+  .homeTabItems__list {
+    flex-direction: row;
+    padding: 0 15px;
+  }
+
+  .homeTabItems__listCell {
+    padding: 14px 5px;
+    background: var(--hometab-bg-color);
+    flex: 1;
+  }
+
+  .homeTabItems__listCell:first-child {
+    background: var(--hometab-bg-color);
+  }
+
+  .homeTabItems__listCell:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .homeTabItems__listTitle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  .homeTabItems__listMeaning {
+    width: 100%;
+  }
+
+  .homeTabItems__listMeaningCenter {
+    text-align: center;
+  }
+
+  .homeTabItems__listMeaningStart {
+    text-align: start;
+  }
+
+  .homeTabItems__listCellWidth {
+    flex: 2;
+  }
+}
