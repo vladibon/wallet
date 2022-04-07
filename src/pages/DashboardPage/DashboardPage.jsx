@@ -1,15 +1,12 @@
-import s from './DashboardPage.module.css';
-
 import Header from 'components/Header';
 import Balance from 'components/Balance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import HomeTab from 'components/HomeTab';
-
-import transactions from 'components/HomeTab/hometab.json';
-
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
+import transactions from 'components/HomeTab/hometab.json';
+import s from './DashboardPage.module.css';
 
-import DiagramTable from 'components/DiagramTable'
+import DiagramTable from 'components/DiagramTable';
 
 function DashboardPage() {
   return (
@@ -19,7 +16,7 @@ function DashboardPage() {
       <HomeTab items={transactions} />
       <Balance />
       <DoughnutChart />
-      <DiagramTable/>
+      <DiagramTable />
     </main>
   );
 }
