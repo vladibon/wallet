@@ -38,8 +38,11 @@ export default function LoginForm() {
   }, [data, error]);
 
   const onLoginSubmit = e => {
-    const user = { email: 'eee@gmail.com', password: '1234567' };
+    e.preventDefault();
+    const user = { email, password };
     loginUser({ user });
+    setEmail('');
+    setPassword('');
   };
 
   return (
