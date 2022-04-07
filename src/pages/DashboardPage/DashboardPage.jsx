@@ -9,9 +9,6 @@ import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 import s from './DashboardPage.module.css';
 
 function DashboardPage() {
-  const toHome = () => null;
-  const toCurrency = () => null;
-  const toStatistics = () => null;
   const dispatch = useDispatch();
 
   return (
@@ -19,14 +16,10 @@ function DashboardPage() {
       <Header />
 
       <main className={s.main}>
-        <Navigation
-          onClickHome={toHome}
-          onClickCurrency={toCurrency}
-          onClickStatistics={toStatistics}
-        />
-      <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
-      <HomeTab items={transactions} />
-      <DoughnutChart />
+        <Navigation />
+        <ButtonAddTransactions onClick={() => dispatch(openModalAddTransaction())} />
+        <HomeTab items={transactions} />
+        <DoughnutChart />
       </main>
     </>
   );

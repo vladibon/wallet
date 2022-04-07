@@ -1,52 +1,61 @@
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import Icons from 'images/sprite.svg';
 import s from './Navigation.module.css';
 
-export default function Navigation({ onClickHome, onClickCurrency, onClickStatistics }) {
+export default function Navigation() {
   return (
     <section className={s.nav}>
-      <button
-        type='button'
-        className={s.btnNav}
-        onClick={onClickHome}
+      <NavLink
+        to="/home"
+        className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
       >
-        <svg className={s.btnIcon}>
-          <use href={`${Icons}#icon-home`} />
-        </svg>
-      </button>
+        <div className={s.linkBtn}>
+          <div className={s.iconBox}>
+            <svg className={s.icon}>
+              <use href={`${Icons}#icon-home`} />
+            </svg>
+          </div>
 
-      <button
-        type='button'
-        className={s.btnNav}
-        onClick={onClickStatistics}
-      >
-        <svg className={s.btnIcon}>
-          <use href={`${Icons}#icon-statistics`} />
-        </svg>
-      </button>
+          <div className={s.textBox}>
+            Home
+          </div>
+        </div>
+      </NavLink>
 
-      <button
-        type='button'
-        className={classNames(s.btnNav, s.btnNone)}
-        onClick={onClickCurrency}
+      <NavLink
+        to="/statistics"
+        className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
       >
-        <svg className={s.btnIcon}>
-          <use href={`${Icons}#icon-currency`} />
-        </svg>
-      </button>
+        <div className={s.linkBtn}>
+          <div className={s.iconBox}>
+            <svg className={s.icon}>
+              <use href={`${Icons}#icon-statistics`} />
+            </svg>
+          </div>
+
+          <div className={s.textBox}>
+            Statistics
+          </div>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="/currency"
+        className={({ isActive }) => (isActive ? classNames(s.link, s.linkNone, s.active) : classNames(s.link, s.linkNone))}
+      >
+        <div className={s.linkBtn}>
+          <div className={s.iconBox}>
+            <svg className={s.icon}>
+              <use href={`${Icons}#icon-currency`} />
+            </svg>
+          </div>
+
+          <div className={s.textBox}>
+            Currency
+          </div>
+        </div>
+      </NavLink>
     </section>
   );
 }
-
-Navigation.defaultProps = {
-  onClickHome: () => null,
-  onClickCurrency: () => null,
-  onClickStatistics: () => null,
-};
-
-Navigation.propTypes = {
-  onClickHome: PropTypes.func.isRequired,
-  onClickCurrency: PropTypes.func.isRequired,
-  onClickStatistics: PropTypes.func.isRequired,
-};
