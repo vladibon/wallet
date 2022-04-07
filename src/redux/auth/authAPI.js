@@ -11,7 +11,7 @@ const authAPI = emptySplitApi.injectEndpoints({
       }),
     }),
     logInUser: builder.mutation({
-      query: ({ user }) => ({
+      query: user => ({
         url: `/auth/login`,
         method: 'POST',
         providesTags: ['Users'],

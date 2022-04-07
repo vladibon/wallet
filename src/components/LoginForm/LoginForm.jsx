@@ -23,8 +23,11 @@ export default function LoginForm() {
   }, [data, error]);
 
   const onLoginSubmit = e => {
-    const user = { email: 'eee@gmail.com', password: '1234567' };
-    loginUser({ user });
+    const user = {};
+    // { email: 'eee@gmail.com', password: '1234567' };
+    const formData = new FormData(e.target.form);
+    formData.forEach((value, name) => (user[name] = value));
+    loginUser(user);
   };
 
   return (
