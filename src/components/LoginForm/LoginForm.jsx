@@ -32,7 +32,7 @@ export default function LoginForm() {
     if (data) {
       dispatch(setUser(data));
     } else if (error) {
-      console('Your request failed');
+      console.log('Your request failed');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
