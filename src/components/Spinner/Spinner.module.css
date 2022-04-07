@@ -1,0 +1,36 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.spinner {
+  animation: spinner 2s infinite linear;
+}
+
+.blue {
+  composes: spinner;
+  color: var(--main-currency-bg-color);
+}
+
+.green {
+  composes: spinner;
+  color: var(--earnings-green-color);
+}
+
+.black {
+  composes: spinner;
+  color: var(--title-black-color);
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
