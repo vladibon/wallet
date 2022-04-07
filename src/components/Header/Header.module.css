@@ -17,8 +17,8 @@
 }
 
 .name {
-display: inline-flex;
-align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
 
 .name::after {
@@ -33,6 +33,7 @@ align-items: center;
   cursor: pointer;
   background-color: transparent;
   color: inherit;
+  transition: color var(--animation);
 }
 
 .logoutBtn:hover {
