@@ -21,8 +21,8 @@ function DashboardPage() {
 
         <Suspense>
           <Routes>
-            <Route path='hometab' element={<HomeTab />} />
-            <Route path='diagram' element={<DoughnutChart />} />
+            <Route path='/' element={<HomeTab />} />
+            <Route path='/stats' element={<DoughnutChart />} />
           </Routes>
         </Suspense>
       </main>

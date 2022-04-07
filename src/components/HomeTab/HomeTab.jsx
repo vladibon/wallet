@@ -9,13 +9,13 @@ function HomeTab() {
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
 
   return (
-    <div>
+    <>
       {isMobile && <HomeTabMobile />}
 
       {isTabletOrDesktop && <HomeTabDesktop />}
 
       <ButtonAddTransactions />
-    </div>
+    </>
   );
 }
 

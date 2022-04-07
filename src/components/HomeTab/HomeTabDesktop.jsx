@@ -1,4 +1,4 @@
-// import s from './HomeTabMobile.module.css';
+import s from './HomeTabDesktop.module.css';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,30 +16,32 @@ function HomeTabDesktop() {
   }, [data, dispatch]);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Category</th>
-          <th>Comment</th>
-          <th>Amount</th>
-          <th>Balance</th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(transaction => (
+    <div className={s.tableSection}>
+      <table className={s.table}>
+        <thead className={s.tableThead}>
           <tr>
-            <td>{transaction.date}</td>
-            <td>{transaction.type}</td>
-            <td>{transaction.category}</td>
-            <td>{transaction.comment}</td>
-            <td>{transaction.amount}</td>
-            <td>{transaction.balance}</td>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Comment</th>
+            <th>Amount</th>
+            <th>Balance</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {transactions.map(transaction => (
+            <tr>
+              <td>{transaction.date}</td>
+              <td>{transaction.type}</td>
+              <td>{transaction.category}</td>
+              <td>{transaction.comment}</td>
+              <td>{transaction.amount}</td>
+              <td>{transaction.balance}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
