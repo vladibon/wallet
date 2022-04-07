@@ -9,11 +9,14 @@ const financeSlice = createSlice({
   name: 'finance',
   initialState,
   reducers: {
-    setTransactions: (state, action) => {
+    setLatestTransactions: (state, action) => {
       state.transactions = [...action.payload];
+    },
+    setMoreTransactions: (state, action) => {
+      state.transactions = [...state.transactions, ...action.payload];
     },
   },
 });
 
-export const { setTransactions } = financeSlice.actions;
+export const { setLatestTransactions, setMoreTransactions } = financeSlice.actions;
 export const financeReducer = financeSlice.reducer;

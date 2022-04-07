@@ -8,7 +8,12 @@ import 'react-datetime/css/react-datetime.css';
 import s from './ModalAddTransaction.module.css';
 
 import { selectCategories } from 'redux/selectors';
-import { useAddTransactionMutation, closeModalWindow, setBalance } from 'redux/index';
+import {
+  useAddTransactionMutation,
+  closeModalWindow,
+  setBalance,
+  setLatestTransactions,
+} from 'redux/index';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -83,6 +88,7 @@ export default function ContactForm() {
       if (data) {
         console.log('Success', data);
         dispatch(setBalance({ balance: data.balance }));
+        dispatch(setLatestTransactions([...data.transactions]));
         dispatch(closeModalWindow());
         reset();
       } else if (error) {

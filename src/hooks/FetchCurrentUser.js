@@ -8,9 +8,9 @@ export const FetchCurrentUser = () => {
   const token = store.getState().auth?.token;
   const dispatch = useDispatch();
   const { data, isFetching } = useGetCurrenthUserQuery();
-
+  console.log(token, data);
   useEffect(() => {
-    token ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
+    token && data ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
