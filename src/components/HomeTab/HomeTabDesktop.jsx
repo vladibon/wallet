@@ -1,36 +1,46 @@
-import PropTypes from 'prop-types';
+// import s from './HomeTabMobile.module.css';
 
-function HomeTabDesktop(props) {
-  const { date, type, category, comment, sum, balance } = props;
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { selectTransactions } from 'redux/selectors';
 
-  const formatSum = Intl.NumberFormat('ru-Ru', {
-    minimumFractionDigits: 2,
-  }).format(sum);
+function HomeTabDesktop() {
+  const dispatch = useDispatch();
+  const { data } = useGetTransactionsQuery();
+  const transactions = useSelector(selectTransactions);
 
-  const formatBalance = Intl.NumberFormat('ru-Ru', {
-    minimumFractionDigits: 2,
-  }).format(balance);
+  useEffect(() => {
+    if (!data) return;
+    else dispatch(setTransactions([...data.transactions]));
+  }, [data, dispatch]);
 
   return (
-    <tr>
-      <td>td</td>
-    </tr>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Comment</th>
+          <th>Amount</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        {transactions.map(transaction => (
+          <tr>
+            <td>{transaction.date}</td>
+            <td>{transaction.type}</td>
+            <td>{transaction.category}</td>
+            <td>{transaction.comment}</td>
+            <td>{transaction.amount}</td>
+            <td>{transaction.balance}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
-
-HomeTabDesktop.propTypes = {
-  date: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['+', '-']).isRequired,
-  category: PropTypes.oneOf([
-    'Разное',
-    'Регулярный доход',
-    'Машина',
-    'Продукты',
-    'Нерегулярный доход',
-  ]).isRequired,
-  comment: PropTypes.string.isRequired,
-  sum: PropTypes.number.isRequired,
-  balance: PropTypes.number.isRequired,
-};
 
 export default HomeTabDesktop;

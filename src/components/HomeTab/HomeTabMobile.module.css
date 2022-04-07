@@ -20,11 +20,11 @@
   border-radius: 5px 10px 10px 5px;
 }
 
-.income {
+.incomeBorder {
   border-left: var(--hometab-border-income);
 }
 
-.expense {
+.expenseBorder {
   border-left: var(--hometab-border-expense);
 }
 
