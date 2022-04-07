@@ -17,20 +17,26 @@
 }
 
 .name {
-display: inline-flex;
-align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
 
 .name::after {
   display: none;
 }
 
-.logout {
+.logoutBtn {
   display: flex;
   align-items: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+  transition: color var(--animation);
 }
 
-.logout:hover {
+.logoutBtn:hover {
   color: var(--main-currency-bg-color);
   fill: currentColor;
 }

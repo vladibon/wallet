@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import 'moment/locale/fr';
 import 'react-datetime/css/react-datetime.css';
 import s from './ModalAddTransaction.module.css';

@@ -46,19 +46,24 @@ p {
   position: absolute;
   left: 10px;
   bottom: 3px;
-  fill: var(--grey-color);
+  fill: currentColor;
   cursor: pointer;
 }
 
-.inputIcon :hover {
+/* .inputIcon :hover {
   fill: var(--main-currency-bg-color);
-}
+} */
 
 .authLabel {
   position: relative;
   width: 280px;
   margin-left: 20px;
   margin-right: 20px;
+  color: var(--grey-color);
+  transition: color var(--animation);
+}
+.authLabel:hover {
+  color: var(--main-currency-bg-color);
 }
 
 /* Button */
