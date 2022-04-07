@@ -5,7 +5,7 @@ import s from './Navigation.module.css';
 
 export default function Navigation() {
   return (
-    <section className={s.nav}>
+    <nav className={s.nav}>
       <NavLink
         to="/home"
         className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
@@ -56,6 +56,6 @@ export default function Navigation() {
           </div>
         </div>
       </NavLink>
-    </section>
+    </nav>
   );
 }
