@@ -6,7 +6,7 @@ p {
 
 .authForm {
   display: block;
-  padding-top: 110px;
+  padding-top: 36px;
   min-width: 320px;
 }
 
@@ -68,7 +68,6 @@ p {
   display: block;
   width: 280px;
   height: 50px;
-  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -81,19 +80,19 @@ p {
 }
 
 .logBtn {
+  margin-top: 20px;
+  background-color: #ffffff;
+  color: var(--btn-secondary-color);
+  border: 1px solid var(--btn-secondary-color);
+  cursor: pointer;
+}
+
+.regBtn {
   margin-top: 10px;
   background-color: var(--btn-primary-bg-color);
   border-color: transparent;
   outline: none;
   color: white;
-  cursor: pointer;
-}
-
-.regBtn {
-  margin-top: 20px;
-  background-color: #ffffff;
-  color: var(--btn-secondary-color);
-  border: 1px solid var(--btn-secondary-color);
   cursor: pointer;
 }
 
@@ -153,12 +152,13 @@ p {
   }
 
   .logBtn {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 0px;
   }
 
   .regBtn {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 0px;
   }
 }
 
@@ -166,7 +166,7 @@ p {
   .authForm {
     width: 540px;
     height: auto;
-    margin-top: 136px;
-    margin-bottom: 116px;
+    margin-top: 0;
+    /* margin-bottom: 116px; */
   }
 }

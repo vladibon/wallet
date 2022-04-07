@@ -1,7 +1,23 @@
 import HomeTabItems from './HomeTabItems';
 import s from './HomeTab.module.css';
 
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { selectTransactions } from 'redux/selectors';
+
 function HomeTab({ items }) {
+  const dispatch = useDispatch();
+  const { data } = useGetTransactionsQuery();
+  const transactions = useSelector(selectTransactions);
+
+  useEffect(() => {
+    if (!data) return;
+    else dispatch(setTransactions([...data.transactions]));
+  }, [data, dispatch]);
+
+  console.log(transactions);
+
   return (
     <div className={s.homeTab__section}>
       <ul className={s.homeTab}>

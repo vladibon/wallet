@@ -1,10 +1,10 @@
 import { emptySplitApi } from '../mainAPISlice';
 
-const transactionsAPI = emptySplitApi.injectEndpoints({
+const financeAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     getTransactions: builder.query({
       query: () => `/transactions`,
-      providesTags: ['Transactions'],
+      providesTags: ['Finance'],
     }),
     addTransaction: builder.mutation({
       query: ({ transaction }) => ({
@@ -12,10 +12,10 @@ const transactionsAPI = emptySplitApi.injectEndpoints({
         method: 'POST',
         body: transaction,
       }),
-      invalidatesTags: ['Transactions'],
+      invalidatesTags: ['Finance'],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetTransactionsQuery, useAddTransactionMutation } = transactionsAPI;
+export const { useGetTransactionsQuery, useAddTransactionMutation } = financeAPI;

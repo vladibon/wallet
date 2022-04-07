@@ -1,9 +1,180 @@
 .modal {
-  padding: 20px;
-  /* margin-top: 20px;
-  margin-bottom: 20px; */
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 73px;
+  padding-left: 73px;
   width: 540px;
-  height: 508px;
   border-radius: 20px;
   background-color: var(--text-white-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.15;
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  outline: none;
+  background-color: var(--text-white-color);
+  border: none;
+}
+
+.formCheckbox {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--grey-color);
+}
+
+.formCheckbox__label {
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+
+  line-height: 1.5;
+}
+
+.formCheckbox__toggle {
+  margin: 0 20px 0 20px;
+}
+
+.checkbox {
+  position: relative;
+  z-index: -1;
+  opacity: 0;
+}
+.checkbox + label {
+  position: relative;
+  padding: 10px 0 10px 80px;
+  cursor: pointer;
+}
+.checkbox + label:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  border: var(--model-border);
+  transition: 0.2s;
+}
+.checkbox + label:after {
+  content: '';
+  font-size: 50px;
+  position: absolute;
+  top: 0px;
+  left: 36px;
+  width: 44px;
+  height: 44px;
+  background: url(./minus.svg) no-repeat center;
+  background-color: var(--expenditure-red-color);
+  border: none;
+  color: var(--text-white-color);
+  border-radius: 50%;
+  box-shadow: 0 6px 15px 0 rgba(255, 101, 150, 0.5);
+  transition: 0.2s;
+}
+
+.checkbox:checked + label:after {
+  content: '';
+  background: url(./add.svg) no-repeat center;
+  background-color: var(--earnings-green-color);
+  box-shadow: 0 6px 15px 0 rgba(36, 204, 167, 0.5);
+  left: -2px;
+}
+
+.formCategories,
+.formInput,
+.formDate,
+.formComent {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid;
+  border-color: var(--grey-color);
+}
+
+.categoryPlaceholder,
+.formInput::placeholder,
+.formComent::placeholder {
+  color: var(--header-grey-color);
+}
+
+.formInput:-webkit-autofill,
+.formInput:-webkit-autofill:hover,
+.formInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--title-black-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--text-white-color) inset;
+}
+
+::-webkit-calendar-picker-indicator {
+  color: transparent;
+  opacity: 1;
+  background: url(./calendar.svg) no-repeat center;
+  background-size: contain;
+}
+
+.formDate:invalid::-webkit-datetime-edit {
+  color: var(--header-grey-color);
+}
+
+.formComent {
+  height: 85px;
+  resize: none;
+}
+
+.formAddBtn,
+.formCancelBtn {
+  display: block;
+  width: 280px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.formAddBtn {
+  margin-bottom: 20px;
+  background-color: var(--stat-leisure-color);
+  border-color: transparent;
+  outline: none;
+  color: var(--text-white-color);
+}
+
+.formCancelBtn {
+  background-color: var(--text-white-color);
+  color: var(--stat-home-color);
+  border: var(--btn-secondary-border);
 }
