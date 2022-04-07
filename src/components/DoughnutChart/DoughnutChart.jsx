@@ -14,7 +14,7 @@ export const data = {
       label: 'Transactions',
       data: UserData.map(data => data.userLost),
       backgroundColor: [
-        ' #FED057',
+        '#FED057',
         '#FFD8D0',
         '#FD9498',
         '#C5BAFF',
@@ -23,7 +23,7 @@ export const data = {
         '#24CCA7',
         '#00AD84',
       ],
-     borderWidth: 0,
+      borderWidth: 0,
     },
   ],
 };
@@ -33,9 +33,7 @@ export function DoughnutChart() {
     <div className={s.sectionDoughnut}>
       <h2 className={s.title}>Statistics</h2>
       <div className={s.doughnut}>
-        <Doughnut
-          data={data}
-        />
+        <Doughnut data={data} />
       </div>
     </div>
   );
