@@ -9,6 +9,8 @@ import transactions from 'components/HomeTab/hometab.json';
 
 import { DoughnutChart } from 'components/DoughnutChart/DoughnutChart';
 
+import DiagramTable from 'components/DiagramTable'
+
 function DashboardPage() {
   return (
     <main className={s.main}>
@@ -17,6 +19,7 @@ function DashboardPage() {
       <HomeTab items={transactions} />
       <Balance />
       <DoughnutChart />
+      <DiagramTable/>
     </main>
   );
 }
