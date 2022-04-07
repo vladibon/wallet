@@ -1,5 +1,8 @@
 import HomeTabItems from './HomeTabItems';
+import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import s from './HomeTab.module.css';
+
+import { useMediaQuery } from 'react-responsive';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +14,9 @@ function HomeTab({ items }) {
   const { data } = useGetTransactionsQuery();
   const transactions = useSelector(selectTransactions);
 
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+
   useEffect(() => {
     if (!data) return;
     else dispatch(setTransactions([...data.transactions]));
@@ -19,40 +25,52 @@ function HomeTab({ items }) {
   console.log(transactions);
 
   return (
-    <div className={s.homeTab__section}>
-      <ul className={s.homeTab}>
-        <li className={s.homeTab__hidden}>
-          <ul className={s.homeTab__title}>
-            <li className={s.homeTab__titleCell}>Date</li>
-            <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellCenter}`}>Type</li>
-            <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>
-              Category
+    <div>
+      {isMobile && (
+        <ul className={s.homeTab}>
+          {items.map(item => (
+            <li
+              className={
+                item.type === '+'
+                  ? `${s.homeTab__items}  ${s.income}`
+                  : `${s.homeTab__items}  ${s.expense}`
+              }
+              key={item.id}
+            >
+              <HomeTabItems
+                date={item.date}
+                type={item.type}
+                category={item.category}
+                comment={item.comment}
+                sum={item.sum}
+                balance={item.balance}
+              />
             </li>
-            <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellWidth}`}>Comment</li>
-            <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Sum</li>
-            <li className={`${s.homeTab__titleCell} ${s.homeTabItems__titleCellEnd}`}>Balance</li>
-          </ul>
-        </li>
-        {items.map(item => (
-          <li
-            className={
-              item.type === '+'
-                ? `${s.homeTab__items}  ${s.income}`
-                : `${s.homeTab__items}  ${s.expense}`
-            }
-            key={item.id}
-          >
-            <HomeTabItems
-              date={item.date}
-              type={item.type}
-              category={item.category}
-              comment={item.comment}
-              sum={item.sum}
-              balance={item.balance}
-            />
-          </li>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      )}
+
+      {isTabletOrDesktop && (
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Comment</th>
+              <th>Sum</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>td</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+
+      <ButtonAddTransactions />
     </div>
   );
 }

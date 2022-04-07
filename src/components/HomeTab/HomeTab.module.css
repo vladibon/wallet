@@ -1,11 +1,10 @@
 .homeTab {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   list-style: none;
+  max-width: 350px;
 
-  margin: 0;
   padding: 0;
+  margin-left: auto;
+  margin-right: auto;
 
   font-style: normal;
   font-weight: 400;
@@ -15,20 +14,7 @@
   color: var(--title-black-color);
 }
 
-.homeTab__hidden {
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  height: 0;
-  width: 0;
-  pointer-events: none;
-}
-
 .homeTab__items {
-  width: 350px;
   margin-bottom: 8px;
 
   border-radius: 5px 10px 10px 5px;
@@ -40,82 +26,4 @@
 
 .expense {
   border-left: var(--hometab-border-expense);
-}
-
-/* @media screen 768px*/
-
-@media screen and (min-width: 768px) {
-  .homeTab__section {
-    max-width: 715px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .homeTab__hidden {
-    position: relative;
-    opacity: 1;
-    width: 100%;
-    height: 58px;
-
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.5;
-
-    color: var(--title-black-color);
-
-    border-radius: 30px;
-    background: var(--hometab-primary-bg-color);
-  }
-
-  .homeTab__title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    list-style: none;
-    padding: 15px 15px;
-    margin: 0;
-  }
-
-  .homeTab__titleCell {
-    padding: 0 5px;
-    flex: 1;
-    text-align: start;
-  }
-
-  .homeTabItems__titleCellCenter {
-    text-align: center;
-  }
-
-  .homeTabItems__titleCellWidth {
-    flex: 2;
-  }
-
-  .homeTabItems__titleCellEnd {
-    text-align: end;
-  }
-
-  .homeTab {
-    flex-direction: column;
-  }
-
-  .homeTab__items {
-    width: 100%;
-    border: none;
-    border-radius: 0;
-  }
-
-  .homeTab__items:not(:last-child) {
-    border-bottom: var(--hometab-border-hr);
-    box-shadow: var(--hometab-hr-shadow);
-    margin: 0;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .homeTab__section {
-    padding-top: 40px;
-    width: 715px;
-  }
 }

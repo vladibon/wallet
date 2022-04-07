@@ -14,8 +14,9 @@
   }
 
   .dashboardPage__section {
+    display: flex;
+
     width: 37%;
-    height: 100vh;
     padding-top: 40px;
 
     border-right: var(--hometab-border-hr-section);
