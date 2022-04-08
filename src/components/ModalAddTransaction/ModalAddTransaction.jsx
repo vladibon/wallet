@@ -9,6 +9,7 @@ import s from './ModalAddTransaction.module.css';
 
 import { selectCategories } from 'redux/selectors';
 import { useAddTransactionMutation, closeModalWindow, setBalance } from 'redux/index';
+import { setCurrentDate } from './setCurrentDate';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function ContactForm() {
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(() => setCurrentDate());
   const [comment, setComment] = useState('');
 
   const { income, expense } = useSelector(selectCategories);
