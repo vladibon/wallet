@@ -36,7 +36,7 @@ function App() {
         <>
           <Suspense
             fallback={
-              <div style={{ paddingTop: 'calc((100vh - 100px) / 2)' }}>
+              <div style={{ paddingTop: 'calc((100vh - 70px) / 2)' }}>
                 <Spinner size={70} color='blue' />
               </div>
             }
