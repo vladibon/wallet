@@ -10,7 +10,9 @@ export const FetchCurrentUser = () => {
   const { data, isFetching } = useGetCurrenthUserQuery();
   console.log(token, data);
   useEffect(() => {
-    token && data ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
+    if (!token) return;
+    if (data) dispatch(setUser({ user: data, token }));
+    // token && data ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 

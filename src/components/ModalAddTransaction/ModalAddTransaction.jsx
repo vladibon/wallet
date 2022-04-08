@@ -88,7 +88,7 @@ export default function ContactForm() {
       if (data) {
         console.log('Success', data);
         dispatch(setBalance({ balance: data.balance }));
-        dispatch(setLatestTransactions([...data.transactions]));
+        // dispatch(setLatestTransactions([...data.transactions]));
         dispatch(closeModalWindow());
         reset();
       } else if (error) {
