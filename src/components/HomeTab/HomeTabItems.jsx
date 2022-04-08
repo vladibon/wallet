@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './HomeTabItems.module.css';
 
 function HomeTabItems(props) {
-  const { date, type, category, comment, sum, balance } = props;
+  const { date, type, category, comment, amount, balance } = props;
 
   const formatSum = Intl.NumberFormat('ru-Ru', {
     minimumFractionDigits: 2,
-  }).format(sum);
+  }).format(amount);
 
   const formatBalance = Intl.NumberFormat('ru-Ru', {
     minimumFractionDigits: 2,
@@ -23,7 +23,7 @@ function HomeTabItems(props) {
       <li className={s.homeTabItems__listCell}>
         <span className={s.homeTabItems__listTitle}>Тип</span>
         <span className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningCenter}`}>
-          {type}
+          {type ? '+' : '-'}
         </span>
       </li>
       <li className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}>
@@ -35,14 +35,14 @@ function HomeTabItems(props) {
       <li className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}>
         <span className={s.homeTabItems__listTitle}>Комментарий</span>
         <span className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}>
-          {comment}
+          {comment || <p>&#8212;</p>}
         </span>
       </li>
       <li className={s.homeTabItems__listCell}>
         <span className={s.homeTabItems__listTitle}>Сумма</span>
         <span
           className={
-            type === '+'
+            type === true
               ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
               : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
           }
@@ -58,19 +58,19 @@ function HomeTabItems(props) {
   );
 }
 
-HomeTabItems.propTypes = {
-  date: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['+', '-']).isRequired,
-  category: PropTypes.oneOf([
-    'Разное',
-    'Регулярный доход',
-    'Машина',
-    'Продукты',
-    'Нерегулярный доход',
-  ]).isRequired,
-  comment: PropTypes.string.isRequired,
-  sum: PropTypes.number.isRequired,
-  balance: PropTypes.number.isRequired,
-};
+// HomeTabItems.propTypes = {
+//   date: PropTypes.string.isRequired,
+//   type: PropTypes.oneOf(['+', '-']).isRequired,
+//   category: PropTypes.oneOf([
+//     'Разное',
+//     'Регулярный доход',
+//     'Машина',
+//     'Продукты',
+//     'Нерегулярный доход',
+//   ]).isRequired,
+//   comment: PropTypes.string.isRequired,
+//   sum: PropTypes.number.isRequired,
+//   balance: PropTypes.number.isRequired,
+// };
 
 export default HomeTabItems;
