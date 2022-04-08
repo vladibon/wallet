@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import 'moment/locale/fr';
 import 'react-datetime/css/react-datetime.css';
 import s from './ModalAddTransaction.module.css';
@@ -15,13 +15,15 @@ import {
   setLatestTransactions,
 } from 'redux/index';
 
+import { setCurrentDate } from './setCurrentDate';
+
 export default function ContactForm() {
   const dispatch = useDispatch();
   const [type, setType] = useState(false);
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(() => setCurrentDate());
   const [comment, setComment] = useState('');
 
   const { income, expense } = useSelector(selectCategories);

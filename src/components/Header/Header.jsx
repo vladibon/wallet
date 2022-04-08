@@ -16,12 +16,12 @@ export default function Header() {
 
       <div className={s.nav}>
         <div className={s.name}>{name}</div>
-        <div className={s.logout} onClick={() => dispatch(openModalLogout())}>
+        <button className={s.logoutBtn} onClick={() => dispatch(openModalLogout())}>
           <svg className={s.logoutIcon}>
             <use href={`${Icons}#icon-logout`} />
           </svg>
           <div className={s.logoutText}>Log out</div>
-        </div>
+        </button>
       </div>
     </header>
   );
