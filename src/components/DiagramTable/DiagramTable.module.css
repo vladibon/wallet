@@ -1,3 +1,10 @@
+.diagramTable {
+  width: 280px;
+  padding: 32px 0 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (max-width: 767px) {
   .selectItem {
     display: block;
@@ -7,6 +14,17 @@
 }
 
 @media screen and (min-width: 768px) {
+  .diagramTable__section {
+    display: flex;
+  }
+
+  .diagramTable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .selectItem {
     margin-bottom: 20px;
   }
@@ -24,6 +42,10 @@
 
 @media screen and (min-width: 1280px) {
   .table {
+    width: 395px;
+  }
+
+  .diagramTable {
     width: 395px;
   }
 }
@@ -71,7 +93,7 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 1.45;
-   font-family: var(--title-font);
+  font-family: var(--title-font);
   min-width: 80px;
   padding-right: 20px;
 }
@@ -82,7 +104,6 @@
   }
 }
 
-
 .body {
   border-bottom: 1px #16161a;
 }
@@ -91,8 +112,8 @@
   width: 280px;
   display: table;
   height: 50px;
-  border-color: #DCDCDF;
-  border-bottom: 1px solid #DCDCDF;
+  border-color: #dcdcdf;
+  border-bottom: 1px solid #dcdcdf;
 }
 
 @media screen and (min-width: 767px) {
@@ -165,12 +186,11 @@
   display: flex;
 }
 
-
 .spentMinus {
   font-size: 16px;
   font-weight: 700;
   line-height: 1.47;
-    font-family: var(--title-font);
+  font-family: var(--title-font);
   color: var(--expenditure-red-color);
 }
 
@@ -178,8 +198,9 @@
   font-size: 16px;
   font-weight: bold;
   line-height: 1.47;
-      font-family: var(--title-font);
+  font-family: var(--title-font);
   color: var(--earnings-green-color);
 }
 
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+}

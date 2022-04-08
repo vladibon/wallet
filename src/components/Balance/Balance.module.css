@@ -1,6 +1,6 @@
 .balance {
   padding: 8px 32px;
-  max-width: 335px;
+  width: 280px;
   height: 80px;
   background-color: var(--btn-primary-color);
   border-radius: 30px;
@@ -16,7 +16,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .balance {
     width: 395px;
   }

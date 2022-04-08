@@ -1,17 +1,19 @@
 .table__container {
-width: 280px;
-height: 174px;
-color: var(--text-white-color);
-background-color: var(--stat-home-color);
-border-radius: 30px;
+  width: 280px;
+  height: 174px;
+  margin-left: auto;
+  margin-right: auto;
 
-background-image: url('../../images/currency.svg');
-background-position-y: bottom;
-background-repeat: no-repeat;
-background-size: 100%;
+  color: var(--text-white-color);
+  background-color: var(--stat-home-color);
+  border-radius: 30px;
 
+  background-image: url('../../images/currency.svg');
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
 
-overflow: hidden;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -71,7 +73,7 @@ overflow: hidden;
   height: 35px;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .table__row {
     height: 40px;
   }

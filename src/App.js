@@ -45,9 +45,9 @@ function App() {
               <Route
                 path='/home/*'
                 element={
-                  <PrivateRoute restricted>
-                    <DashboardPage />
-                  </PrivateRoute>
+                  // <PrivateRoute>
+                  <DashboardPage />
+                  // </PrivateRoute>
                 }
               ></Route>
               <Route
@@ -66,7 +66,7 @@ function App() {
                   </PublicRoute>
                 }
               />
-              <Route path='*' element={<Navigate to='/login' />} />
+              <Route path='*' element={<Navigate to='/home' />} />
             </Routes>
           </Suspense>
 
