@@ -1,10 +1,12 @@
+.header__bg {
+  background-color: var(--secondary-bg-color);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding: 0 20px;
-  background-color: var(--secondary-bg-color);
 }
 
 .nav {
@@ -55,7 +57,6 @@
 @media screen and (min-width: 767px) {
   .header {
     height: 80px;
-    padding: 0 20px;
   }
 
   .name::after {
