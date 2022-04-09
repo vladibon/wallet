@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -20,7 +20,7 @@ export function  DiagramChart() {
 
   useEffect(() => {
     if (!data) return;
-    else dispatch(setTransactions([...data.transactions]));
+    else dispatch(setLatestTransactions([...data.transactions]));
   }, [data, dispatch]);
 
   const user = {

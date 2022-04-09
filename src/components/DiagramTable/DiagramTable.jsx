@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 import { DiagramChart } from 'components/DiagramChart/DiagramChart'
 // import { UserData } from './../DoughnutChart/data';
@@ -24,7 +24,7 @@ export default function DiagramTable() {
 
   useEffect(() => {
     if (!data) return;
-    else dispatch(setTransactions([...data.transactions]));
+    else dispatch(setLatestTransactions([...data.transactions]));
   }, [data, dispatch]);
   return (
     <div style={{ paddingTop: 32 }}>
@@ -47,8 +47,8 @@ export default function DiagramTable() {
             <th className={s.tableTop2}>Amount</th>
           </tr>
         </thead>
-        <tbody className={s.boby}>
-          {transactions.map((transaction,idx) => (
+        <tbody className={s.body}>
+          {transactions.map((transaction, idx) => (
             <tr className={s.listItem} key={transaction.id}>
               <th className={s.nameTansaction}>
                 <span className={s.color} style={{ backgroundColor: `${colors[idx]}` }}
@@ -56,18 +56,8 @@ export default function DiagramTable() {
                 {transaction.category}
               </th>
               <th className={s.costs}>{transaction.amount}</th>
-            </tr>
-          </thead>
-          <tbody className={s.boby}>
-            {numbers.map(number => (
-              <tr className={s.listItem} key={number.id}>
-                <th className={s.nameTansaction}>
-                  <span className={s.color} style={{ backgroundColor: `${number.color}` }}></span>
-                  {number.userTransaction}
-                </th>
-                <th className={s.costs}>{number.userLost}</th>
-              </tr>
-            ))}
+            </tr>    
+          ))}
           </tbody>
         </table>
         <div className={s.amount}>
@@ -78,7 +68,6 @@ export default function DiagramTable() {
             Income: <span className={s.spentPlus}>40000</span>
           </p>
         </div>
-      </div>
     </div>
   );
 }
