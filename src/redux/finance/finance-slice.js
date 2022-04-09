@@ -13,7 +13,7 @@ const financeSlice = createSlice({
       state.transactions.data = [...action.payload];
     },
     setMoreTransactions: (state, action) => {
-      state.transactions.data = [...state.transactions, ...action.payload];
+      state.transactions.data = [...state.transactions.data, ...action.payload];
     },
     setNextPage: (state, action) => {
       state.transactions.page += 1;

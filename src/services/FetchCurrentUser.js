@@ -7,15 +7,18 @@ import { useGetCurrenthUserQuery, setUser, resetUser } from 'redux/index';
 export const FetchCurrentUser = () => {
   const token = store.getState().auth?.token;
   const dispatch = useDispatch();
-  // if (!token) return;
   const { data, error, isFetching } = useGetCurrenthUserQuery();
-  console.log(token, data, error);
+
   useEffect(() => {
-    if (!token) return;
+    if (error) {
+      console.log('please, log in');
+      dispatch(resetUser());
+  
+    }
     if (data) dispatch(setUser({ user: data, token }));
-    // token && data ? dispatch(setUser({ user: data, token })) : dispatch(resetUser());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, error]);
 
   return isFetching;
 };
