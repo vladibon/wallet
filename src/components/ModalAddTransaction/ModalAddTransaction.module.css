@@ -1,11 +1,27 @@
 .modal {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-right: 73px;
-  padding-left: 73px;
-  width: 540px;
-  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 37px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  max-width: 320px;
   background-color: var(--text-white-color);
+}
+
+@media (min-width: 320px) {
+  .modal {
+    border-radius: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-right: 73px;
+    padding-left: 73px;
+    max-width: 540px;
+  }
 }
 
 .form {
@@ -19,7 +35,6 @@
   font-size: 30px;
   line-height: 1.15;
   text-align: center;
-
   margin-bottom: 40px;
 }
 
@@ -63,11 +78,13 @@
   z-index: -1;
   opacity: 0;
 }
+
 .checkbox + label {
   position: relative;
   padding: 10px 0 10px 80px;
   cursor: pointer;
 }
+
 .checkbox + label:before {
   content: '';
   position: absolute;
@@ -79,9 +96,9 @@
   border: var(--model-border);
   transition: 0.2s;
 }
+
 .checkbox + label:after {
   content: '';
-  font-size: 50px;
   position: absolute;
   top: 0px;
   left: 36px;
@@ -108,7 +125,7 @@
 .formInput,
 .formDate,
 .formComent {
-  margin-top: 10px;
+  width: 100%;
   margin-bottom: 40px;
   padding-left: 20px;
   font-size: 18px;
@@ -120,7 +137,18 @@
   border-color: var(--grey-color);
 }
 
-.categoryPlaceholder,
+@media (min-width: 768px) {
+  .formInput {
+    margin-right: 32px;
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .formInput::placeholder,
 .formComent::placeholder {
   color: var(--header-grey-color);
@@ -149,32 +177,28 @@
   resize: none;
 }
 
-.formAddBtn,
-.formCancelBtn {
-  display: block;
-  width: 280px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
+@media (min-width: 768px) {
+  .formComent {
+    height: 32px;
+  }
 }
 
-.formAddBtn {
-  margin-bottom: 20px;
-  background-color: var(--stat-leisure-color);
-  border-color: transparent;
-  outline: none;
-  color: var(--text-white-color);
+option,
+select {
+  text-transform: capitalize;
 }
 
-.formCancelBtn {
-  background-color: var(--text-white-color);
-  color: var(--stat-home-color);
-  border: var(--btn-secondary-border);
+@media (min-width: 768px) {
+  .inputConatainer {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
 }
