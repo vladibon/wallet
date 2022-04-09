@@ -8,12 +8,10 @@ import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency';
+import DiagramTable from 'components/DiagramTable'
 
 const HomeTab = lazy(() => import('components/HomeTab' /* webpackChunkName: "home-tab" */));
 
-const DiagramTable = lazy(() =>
-  import('components/DiagramTable' /* webpackChunkName: "diagram-table" */),
-);
 
 function DashboardPage() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
