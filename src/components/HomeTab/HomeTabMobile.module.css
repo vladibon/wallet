@@ -1,0 +1,88 @@
+.homeTab {
+  list-style: none;
+  max-width: 350px;
+
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+
+  color: var(--title-black-color);
+}
+
+.homeTab__items {
+  margin-bottom: 8px;
+
+  border-radius: 5px 10px 10px 5px;
+}
+
+.incomeBorder {
+  border-left: var(--hometab-border-income);
+}
+
+.expenseBorder {
+  border-left: var(--hometab-border-expense);
+}
+
+.homeTabItems__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.homeTabItems__listCell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 20px 12px 15px;
+  border-radius: 0 10px 10px 0;
+  background: var(--hometab-primary-bg-color);
+}
+
+.homeTabItems__listCell:first-child {
+  background: var(--hometab-title-bg-color);
+}
+
+.homeTabItems__listCell:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+.homeTabItems__listTitle {
+  margin-right: 5px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: var(--title-black-color);
+}
+
+.homeTabItems__listMeaning {
+  text-align: end;
+}
+
+.homeTabItems__listMeaningWeight {
+  font-weight: 700;
+}
+
+.income {
+  color: var(--earnings-green-color);
+}
+
+.expense {
+  color: var(--expenditure-red-color);
+}
+
+.homeTab__bg {
+  margin-left: auto;
+  margin-right: auto;
+
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+}
