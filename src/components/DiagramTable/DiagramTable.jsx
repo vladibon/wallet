@@ -1,14 +1,37 @@
 import React from 'react';
-import { UserData } from './../DoughnutChart/data';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { selectTransactions } from 'redux/selectors';
+import { DiagramChart } from 'components/DiagramChart/DiagramChart'
+// import { UserData } from './../DoughnutChart/data';
 import s from './DiagramTable.module.css';
 
+const colors = ['#FED057',
+  '#FFD8D0',
+  '#FD9498',
+  '#C5BAFF',
+  '#4A56E2',
+  '#81E1FF',
+  '#24CCA7',
+  '#00AD84',];
+
 export default function DiagramTable() {
-  const numbers = UserData;
+ const { data} = useGetTransactionsQuery();
+  const dispatch = useDispatch();
+  
+  const transactions = useSelector(selectTransactions);
+
+  useEffect(() => {
+    if (!data) return;
+    else dispatch(setTransactions([...data.transactions]));
+  }, [data, dispatch]);
   return (
     <div style={{ paddingTop: 32 }}>
+       <DiagramChart />
       <div className={s.selectList}>
         <select className={s.selectItem}>
-          <option>Aptil</option>
+          <option>April</option>
           <option>May</option>
         </select>
         <select className={s.selectItem}>
@@ -25,13 +48,14 @@ export default function DiagramTable() {
           </tr>
         </thead>
         <tbody className={s.boby}>
-          {numbers.map(number => (
-            <tr className={s.listItem} key={number.id}>
+          {transactions.map((transaction,idx) => (
+            <tr className={s.listItem} key={transaction.id}>
               <th className={s.nameTansaction}>
-                <span className={s.color} style={{ backgroundColor: `${number.color}` }}></span>
-                {number.userTransaction}
+                <span className={s.color} style={{ backgroundColor: `${colors[idx]}` }}
+                ></span>
+                {transaction.category}
               </th>
-              <th className={s.costs}>{number.userLost}</th>
+              <th className={s.costs}>{transaction.amount}</th>
             </tr>
           ))}
         </tbody>
