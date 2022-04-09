@@ -53,7 +53,7 @@ function HomeTabDesktop() {
         ) : (
           <tbody>
             <tr>
-              <td colspan='6'>
+              <td colSpan='6'>
                 <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
               </td>
             </tr>
