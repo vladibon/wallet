@@ -115,9 +115,6 @@ export default function RegisterForm() {
           </svg>
         </label>
         <div className={s.wrapper}>
-          {/* <button className={s.regBtn} type='submit'>
-          sign up
-        </button> */}
           <Button className='btn__primary' type='submit' text='sign up' />
           <Link to='/login' className={s.authLink}>
             <Button className='btn__secondary' type='buttom' text='log in' />
