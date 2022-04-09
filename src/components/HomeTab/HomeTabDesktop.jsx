@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
+import { useGetTransactionsQuery, setLatestTransactions, setMoreTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 
 function HomeTabDesktop() {
@@ -14,15 +14,18 @@ function HomeTabDesktop() {
   const { data } = useGetTransactionsQuery(page);
   const transactions = useSelector(selectTransactions);
 
-  const [items, setItems] = useState(Array.from({ length: 0 }));
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    if (!data) return;
-    else dispatch(setLatestTransactions([...data.transactions]));
-
-    const newItems = [...items, ...transactions];
-    setItems(newItems);
+    if (data?.transactions?.length) {
+      setTotalPages(data.totalPages);
+      if (page === 1) {
+        dispatch(setLatestTransactions([...data.transactions]));
+      } else {
+        if (page !== data.page) return;
+        dispatch(setMoreTransactions([...data.transactions]));
+      }
+    }
   }, [data, dispatch, page]);
 
   const scroll = () => {
@@ -30,19 +33,15 @@ function HomeTabDesktop() {
       setHasMore(false);
       return;
     }
-
     setPage(page + 1);
-    const newItems = [...items, ...transactions];
-    setItems(newItems);
   };
 
   return (
     <div className={s.tableSection}>
       <InfiniteScroll
-        dataLength={items.length}
+        dataLength={transactions.length}
         next={scroll}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
         height={500}
         endMessage={
           <p style={{ textAlign: 'center' }}>
@@ -63,8 +62,8 @@ function HomeTabDesktop() {
           </thead>
           {transactions.length ? (
             <tbody>
-              {items.map(transaction => (
-                <tr>
+              {transactions.map(transaction => (
+                <tr key={transaction._id}>
                   <td>{transaction.date}</td>
                   <td align='center'>{transaction.type ? '+' : '-'}</td>
                   <td>{transaction.category}</td>
