@@ -45,7 +45,14 @@
     width: 395px;
   }
 
+  .diagramTable__section {
+    width: 63%;
+    margin-top: 40px;
+  }
+
   .diagramTable {
+    padding: 0;
+    margin: 65px 0 45px;
     width: 395px;
   }
 }

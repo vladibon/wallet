@@ -93,5 +93,7 @@
 @media screen and (min-width: 1280px) {
   .nav__section {
     width: 395px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

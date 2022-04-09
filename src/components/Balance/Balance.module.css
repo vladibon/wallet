@@ -19,6 +19,7 @@
 @media screen and (min-width: 1280px) {
   .balance {
     width: 395px;
+    margin-left: 0;
   }
 }
 

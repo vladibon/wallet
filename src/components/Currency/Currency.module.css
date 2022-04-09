@@ -25,6 +25,7 @@
 
 @media (min-width: 1280px) {
   .table__container {
+    margin-left: 0;
     width: 393px;
     height: 347px;
   }
