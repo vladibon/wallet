@@ -26,6 +26,9 @@
   --hometab-primary-bg-color: #ffffff;
   --hometab-bg-color: transparent;
   --secondary-bg-color: #ffffff;
+  --line-bg-low: rgba(222, 108, 100);
+  --line-bg-middle: rgba(234, 199, 124);
+  --line-bg-strong: #24cca7;
 
   /* Btn Color */
   --btn-primary-color: #ffffff;
@@ -51,6 +54,9 @@
   --hometab-border-income: 5px solid #24cca7;
   --hometab-border-expense: 5px solid #ff6596;
   --hometab-border-hr: 1px solid #dcdcdf;
+  --protection-line-low: 3px solid rgb(222, 108, 100);
+  --protection-line-middle: 3px solid rgb(234, 199, 124);
+  --protection-line-strong: 3px solid #24cca7;
   --hometab-border-hr-section: 1px solid #e7e5f2;
 
   /* Shadows */

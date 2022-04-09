@@ -2,17 +2,85 @@ import s from './RegisterForm.module.css';
 import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import Button from 'components/Button';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useCreateUserMutation, setUser } from 'redux/index';
 
 export default function RegisterForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password_confirm, setPasswordConfirm] = useState('');
+  const [name, setName] = useState('');
+  const [createUser, { data, error }] = useCreateUserMutation();
+  const dispatch = useDispatch();
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      case 'password_confirmation':
+        return setPasswordConfirm(value);
+      case 'name':
+        return setName(value);
+
+      default:
+        return;
+    }
+  };
+
+  function protectionLine() {
+    const passLength = password.length;
+    if (passLength >= 1 && passLength < 7) {
+      return s.lowProtection;
+    }
+    if (passLength >= 7 && passLength < 10) {
+      return s.middleProtection;
+    }
+    if (passLength >= 10) {
+      return s.strongProtection;
+    }
+  }
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data));
+    } else if (error) {
+      console.log('Your request failed');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
+
+  const onRegisterSubmit = e => {
+    e.preventDefault();
+    const user = { name, email, password };
+    createUser({ user });
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
+    // e.target.reset();
+  };
+
   return (
     <div className={s.authForm}>
       <div className={s.logo}>
         <Logo />
       </div>
-      <form className={s.form}>
+      <form className={s.form} onSubmit={onRegisterSubmit}>
         <label className={s.authLabel}>
-          <input className={s.input} placeholder='E-mail' name='email'></input>
+          <input
+            className={s.input}
+            placeholder='E-mail'
+            name='email'
+            onChange={handleChange}
+            value={email}
+          ></input>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
           </svg>
@@ -25,6 +93,8 @@ export default function RegisterForm() {
             placeholder='Password'
             name='password'
             type='password'
+            onChange={handleChange}
+            value={password}
           ></input>
           <svg width='16' height='21' className={s.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
@@ -37,25 +107,32 @@ export default function RegisterForm() {
             placeholder='Confirm password'
             type='password'
             name='password_confirmation'
+            onChange={handleChange}
+            value={password_confirm}
           ></input>
           <svg width='16' height='21' className={s.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
+        <div className={protectionLine()}></div>
         <label className={s.authLabel}>
-          <input className={s.input} placeholder='Your name' name='name'></input>
+          <input
+            className={s.input}
+            placeholder='Your name'
+            onChange={handleChange}
+            name='name'
+            value={name}
+          ></input>
           <svg width='18' height='18' className={s.inputIcon}>
             <use href={`${Icons}#icon-account_box`} />
           </svg>
         </label>
-        <button className={s.regBtn} type='button'>
-          sign up
-        </button>
-        <Link to='/login' className={s.authLink}>
-          <button className={s.logBtn} type='button'>
-            log in
-          </button>
-        </Link>
+        <div className={s.wrapper}>
+          <Button className='btn__primary' type='submit' text='sign up' />
+          <Link to='/login' className={s.authLink}>
+            <Button className='btn__secondary' type='buttom' text='log in' />
+          </Link>
+        </div>
       </form>
     </div>
   );

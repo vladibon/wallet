@@ -42,6 +42,17 @@ p {
   color: #bdbdbd;
 }
 
+.wrapper {
+  width: 220px;
+  height: 120px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
 .inputIcon {
   position: absolute;
   left: 10px;
@@ -50,15 +61,9 @@ p {
   cursor: pointer;
 }
 
-/* .inputIcon :hover {
-  fill: var(--main-currency-bg-color);
-} */
-
 .authLabel {
   position: relative;
   width: 280px;
-  margin-left: 20px;
-  margin-right: 20px;
   color: var(--grey-color);
   transition: color var(--animation);
 }
@@ -66,44 +71,45 @@ p {
   color: var(--main-currency-bg-color);
 }
 
-/* Button */
-
-.logBtn,
-.regBtn {
-  display: block;
-  width: 280px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-}
-
-.logBtn {
-  margin-top: 20px;
-  background-color: #ffffff;
-  color: var(--btn-secondary-color);
-  border: 1px solid var(--btn-secondary-color);
-  cursor: pointer;
-}
-
-.regBtn {
-  margin-top: 10px;
-  background-color: var(--btn-primary-bg-color);
-  border-color: transparent;
-  outline: none;
-  color: white;
-  cursor: pointer;
-}
-
 .authLink {
   outline: none;
   text-decoration: none;
+}
+.lowProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1s;
+  border-radius: 4px;
+  width: 33%;
+  border: var(--protection-line-low);
+  background-color: var(--line-bg-low);
+  box-shadow: 0px 1px 8px rgba(235, 126, 167, 0.5);
+}
+.middleProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1.5s;
+  border-radius: 4px;
+  width: 66%;
+  border: var(--protection-line-middle);
+  background-color: var(--line-bg-middle);
+  box-shadow: 0px 1px 8px rgba(255, 220, 143, 0.5);
+}
+.strongProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1.5s;
+  border-radius: 4px;
+  width: 100%;
+  border: var(--protection-line-strong);
+  background-color: var(--line-bg-strong);
+  box-shadow: 0px 1px 8px rgba(36, 204, 167, 0.5);
 }
 
 @media screen and (max-width: 767px) {
@@ -111,6 +117,8 @@ p {
     text-align: center;
     height: 100vh;
     width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -146,24 +154,17 @@ p {
     margin-bottom: 20px;
     outline: none;
   }
-
-  /*Button*/
-
-  .logBtn,
-  .regBtn {
-    display: inline;
-    width: 300px;
-    margin-left: 55px;
-  }
-
-  .logBtn {
-    margin-top: 20px;
-    margin-bottom: 0px;
-  }
-
-  .regBtn {
+  .wrapper {
     margin-top: 30px;
-    margin-bottom: 0px;
+  }
+  .lowProtection {
+    top: -10px;
+  }
+  .middleProtection {
+    top: -10px;
+  }
+  .strongProtection {
+    top: -10px;
   }
 }
 
