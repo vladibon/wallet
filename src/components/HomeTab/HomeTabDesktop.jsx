@@ -1,20 +1,28 @@
 import s from './HomeTabDesktop.module.css';
 import HomeTabBackground from '../../images/home-tab-bg.png';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 
 function HomeTabDesktop() {
   const dispatch = useDispatch();
-  const { data } = useGetTransactionsQuery();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const { data } = useGetTransactionsQuery(page);
   const transactions = useSelector(selectTransactions);
 
   useEffect(() => {
-    if (!data) return;
-    else dispatch(setTransactions([...data.transactions]));
-  }, [data, dispatch]);
+    if (data?.transactions?.length) {
+      setTotalPages(data.totalPages);
+      dispatch(setLatestTransactions([...data.transactions]));
+    }
+  }, [data, dispatch, page]);
+
+  const showPrevPage = () => setPage(page === 1 ? 1 : page - 1);
+
+  const showNextPage = () => setPage(page >= totalPages ? page : page + 1);
 
   return (
     <div className={s.tableSection}>
@@ -59,7 +67,12 @@ function HomeTabDesktop() {
             </tr>
           </tbody>
         )}
-      </table>
+      </table>{' '}
+      {page >= totalPages && <p>THERE IS NO MORE RESULTS</p>}
+      <div style={{ display: 'flex', width: '300' }}>
+        <button onClick={showPrevPage}>previous</button>
+        <button onClick={showNextPage}>next</button>
+      </div>
     </div>
   );
 }
