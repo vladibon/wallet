@@ -7,6 +7,7 @@ import { useGetCurrenthUserQuery, setUser, resetUser } from 'redux/index';
 export const FetchCurrentUser = () => {
   const token = store.getState().auth?.token;
   const dispatch = useDispatch();
+  // if (!token) return;
   const { data, error, isFetching } = useGetCurrenthUserQuery();
   console.log(token, data, error);
   useEffect(() => {

@@ -3,7 +3,12 @@ import s from './HomeTab.module.css';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
+import {
+  useGetTransactionsQuery,
+  setLatestTransactions,
+  setNextPage,
+  resetPage,
+} from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 
 function HomeTab() {
@@ -19,9 +24,22 @@ function HomeTab() {
     }
   }, [data, dispatch, page]);
 
-  const showPrevPage = () => setPage(page >= totalPages ? page : page + 1);
+  const showPrevPage = () => setPage(page === 1 ? 1 : page - 1);
 
-  const showNextPage = () => setPage(page === 1 ? 1 : page - 1);
+  const showNextPage = () => setPage(page >= totalPages ? page : page + 1);
+
+  // const dispatch = useDispatch();
+  // const { data } = useGetTransactionsQuery();
+  // const transactions = useSelector(selectTransactions);
+
+  // useEffect(() => {
+  //   console.log(data);
+  //   if (data?.transactions?.length) {
+  //     dispatch(setLatestTransactions([...data.transactions]));
+  //   }
+  // }, [data, dispatch]);
+
+  // const showNextPage = () => dispatch(setNextPage());
 
   return (
     <>
@@ -66,9 +84,13 @@ function HomeTab() {
               </li>
             ))}
           </ul>
-          {page >= totalPages && <p>THERE IS NO MORE RESULTS</p>}
+          {/* {page >= totalPages && <p>THERE IS NO MORE RESULTS</p>}
           <div style={{ display: 'flex', width: '300' }}>
             <button onClick={showPrevPage}>previous</button>
+            <button onClick={showNextPage}>next</button>
+          </div> */}
+
+          <div style={{ display: 'flex', width: '300' }}>
             <button onClick={showNextPage}>next</button>
           </div>
         </>

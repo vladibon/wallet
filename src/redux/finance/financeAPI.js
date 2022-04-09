@@ -1,9 +1,13 @@
 import { emptySplitApi } from '../mainAPISlice';
+import { useSelector } from 'react-redux';
+import { selectTransactionsPage } from 'redux/selectors';
+
+const GetPage = () => useSelector(selectTransactionsPage);
 
 const financeAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     getTransactions: builder.query({
-      query: (page = 1) => `/transactions?page=${page}`,
+      query: (page = GetPage()) => `/transactions?page=${page}`,
       providesTags: ['Finance'],
     }),
     addTransaction: builder.mutation({
