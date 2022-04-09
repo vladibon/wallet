@@ -35,7 +35,7 @@ function DashboardPage() {
 
         <Suspense>
           <Routes>
-            <Route path='/*' element={<HomeTab />} />
+            <Route path='*' element={<HomeTab />} />
             <Route path='/statistics' element={<DiagramTable />} />
             {isMobile && <Route path='/currency' element={<Currency />} />}
           </Routes>
