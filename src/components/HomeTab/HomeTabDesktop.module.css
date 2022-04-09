@@ -80,3 +80,10 @@ tr:not(:last-child) td {
 .expense {
   color: var(--expenditure-red-color);
 }
+
+.homeTab__bg {
+  margin: 20px auto;
+
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+}

@@ -1,4 +1,5 @@
 import s from './HomeTabDesktop.module.css';
+import HomeTabBackground from '../../images/home-tab-bg.png';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,26 +29,36 @@ function HomeTabDesktop() {
             <th align='right'>Balance</th>
           </tr>
         </thead>
-        <tbody>
-          {transactions.map(transaction => (
+        {transactions.length ? (
+          <tbody>
+            {transactions.map(transaction => (
+              <tr>
+                <td>{transaction.date}</td>
+                <td align='center'>{transaction.type ? '+' : '-'}</td>
+                <td>{transaction.category}</td>
+                <td>{transaction.comment}</td>
+                <td className={transaction.type ? s.income : s.expense} align='right'>
+                  {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
+                    transaction.amount,
+                  )}
+                </td>
+                <td align='right'>
+                  {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
+                    transaction.balance,
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ) : (
+          <tbody>
             <tr>
-              <td>{transaction.date}</td>
-              <td align='center'>{transaction.type ? '+' : '-'}</td>
-              <td>{transaction.category}</td>
-              <td>{transaction.comment}</td>
-              <td className={transaction.type ? s.income : s.expense} align='right'>
-                {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
-                  transaction.amount,
-                )}
-              </td>
-              <td align='right'>
-                {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
-                  transaction.balance,
-                )}
+              <td colspan='6'>
+                <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
               </td>
             </tr>
-          ))}
-        </tbody>
+          </tbody>
+        )}
       </table>
     </div>
   );

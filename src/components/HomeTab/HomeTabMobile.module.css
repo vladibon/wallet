@@ -78,3 +78,11 @@
 .expense {
   color: var(--expenditure-red-color);
 }
+
+.homeTab__bg {
+  margin-left: auto;
+  margin-right: auto;
+
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+}
