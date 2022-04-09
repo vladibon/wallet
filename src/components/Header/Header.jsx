@@ -11,16 +11,18 @@ export default function Header() {
   const dispatch = useDispatch();
 
   return (
-    <header className={s.header}>
-      <Logo />
+    <header className={s.header__bg}>
+      <div className={`container ${s.header}`}>
+        <Logo />
 
-      <div className={s.nav}>
-        <div className={s.name}>{name}</div>
-        <div className={s.logout} onClick={() => dispatch(openModalLogout())}>
-          <svg className={s.logoutIcon}>
-            <use href={`${Icons}#icon-logout`} />
-          </svg>
-          <div className={s.logoutText}>Log out</div>
+        <div className={s.nav}>
+          <div className={s.name}>{name}</div>
+          <button className={s.logoutBtn} onClick={() => dispatch(openModalLogout())}>
+            <svg className={s.logoutIcon}>
+              <use href={`${Icons}#icon-logout`} />
+            </svg>
+            <div className={s.logoutText}>Log out</div>
+          </button>
         </div>
       </div>
     </header>

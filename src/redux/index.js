@@ -8,7 +8,12 @@ import { useGetCategoriesQuery } from './categories/categoriesAPI';
 import { useGetTransactionsQuery, useAddTransactionMutation } from './finance/financeAPI';
 import { setUser, resetUser, setBalance } from './auth/auth-slice';
 import { setCategories } from './categories/categories-slice';
-import { setTransactions } from './finance/finance-slice';
+import {
+  setLatestTransactions,
+  setMoreTransactions,
+  setNextPage,
+  resetPage,
+} from './finance/finance-slice';
 import { openModalLogout, openModalAddTransaction, closeModalWindow } from './global/global-slice';
 
 export {
@@ -17,7 +22,10 @@ export {
   setBalance,
   openModalLogout,
   setCategories,
-  setTransactions,
+  setLatestTransactions,
+  setMoreTransactions,
+  setNextPage,
+  resetPage,
   openModalAddTransaction,
   closeModalWindow,
 };

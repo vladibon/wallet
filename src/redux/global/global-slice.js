@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isModalLogoutOpen: false,
   isModalAddTransactionOpen: false,
+  error: { isError: false, errorStatus: null },
 };
 
 const globalSlice = createSlice({

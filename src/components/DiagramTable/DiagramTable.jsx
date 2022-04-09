@@ -57,16 +57,27 @@ export default function DiagramTable() {
               </th>
               <th className={s.costs}>{transaction.amount}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className={s.amount}>
-        <p className={s.spent}>
-          Spent:<span className={s.spentMinus}>22259</span>
-        </p>
-        <p className={s.spent}>
-          Income: <span className={s.spentPlus}>40000</span>
-        </p>
+          </thead>
+          <tbody className={s.boby}>
+            {numbers.map(number => (
+              <tr className={s.listItem} key={number.id}>
+                <th className={s.nameTansaction}>
+                  <span className={s.color} style={{ backgroundColor: `${number.color}` }}></span>
+                  {number.userTransaction}
+                </th>
+                <th className={s.costs}>{number.userLost}</th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className={s.amount}>
+          <p className={s.spent}>
+            Spent:<span className={s.spentMinus}>22259</span>
+          </p>
+          <p className={s.spent}>
+            Income: <span className={s.spentPlus}>40000</span>
+          </p>
+        </div>
       </div>
     </div>
   );

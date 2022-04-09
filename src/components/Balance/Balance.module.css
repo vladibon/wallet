@@ -4,6 +4,9 @@
   height: 80px;
   background-color: var(--btn-primary-color);
   border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
@@ -13,9 +16,10 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .balance {
     width: 395px;
+    margin-left: 0;
   }
 }
 
