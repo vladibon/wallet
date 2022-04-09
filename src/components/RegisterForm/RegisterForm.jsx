@@ -34,6 +34,19 @@ export default function RegisterForm() {
     }
   };
 
+  function protectionLine() {
+    const passLength = password.length;
+    if (passLength >= 1 && passLength < 7) {
+      return s.lowProtection;
+    }
+    if (passLength >= 7 && passLength < 10) {
+      return s.middleProtection;
+    }
+    if (passLength >= 10) {
+      return s.strongProtection;
+    }
+  }
+
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
@@ -47,7 +60,6 @@ export default function RegisterForm() {
     e.preventDefault();
     const user = { name, email, password };
     createUser({ user });
-    // console.log(createUser({ user }));
     setName('');
     setEmail('');
     setPassword('');
@@ -102,6 +114,7 @@ export default function RegisterForm() {
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
+        <div className={protectionLine()}></div>
         <label className={s.authLabel}>
           <input
             className={s.input}

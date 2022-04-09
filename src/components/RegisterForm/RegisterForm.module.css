@@ -64,8 +64,6 @@ p {
 .authLabel {
   position: relative;
   width: 280px;
-  margin-left: 20px;
-  margin-right: 20px;
   color: var(--grey-color);
   transition: color var(--animation);
 }
@@ -77,12 +75,50 @@ p {
   outline: none;
   text-decoration: none;
 }
+.lowProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1s;
+  border-radius: 4px;
+  width: 33%;
+  border: var(--protection-line-low);
+  background-color: var(--line-bg-low);
+  box-shadow: 0px 1px 8px rgba(235, 126, 167, 0.5);
+}
+.middleProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1s;
+  border-radius: 4px;
+  width: 66%;
+  border: var(--protection-line-middle);
+  background-color: var(--line-bg-middle);
+  box-shadow: 0px 1px 8px rgba(255, 220, 143, 0.5);
+}
+.strongProtection {
+  display: block;
+  position: relative;
+  top: -20px;
+  height: 4px;
+  transition: 1s;
+  border-radius: 4px;
+  width: 100%;
+  border: var(--protection-line-strong);
+  background-color: var(--line-bg-strong);
+  box-shadow: 0px 1px 8px rgba(36, 204, 167, 0.5);
+}
 
 @media screen and (max-width: 767px) {
   .form {
     text-align: center;
     height: 100vh;
     width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -120,6 +156,15 @@ p {
   }
   .wrapper {
     margin-top: 30px;
+  }
+  .lowProtection {
+    top: -10px;
+  }
+  .middleProtection {
+    top: -10px;
+  }
+  .strongProtection {
+    top: -10px;
   }
 }
 
