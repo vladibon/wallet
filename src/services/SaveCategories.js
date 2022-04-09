@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategories, useGetCategoriesQuery } from 'redux/index';
 import { selectCategories } from 'redux/selectors';
 
-const SaveCategoriesHook = () => {
+const SaveCategories = () => {
   const dispatch = useDispatch();
   const { data } = useGetCategoriesQuery();
   const categories = useSelector(selectCategories);
@@ -15,4 +15,4 @@ const SaveCategoriesHook = () => {
   }
 };
 
-export default SaveCategoriesHook;
+export { SaveCategories };

@@ -14,4 +14,6 @@ export const selectToken = state => state.auth.token;
 
 export const selectCategories = state => state.categories;
 
-export const selectTransactions = state => state.finance.transactions;
+export const selectTransactions = state => state.finance.transactions.data;
+
+export const selectTransactionsPage = state => state.finance.transactions.page;
