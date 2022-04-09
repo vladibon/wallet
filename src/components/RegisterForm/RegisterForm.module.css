@@ -92,7 +92,7 @@ p {
   position: relative;
   top: -20px;
   height: 4px;
-  transition: 1s;
+  transition: 1.5s;
   border-radius: 4px;
   width: 66%;
   border: var(--protection-line-middle);
@@ -104,7 +104,7 @@ p {
   position: relative;
   top: -20px;
   height: 4px;
-  transition: 1s;
+  transition: 1.5s;
   border-radius: 4px;
   width: 100%;
   border: var(--protection-line-strong);
