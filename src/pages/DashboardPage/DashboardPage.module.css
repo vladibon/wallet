@@ -1,6 +1,45 @@
-/* .main {
-  width: 200px;
-  padding-top: 100px;
-  z-index: 1200;
-  color: var(--color-tomato);
-} */
+.dashboardPage__opacity {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+}
+
+.dashboardPage__section {
+  padding-top: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboardPage__section {
+    display: flex;
+    padding-top: 40px;
+  }
+
+  .dashboardPage__subSection {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboardPage {
+    display: flex;
+  }
+
+  .dashboardPage__section {
+    display: flex;
+    flex-direction: column;
+    width: 37%;
+
+    border-right: var(--hometab-border-hr-section);
+    box-shadow: var(--hometab-hr-section-shadow);
+  }
+
+  .dashboardPage__subSection {
+    width: 100%;
+  }
+}

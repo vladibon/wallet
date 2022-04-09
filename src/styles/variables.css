@@ -57,10 +57,12 @@
   --protection-line-low: 3px solid rgb(222, 108, 100);
   --protection-line-middle: 3px solid rgb(234, 199, 124);
   --protection-line-strong: 3px solid #24cca7;
+  --hometab-border-hr-section: 1px solid #e7e5f2;
 
   /* Shadows */
   --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   --hometab-hr-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  --hometab-hr-section-shadow: 1px 0px 0px rgba(0, 0, 0, 0.05), 2px 0px 0px rgba(255, 255, 255, 0.6);
 
   /* Animations */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);

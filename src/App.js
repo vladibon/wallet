@@ -12,6 +12,8 @@ import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
 import SaveCategoriesHook from 'hooks/SaveCategoriesHook';
+import Spinner from 'components/Spinner';
+import Loader from 'components/Loader';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -32,7 +34,13 @@ function App() {
     <>
       {!isFetching ? (
         <>
-          <Suspense fallback={null}>
+          <Suspense
+            fallback={
+              <div style={{ paddingTop: 'calc((100vh - 70px) / 2)' }}>
+                <Spinner size={70} color='blue' />
+              </div>
+            }
+          >
             <Routes>
               <Route
                 path='/home/*'
@@ -66,7 +74,7 @@ function App() {
           {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
         </>
       ) : (
-        <p>...loading</p>
+        <Loader />
       )}
     </>
   );
