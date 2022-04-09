@@ -25,7 +25,7 @@ export function  DiagramChart() {
 
   const user = {
     // labels: [],
-    labels: transactions.map(transaction => transaction.category),
+     labels : transactions.map(transaction => transaction.category),
     datasets: [
       {
         label: 'Transactions',
@@ -44,40 +44,26 @@ export function  DiagramChart() {
       },
     ],
   }
-  //   options  {
-  //   legend: {
-  //     display: false,
-  //   },
-  //   plugins: {
-  //     datalabels: {
-  //       display: true,
-  //       formatter: (val, ctx) => {
-  //         return ctx.chart.data.labels[ctx.dataIndex];
-  //       },
-  //       color: '#fff',
-  //       backgroundColor: '#404040'
-  //     },
-  //   }
   
+  const options = {
+  plugins: {
+    legend: {
+      position: '',
+      rtl: false,
+      labels: {
+        pointStyle: 'rect',
+        usePointStyle: true,
+        padding: 20,
+        font: {
+          family: 'Montserrat',
+          size: 5,
+          weight: 400,
+        },
+      },
+      }
+  },
+};
   
-  // };
-  
-  // const options = {
-  //   legend: {
-  //     display: false
-  //   },
-  //   plugins: {
-  //     datalabels: {
-  //       display: true,
-  //       formatter: (val, ctx) => {
-  //         return ctx.chart.data.labels[ctx.dataIndex];
-  //       },
-  //       color: '#fff',
-  //       backgroundColor: '#404040'
-  //     },
-  //   }
-  
-  // }
 
   return (
     <div className={s.sectionDoughnut}>
@@ -85,7 +71,7 @@ export function  DiagramChart() {
       <div className={s.doughnut}>
               <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
         <Doughnut data={user}
-          // options={options}
+           options={options}
         />
       </div>
     </div>

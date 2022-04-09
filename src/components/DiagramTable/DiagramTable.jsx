@@ -29,14 +29,25 @@ export default function DiagramTable() {
   return (
     <div style={{ paddingTop: 32 }}>
        <DiagramChart />
-      <div className={s.selectList}>
-        <select className={s.selectItem}>
+      <div style={{ paddingTop: 32 }}>
+        <select className={s.select}>
+          <option >Month</option>
+          <option>January</option>
+          <option>February</option>
+          <option>March</option>
           <option>April</option>
           <option>May</option>
+          <option>Juny</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
         </select>
-        <select className={s.selectItem}>
+        <select className={s.select}>
+          <option>Year</option>
           <option>2022</option>
-          <option>2021</option>
         </select>
       </div>
 
