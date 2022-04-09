@@ -32,7 +32,7 @@ function HomeTabDesktop() {
         {transactions.length ? (
           <tbody>
             {transactions.map(transaction => (
-              <tr>
+              <tr key={transaction._id}>
                 <td>{transaction.date}</td>
                 <td align='center'>{transaction.type ? '+' : '-'}</td>
                 <td>{transaction.category}</td>
