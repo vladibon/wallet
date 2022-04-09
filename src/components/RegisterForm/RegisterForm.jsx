@@ -19,14 +19,14 @@ export default function RegisterForm() {
     const { name, value } = event.target;
 
     switch (name) {
-      case 'name':
-        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
         return setPassword(value);
       case 'password_confirmation':
         return setPasswordConfirm(value);
+      case 'name':
+        return setName(value);
 
       default:
         return;
@@ -39,19 +39,19 @@ export default function RegisterForm() {
     } else if (error) {
       console.log('Your request failed');
     }
-    console.log(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
   const onRegisterSubmit = e => {
     e.preventDefault();
     const user = { name, email, password };
-    console.log(user);
     createUser({ user });
+    // console.log(createUser({ user }));
     setName('');
     setEmail('');
     setPassword('');
-    e.target.reset();
+    setPasswordConfirm('');
+    // e.target.reset();
   };
 
   return (

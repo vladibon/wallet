@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { Link } from 'react-router-dom';
+// import Button from 'components/Button';
 
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
