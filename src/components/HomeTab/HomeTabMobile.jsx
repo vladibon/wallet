@@ -1,12 +1,9 @@
-import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
-import s from './HomeTabMobile.module.css';
-import HomeTabBackground from '../../images/home-tab-bg.png';
-
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetTransactionsQuery, setTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
+import HomeTabBackground from '../../images/home-tab-bg.png';
+import s from './HomeTabMobile.module.css';
 
 function HomeTabMobile() {
   const dispatch = useDispatch();
@@ -29,7 +26,7 @@ function HomeTabMobile() {
                   ? `${s.homeTab__items}  ${s.incomeBorder}`
                   : `${s.homeTab__items}  ${s.expenseBorder}`
               }
-              key={transaction.id}
+              key={transaction._id}
             >
               <ul className={s.homeTabItems__list}>
                 <li className={s.homeTabItems__listCell}>
@@ -96,14 +93,5 @@ function HomeTabMobile() {
     </>
   );
 }
-
-// HomeTabMobile.propTypes = {
-//   date: PropTypes.string.isRequired,
-//   type: PropTypes.oneOf(['+', '-']).isRequired,
-//   category: PropTypes.string.isRequired,
-//   comment: PropTypes.string.isRequired,
-//   sum: PropTypes.number.isRequired,
-//   balance: PropTypes.number.isRequired,
-// };
 
 export default HomeTabMobile;
