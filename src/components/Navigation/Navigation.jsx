@@ -10,6 +10,7 @@ export default function Navigation() {
         <NavLink
           to=''
           className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
+          end
         >
           <div className={s.linkBtn}>
             <div className={s.iconBox}>
@@ -25,6 +26,7 @@ export default function Navigation() {
         <NavLink
           to='statistics'
           className={({ isActive }) => (isActive ? classNames(s.link, s.active) : s.link)}
+          end
         >
           <div className={s.linkBtn}>
             <div className={s.iconBox}>
@@ -42,6 +44,7 @@ export default function Navigation() {
           className={({ isActive }) =>
             isActive ? classNames(s.link, s.linkNone, s.active) : classNames(s.link, s.linkNone)
           }
+          end
         >
           <div className={s.linkBtn}>
             <div className={s.iconBox}>

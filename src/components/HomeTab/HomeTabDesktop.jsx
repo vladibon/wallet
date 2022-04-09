@@ -4,14 +4,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setTransactions } from 'redux/index';
+import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 
 function HomeTabDesktop() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(3);
-  const { data } = useGetTransactionsQuery();
+  const [totalPages, setTotalPages] = useState(0);
+  const { data } = useGetTransactionsQuery(page);
   const transactions = useSelector(selectTransactions);
 
   const [items, setItems] = useState(Array.from({ length: 0 }));
@@ -19,7 +19,7 @@ function HomeTabDesktop() {
 
   useEffect(() => {
     if (!data) return;
-    else dispatch(setTransactions([...data.transactions]));
+    else dispatch(setLatestTransactions([...data.transactions]));
 
     const newItems = [...items, ...transactions];
     setItems(newItems);

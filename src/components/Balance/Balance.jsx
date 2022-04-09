@@ -8,7 +8,7 @@ function Balance() {
   return (
     <div className={s.balance}>
       <h3 className={s.balance__title}>YOUR BALANCE</h3>
-      <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
+      <p className={s.balance__sum}>&#8372; {balance?.toFixed(2)}</p>
     </div>
   );
 }
