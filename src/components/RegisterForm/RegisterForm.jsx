@@ -2,16 +2,17 @@ import s from './RegisterForm.module.css';
 import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
+import Button from 'components/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useCreateUserMutation, setUser } from 'redux/index';
 
 export default function RegisterForm() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirm, setPasswordConfirm] = useState('');
+  const [name, setName] = useState('');
   const [createUser, { data, error }] = useCreateUserMutation();
   const dispatch = useDispatch();
 
@@ -113,14 +114,15 @@ export default function RegisterForm() {
             <use href={`${Icons}#icon-account_box`} />
           </svg>
         </label>
-        <button className={s.regBtn} type='submit'>
+        <div className={s.wrapper}>
+          {/* <button className={s.regBtn} type='submit'>
           sign up
-        </button>
-        <Link to='/login' className={s.authLink}>
-          <button className={s.logBtn} type='button'>
-            log in
-          </button>
-        </Link>
+        </button> */}
+          <Button className='btn__primary' type='submit' text='sign up' />
+          <Link to='/login' className={s.authLink}>
+            <Button className='btn__secondary' type='buttom' text='log in' />
+          </Link>
+        </div>
       </form>
     </div>
   );
