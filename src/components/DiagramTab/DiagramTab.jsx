@@ -4,13 +4,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  useGetTransactionsQuery,
-  setLatestTransactions,
-  useGetStatisticsQuery,
-  setStatistics,
-} from 'redux/index';
-import { selectTransactions } from 'redux/selectors';
+import { useGetStatisticsQuery, setStatistics } from 'redux/index';
+import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 
@@ -41,21 +36,23 @@ const months = [
 ];
 
 export default function DiagramTab() {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  // const { data, error } = useGetStatisticsQuery({ month, year });
-  const { data } = useGetTransactionsQuery();
   const dispatch = useDispatch();
+  const date = new Date();
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
+  const [showExpense, setShowExpence] = useState(true);
 
-  const transactions = useSelector(selectTransactions);
+  const { data, error } = useGetStatisticsQuery({ month, year });
+  const stats = useSelector(selectStatistics);
+
+  const statsToRender = () => (showExpense ? stats.expense : stats.income);
 
   useEffect(() => {
     if (!data) return;
-    else dispatch(setLatestTransactions([...data.transactions]));
-  }, [data, dispatch]);
+    else dispatch(setStatistics(data));
+  }, [data, error, dispatch]);
 
   const onInputChange = e => {
-    console.log(e.value);
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'month':
@@ -70,34 +67,37 @@ export default function DiagramTab() {
 
   return (
     <div style={{ paddingTop: 32 }}>
-      <DiagramChart colors={colors} data={transactions} />
-      <div style={{ paddingTop: 32 }}>
-        <select className={s.select} onChange={onInputChange} defaultValue={month}>
+      <h2 className={s.title}>Statistics</h2>
+      <DiagramChart colors={colors} data={statsToRender()} />
+      <div className={s.selectWrapper}>
+        <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
           <option value='' disabled>
             Month
           </option>
           {months.map((el, idx) => (
-            <option key={el} value={idx + 1}>
+            <option key={el} value={idx}>
               {el}
             </option>
           ))}
         </select>
-        <select className={s.select} onChange={onInputChange} defaultValue={year}>
+        <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
           <option value='' disabled>
             Year
           </option>
-          <option>2022</option>
+          <option value={2022}>2022</option>
         </select>
       </div>
 
-      <DiagramTable colors={colors} data={transactions} />
+      <DiagramTable colors={colors} data={statsToRender()} />
 
       <div className={s.amount}>
-        <p className={s.spent}>
-          Spent:<span className={s.spentMinus}>22259</span>
+        <p className={s.spent} onClick={() => setShowExpence(true)}>
+          <span className={s.spentText}>Spent:</span>
+          <span className={s.spentMinus}>{stats.totalExpense}</span>
         </p>
-        <p className={s.spent}>
-          Income: <span className={s.spentPlus}>40000</span>
+        <p className={s.spent} onClick={() => setShowExpence(false)}>
+          <span className={s.spentText}>Income:</span>
+          <span className={s.spentPlus}>{stats.totalIncome}</span>
         </p>
       </div>
     </div>
