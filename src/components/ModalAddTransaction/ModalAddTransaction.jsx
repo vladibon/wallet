@@ -7,7 +7,6 @@ import {
   useAddTransactionMutation,
   closeModalWindow,
   setBalance,
-  resetPage,
   setLatestTransactions,
 } from 'redux/index';
 
@@ -99,7 +98,6 @@ export default function ContactForm() {
       if (data) {
         dispatch(setBalance({ balance: data.balance }));
         dispatch(setLatestTransactions(data.transactions));
-        dispatch(resetPage());
         dispatch(closeModalWindow());
         reset();
       } else if (error) {
