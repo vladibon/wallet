@@ -1,5 +1,5 @@
 .sectionDoughnut {
-  width: 280px;
+  max-width: 280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -18,7 +18,7 @@
 
 @media screen and (min-width: 768px) {
   .sectionDoughnut {
-    width: 336px;
+    max-width: 336px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -26,18 +26,18 @@
   }
 
   .doughnut {
-    width: 336px;
+    max-width: 336px;
   }
 
   .title {
-    width: 336px;
+    max-width: 336px;
     margin-bottom: 20px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .sectionDoughnut {
-    width: 288px;
+    max-width: 288px;
   }
 }
 

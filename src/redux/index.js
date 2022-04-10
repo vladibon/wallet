@@ -5,7 +5,11 @@ import {
   useGetCurrenthUserQuery,
 } from './auth/authAPI';
 import { useGetCategoriesQuery } from './categories/categoriesAPI';
-import { useGetTransactionsQuery, useAddTransactionMutation } from './finance/financeAPI';
+import {
+  useGetTransactionsQuery,
+  useAddTransactionMutation,
+  useGetStatisticsQuery,
+} from './finance/financeAPI';
 import { setUser, resetUser, setBalance } from './auth/auth-slice';
 import { setCategories } from './categories/categories-slice';
 import {
@@ -13,6 +17,7 @@ import {
   setMoreTransactions,
   setNextPage,
   resetPage,
+  setStatistics,
 } from './finance/finance-slice';
 import { openModalLogout, openModalAddTransaction, closeModalWindow } from './global/global-slice';
 
@@ -26,6 +31,7 @@ export {
   setMoreTransactions,
   setNextPage,
   resetPage,
+  setStatistics,
   openModalAddTransaction,
   closeModalWindow,
 };
@@ -37,4 +43,5 @@ export {
   useGetCategoriesQuery,
   useGetTransactionsQuery,
   useAddTransactionMutation,
+  useGetStatisticsQuery,
 };
