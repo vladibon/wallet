@@ -29,7 +29,7 @@ export default function RegisterForm() {
     email: 'Enter valid email address',
     min: 'The value is too small',
     max: 'The value is too large',
-    confirmed: 'Entered passwords do not mutch',
+    confirmed: 'Entered passwords do not match',
     'password.min': 'Password is too short',
   };
 
