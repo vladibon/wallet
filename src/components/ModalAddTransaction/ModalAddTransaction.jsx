@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
@@ -35,6 +36,16 @@ export default function ContactForm() {
       setCategory(expense[0]);
     }
   }, [expense, income, type]);
+
+  const options = categories.map(category => ({ value: category, label: category }));
+
+  const MySelect = () => (
+    <Select
+      options={options}
+      defaultValue={{ value: 'Choose category', label: 'Choose category' }}
+      styles={s.formCategories}
+    />
+  );
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
@@ -130,7 +141,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        <select
+        {/* <select
           className={s.formCategories}
           name='category'
           onChange={handleInputChange}
@@ -145,7 +156,8 @@ export default function ContactForm() {
               {el}
             </option>
           ))}
-        </select>
+        </select> */}
+        <MySelect />
         <span></span>
 
         <div className={s.inputConatainer}>
