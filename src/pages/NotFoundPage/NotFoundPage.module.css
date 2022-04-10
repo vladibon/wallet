@@ -1,0 +1,26 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #27282a;
+  background-image: url(./brokenGlass.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.text {
+  font-size: 5vw;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--title-black-color);
+  margin-bottom: 2vw;
+}
+
+.title {
+  font-size: 7vw;
+  font-weight: 700;
+  text-transform: uppercase;
+}
