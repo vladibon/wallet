@@ -35,10 +35,8 @@ export default function LoginForm() {
       dispatch(setUser(data));
     } else if (error) {
       toast.error('Your request failed');
-      console.log('Your request failed');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
+  }, [data, dispatch, error]);
 
   const onLoginSubmit = e => {
     e.preventDefault();
