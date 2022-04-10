@@ -26,6 +26,7 @@ body {
   color: var(--title-black-color);
   font-family: var(--main-font);
   background-color: var(--primary-bg-color);
+  cursor: default;
 }
 
 @media screen and (min-width: 768px) {

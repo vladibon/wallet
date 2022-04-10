@@ -18,7 +18,6 @@ const financeAPI = emptySplitApi.injectEndpoints({
       query: ({ month, year }) => ({
         url: `/transactions/stats?month=${month}&year=${year}`,
       }),
-      // providesTags: ['Finance'],
     }),
   }),
   overrideExisting: false,

@@ -16,8 +16,6 @@ import {
   setLatestTransactions,
   setMoreTransactions,
   resetTransactions,
-  setNextPage,
-  resetPage,
   setStatistics,
   resetStatistics,
 } from './finance/finance-slice';
@@ -32,8 +30,6 @@ export {
   setLatestTransactions,
   setMoreTransactions,
   resetTransactions,
-  setNextPage,
-  resetPage,
   setStatistics,
   resetStatistics,
   openModalAddTransaction,
