@@ -23,6 +23,9 @@ const LoginPage = lazy(() => import('pages/LoginPage' /* webpackChunkName: "logi
 const RegisterPage = lazy(() =>
   import('pages/RegisterPage' /* webpackChunkName: "register-page" */),
 );
+const NotFoundPage = lazy(() =>
+  import('pages/NotFoundPage' /* webpackChunkName: "notfound-page" */),
+);
 
 function App() {
   SaveCategories();
@@ -67,7 +70,15 @@ function App() {
                   </PublicRoute>
                 }
               />
-              <Route path='*' element={<Navigate to='/home' />} />
+              <Route path='/' element={<Navigate to='/home' />} />
+              <Route
+                path='/*'
+                element={
+                  <PublicRoute restricted>
+                    <NotFoundPage />
+                  </PublicRoute>
+                }
+              />
             </Routes>
           </Suspense>
 
