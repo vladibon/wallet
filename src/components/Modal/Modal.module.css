@@ -50,8 +50,8 @@
 
 .lightbox__buttonClose {
   composes: lightbox__button;
-  top: 8px;
-  right: 8px;
+  top: 5px;
+  right: 5px;
 }
 
 .lightbox__buttonClose:hover,

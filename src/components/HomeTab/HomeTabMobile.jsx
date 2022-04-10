@@ -44,8 +44,11 @@ function HomeTabMobile() {
                   : `${s.homeTab__itemsTitle} ${s.expenseBorder}`
               }
             >
-              <AccordionItemButton className={`${s.accordion__button} ${s.homeTabButton}`}>
-                <span className={s.homeTabItems__colorTitle}>10.04.2022 06:38</span>
+              <AccordionItemButton className={s.homeTabButton}>
+                <div className={s.flex}>
+                  <div className={s.accordion__button}></div>
+                  <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
+                </div>
                 <span
                   className={
                     transaction.type

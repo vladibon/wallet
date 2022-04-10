@@ -4,7 +4,7 @@
   padding-right: 20px;
   padding-left: 20px;
   width: 100%;
-  max-width: 320px;
+  max-width: 540px;
   background-color: var(--text-white-color);
 }
 
@@ -20,7 +20,6 @@
     padding-bottom: 60px;
     padding-right: 73px;
     padding-left: 73px;
-    max-width: 540px;
   }
 }
 
