@@ -12,12 +12,6 @@
   }
 }
 
-@media (min-width: 400px) {
-  .modal {
-    max-width: 380px;
-  }
-}
-
 @media (min-width: 768px) {
   .modal {
     padding-top: 40px;
