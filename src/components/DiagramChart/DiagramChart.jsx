@@ -44,6 +44,8 @@ export default function DiagramChart({ data, colors }) {
 
   return (
     <div className={s.sectionDoughnut}>
+            <h2 className={s.title}>Statistics</h2>
+
       <div className={s.doughnut}>
         {data?.length ? (
           <>

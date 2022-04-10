@@ -66,10 +66,10 @@ export default function DiagramTab() {
   };
 
   return (
-    <div style={{ paddingTop: 32 }}>
-      <h2 className={s.title}>Statistics</h2>
+    <div  className={s.DiagramTab}>
       <DiagramChart colors={colors} data={statsToRender()} />
-      <div className={s.selectWrapper}>
+      <div className={s.conteinerTable}>
+<div className={s.selectWrapper}>
         <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
           <option value='' disabled>
             Month
@@ -99,6 +99,7 @@ export default function DiagramTab() {
           <span className={s.spentText}>Income:</span>
           <span className={s.spentPlus}>{stats.totalIncome}</span>
         </p>
+      </div>
       </div>
     </div>
   );
