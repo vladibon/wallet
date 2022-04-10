@@ -1,7 +1,7 @@
 .modal {
   padding: 20px 15px 40px;
   width: 100%;
-  max-width: 320px;
+  max-width: 540px;
   background-color: var(--text-white-color);
 }
 
@@ -20,8 +20,10 @@
 
 @media (min-width: 768px) {
   .modal {
-    padding-top: 40px 70px 60px;
-    max-width: 540px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-right: 73px;
+    padding-left: 73px;
   }
 }
 
@@ -167,6 +169,7 @@ input[type='number']::-webkit-outer-spin-button {
 .formInput:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--title-black-color);
   -webkit-box-shadow: 0 0 0px 1000px var(--text-white-color) inset;
+  box-shadow: 0 0 0px 1000px var(--text-white-color) inset;
 }
 
 ::-webkit-calendar-picker-indicator {

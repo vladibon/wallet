@@ -24,7 +24,7 @@ function DashboardPage() {
         <div className={s.dashboardPage__section}>
           <div className={s.dashboardPage__subSection}>
             <Navigation />
-            <Balance />
+            {isTabletOrDesktop && <Balance />}
           </div>
           {isTabletOrDesktop && <Currency />}
           <Outlet />
@@ -32,7 +32,7 @@ function DashboardPage() {
 
         <Suspense>
           <Routes>
-            <Route path='' element={<HomeTab />} />
+            <Route path='*' element={<HomeTab />} />
             <Route path='statistics' element={<DiagramTab />} />
             {isMobile && <Route path='currency' element={<Currency />} />}
           </Routes>
