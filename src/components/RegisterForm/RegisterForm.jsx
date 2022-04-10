@@ -45,7 +45,6 @@ export default function RegisterForm() {
         return setPasswordConfirm(value);
       case 'name':
         return setName(value);
-
       default:
         return;
     }
@@ -109,7 +108,6 @@ export default function RegisterForm() {
             <use href={`${Icons}#icon-email`} />
           </svg>
         </label>
-
         <label className={s.authLabel}>
           <input
             id='inputcheck'
