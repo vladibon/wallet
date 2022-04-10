@@ -155,6 +155,7 @@ export default function ContactForm() {
             name='amount'
             value={amount}
             min='0.01'
+            step='0.01'
             onChange={handleInputChange}
             placeholder='0.00'
             required
