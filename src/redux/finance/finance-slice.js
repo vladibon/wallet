@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  transactions: { data: [], page: 1 },
+  transactions: [],
   stats: {
     income: [],
     expense: [],
@@ -15,19 +15,13 @@ const financeSlice = createSlice({
   initialState,
   reducers: {
     setLatestTransactions: (state, action) => {
-      state.transactions.data = [...action.payload];
+      state.transactions = [...action.payload];
     },
     setMoreTransactions: (state, action) => {
-      state.transactions.data = [...state.transactions.data, ...action.payload];
+      state.transactions = [...state.transactions, ...action.payload];
     },
     resetTransactions: (state, action) => {
-      state.transactions.data = [];
-    },
-    setNextPage: (state, action) => {
-      state.transactions.page += 1;
-    },
-    resetPage: (state, action) => {
-      state.transactions.page = 1;
+      state.transactions = [];
     },
     setStatistics: (state, action) => {
       state.stats.income = [...action.payload.income];
@@ -48,8 +42,6 @@ export const {
   setLatestTransactions,
   setMoreTransactions,
   resetTransactions,
-  setNextPage,
-  resetPage,
   setStatistics,
   resetStatistics,
 } = financeSlice.actions;
