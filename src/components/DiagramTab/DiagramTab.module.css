@@ -53,7 +53,6 @@
 .amount {
   max-width: 280px;
   padding-top: 16px;
-  cursor: pointer;
 }
 
 @media screen and (min-width: 767px) {
@@ -69,6 +68,7 @@
 }
 
 .spent {
+  position: relative;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.47;
@@ -76,6 +76,27 @@
   justify-content: space-between;
   margin: 15px 20px;
   display: flex;
+  cursor: pointer;
+}
+
+.spentText::after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  content: '';
+  display: block;
+  width: 90px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--header-currency-bg-color);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+
+  transition: transform var(--animation);
+}
+
+.spent:hover .spentText::after {
+  transform: scaleX(1);
 }
 
 .spentMinus {

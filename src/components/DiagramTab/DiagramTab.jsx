@@ -91,10 +91,12 @@ export default function DiagramTab() {
 
       <div className={s.amount}>
         <p className={s.spent} onClick={() => setShowExpence(true)}>
-          Spent:<span className={s.spentMinus}>{stats.totalIncome}</span>
+          <span className={s.spentText}>Spent:</span>
+          <span className={s.spentMinus}>{stats.totalIncome}</span>
         </p>
         <p className={s.spent} onClick={() => setShowExpence(false)}>
-          Income: <span className={s.spentPlus}>{stats.totalExpense}</span>
+          <span className={s.spentText}>Income:</span>
+          <span className={s.spentPlus}>{stats.totalExpense}</span>
         </p>
       </div>
     </div>
