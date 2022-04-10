@@ -11,22 +11,25 @@ function Currency() {
 
   useEffect(() => {
     const storedExchanges = JSON.parse(localStorage.getItem('exchanges'));
-    storedExchanges?.time + 3600000 > Date.now()
-      ? setExchanges(storedExchanges.data)
-      : setLoadings(true);
-        fetchCurrency().then(data => {
-        localStorage.setItem('exchanges', JSON.stringify({ data, time: Date.now() }));
+    if (storedExchanges?.time + 3600000 > Date.now()) {
+      setExchanges(storedExchanges.data);
+    } else {
+      setLoadings(true);
+      fetchCurrency()
+        .then(data => {
+          localStorage.setItem('exchanges', JSON.stringify({ data, time: Date.now() }));
           setExchanges(data);
-    })
-      .catch(error => {
-        throw Error(error);
-      })
-      .finally(() => setLoadings(false));
+        })
+        .catch(error => {
+          throw Error(error);
+        })
+        .finally(() => setLoadings(false));
+    }
   }, []);
 
   return (
     <div className={s.table__container}>
-      {loadings&&<Loader/>}
+      {loadings && <Loader />}
       <table className={s.table}>
         <thead className={s.table__title_row}>
           <tr>
