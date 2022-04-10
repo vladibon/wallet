@@ -15,7 +15,7 @@
   font-size: 9vw;
   line-height: 1.5;
   text-align: center;
-  color: var(--title-black-color);
+  color: var(--text-white-color);
   margin-bottom: 5vw;
 }
 
@@ -41,7 +41,7 @@
     font-size: 5vw;
     margin-bottom: 2vw;
   }
-  
+
   .title {
     font-size: 7vw;
   }
