@@ -1,3 +1,17 @@
+.title {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: var(--title-font);
+  list-style: 1.5;
+  margin-bottom: 10px;
+}
+
+.selectWrapper {
+  display: flex;
+  padding-top: 32px;
+  flex-direction: column;
+}
+
 .select {
   display: block;
   font-size: 16px;
@@ -14,6 +28,15 @@
 }
 
 @media screen and (min-width: 768px) {
+  .title {
+    max-width: 336px;
+    margin-bottom: 20px;
+  }
+
+  .selectWrapper {
+    flex-direction: row;
+  }
+
   .select {
     margin-right: 15px;
     width: 160px;

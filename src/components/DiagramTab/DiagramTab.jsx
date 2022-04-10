@@ -66,8 +66,9 @@ export default function DiagramTab() {
 
   return (
     <div style={{ paddingTop: 32 }}>
+      <h2 className={s.title}>Statistics</h2>
       <DiagramChart colors={colors} data={statsToRender()} />
-      <div style={{ paddingTop: 32 }}>
+      <div className={s.selectWrapper}>
         <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
           <option value='' disabled>
             Month
