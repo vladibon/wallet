@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import CurrencyItem from './CurrencyItem';
 import { fetchCurrency } from 'api/currencyAPI';
-import Loader from 'components/Loader';
-
+import Spinner from 'components/Spinner';
 import s from './Currency.module.css';
 
 function Currency() {
@@ -29,7 +28,7 @@ function Currency() {
 
   return (
     <div className={s.table__container}>
-      {loadings && <Loader />}
+      {loadings && <Spinner size={100} color='white' />}
       <table className={s.table}>
         <thead className={s.table__title_row}>
           <tr>
