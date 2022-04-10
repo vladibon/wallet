@@ -14,6 +14,7 @@ import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
 
 export default function ContactForm() {
+  const [selectedOption, setSelectedOption] = useState('');
   const dispatch = useDispatch();
   const [type, setType] = useState(false);
   const [category, setCategory] = useState('default');
@@ -41,10 +42,16 @@ export default function ContactForm() {
   const MySelect = () => (
     <Select
       options={options}
-      defaultValue={{ value: 'Choose category', label: 'Choose category' }}
       styles={s.formCategories}
+      value={selectedOption}
+      onChange={handleChange}
     />
   );
+
+  const handleChange = selectedOption => {
+    setSelectedOption(selectedOption);
+    setCategory(selectedOption.value);
+  };
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
