@@ -8,6 +8,7 @@ import s from './Currency.module.css';
 function Currency() {
   const [exchanges, setExchanges] = useState([]);
   const [loadings, setLoadings] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const storedExchanges = JSON.parse(localStorage.getItem('exchanges'));
@@ -21,7 +22,7 @@ function Currency() {
           setExchanges(data);
         })
         .catch(error => {
-          throw Error(error);
+          setError(error);
         })
         .finally(() => setLoadings(false));
     }
@@ -39,9 +40,10 @@ function Currency() {
           </tr>
         </thead>
         <tbody className={s.table__body}>
-          {exchanges.map(el => (
-            <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
-          ))}
+          {!error &&
+            exchanges.map(el => (
+              <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
+            ))}
         </tbody>
       </table>
     </div>

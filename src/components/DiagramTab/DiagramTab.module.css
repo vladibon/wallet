@@ -1,13 +1,13 @@
 @media screen and (min-width: 768px) {
-.DiagramTab{
-display: flex;
-padding-top: 32px;
-}
-.conteinerTable{
-  margin-left: 32px;
-}
-}
+  .DiagramTab {
+    display: flex;
+    padding-top: 32px;
+  }
 
+  .conteinerTable {
+    margin-left: 32px;
+  }
+}
 
 .selectWrapper {
   display: flex;
@@ -31,7 +31,6 @@ padding-top: 32px;
 }
 
 @media screen and (min-width: 768px) {
-
   .selectWrapper {
     flex-direction: row;
   }

@@ -6,16 +6,8 @@
   font-size: 30px;
   font-weight: 400;
   font-family: var(--title-font);
-  list-style: 1.5;
-  /* margin-bottom: 10px; */
+  line-height: 1.5;
 }
-
-@media screen and (min-width: 768px) {
-  .title {
-    max-width: 336px;
-  }
-}
-
 
 @media screen and (min-width: 768px) {
   .sectionDoughnut {
@@ -46,4 +38,3 @@
   left: 100px;
   top: 150px;
 }
-

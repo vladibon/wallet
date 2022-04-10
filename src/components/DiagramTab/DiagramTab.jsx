@@ -66,40 +66,40 @@ export default function DiagramTab() {
   };
 
   return (
-    <div  className={s.DiagramTab}>
+    <div className={s.DiagramTab}>
       <DiagramChart colors={colors} data={statsToRender()} />
       <div className={s.conteinerTable}>
-<div className={s.selectWrapper}>
-        <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
-          <option value='' disabled>
-            Month
-          </option>
-          {months.map((el, idx) => (
-            <option key={el} value={idx}>
-              {el}
+        <div className={s.selectWrapper}>
+          <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
+            <option value='' disabled>
+              Month
             </option>
-          ))}
-        </select>
-        <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
-          <option value='' disabled>
-            Year
-          </option>
-          <option value={2022}>2022</option>
-        </select>
-      </div>
+            {months.map((el, idx) => (
+              <option key={el} value={idx}>
+                {el}
+              </option>
+            ))}
+          </select>
+          <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
+            <option value='' disabled>
+              Year
+            </option>
+            <option value={2022}>2022</option>
+          </select>
+        </div>
 
-      <DiagramTable colors={colors} data={statsToRender()} />
+        <DiagramTable colors={colors} data={statsToRender()} />
 
-      <div className={s.amount}>
-        <p className={s.spent} onClick={() => setShowExpence(true)}>
-          <span className={s.spentText}>Spent:</span>
-          <span className={s.spentMinus}>{stats.totalExpense}</span>
-        </p>
-        <p className={s.spent} onClick={() => setShowExpence(false)}>
-          <span className={s.spentText}>Income:</span>
-          <span className={s.spentPlus}>{stats.totalIncome}</span>
-        </p>
-      </div>
+        <div className={s.amount}>
+          <p className={s.spent} onClick={() => setShowExpence(true)}>
+            <span className={s.spentText}>Spent:</span>
+            <span className={s.spentMinus}>{stats.totalExpense}</span>
+          </p>
+          <p className={s.spent} onClick={() => setShowExpence(false)}>
+            <span className={s.spentText}>Income:</span>
+            <span className={s.spentPlus}>{stats.totalIncome}</span>
+          </p>
+        </div>
       </div>
     </div>
   );
