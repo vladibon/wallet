@@ -4,15 +4,27 @@
   bottom: 20px;
   width: 44px;
   height: 44px;
-  background-color: var(--earnings-green-color);
+  background-color: var(--btn-primary-bg-color);
   border: none;
   color: var(--text-white-color);
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+
   border-radius: 50%;
   cursor: pointer;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  transition: background-color var(--animation), box-sadow var(--animation),
+    transform var(--animation);
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--btn-secondary-color);
+  box-shadow: 0px 6px 15px rgba(74, 86, 226, 0.5);
+  transform: scale(1.05);
 }
 
 @media screen and (min-width: 768px) {
