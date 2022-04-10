@@ -4,12 +4,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  useGetTransactionsQuery,
-  setLatestTransactions,
-  useGetStatisticsQuery,
-  setStatistics,
-} from 'redux/index';
+import { useGetStatisticsQuery, setStatistics } from 'redux/index';
 import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
@@ -41,18 +36,17 @@ const months = [
 ];
 
 export default function DiagramTab() {
+  const dispatch = useDispatch();
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
-  const { data, error } = useGetStatisticsQuery({ month, year });
   const [showExpense, setShowExpence] = useState(true);
-  const dispatch = useDispatch();
+
+  const { data, error } = useGetStatisticsQuery({ month, year });
   const stats = useSelector(selectStatistics);
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
 
   useEffect(() => {
-    console.log('data', data);
-    console.log('error', error);
     if (!data) return;
     else dispatch(setStatistics(data));
   }, [data, error, dispatch]);
