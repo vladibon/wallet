@@ -7,14 +7,31 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useCreateUserMutation, setUser } from 'redux/index';
+import { validate } from 'indicative/validator';
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password_confirm, setPasswordConfirm] = useState('');
+  const [password_confirmation, setPasswordConfirm] = useState('');
   const [name, setName] = useState('');
   const [createUser, { data, error }] = useCreateUserMutation();
   const dispatch = useDispatch();
+
+  const rules = {
+    email: 'required|email',
+    password: 'required|min:6|max:12|confirmed',
+    password_confirmation: 'required|min:6|max:12',
+    name: 'string|min:1|max:12',
+  };
+
+  const messages = {
+    required: field => `${field} is required`,
+    email: 'Enter valid email address',
+    min: 'The value is too small',
+    max: 'The value is too large',
+    confirmed: 'Entered passwords do not mutch',
+    'password.min': 'Password is too short',
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -58,13 +75,20 @@ export default function RegisterForm() {
 
   const onRegisterSubmit = e => {
     e.preventDefault();
-    const user = { name, email, password };
-    createUser({ user });
-    setName('');
-    setEmail('');
-    setPassword('');
-    setPasswordConfirm('');
-    // e.target.reset();
+    validate({ email, password, password_confirmation, name }, rules, messages)
+      .then(() => {
+        const user = { name, email, password };
+        createUser({ user });
+        setName('');
+        setEmail('');
+        setPassword('');
+        setPasswordConfirm('');
+        e.target.reset();
+        console.log(`Congrats ${name} you have successfully logged in `);
+      })
+      .catch(errors => {
+        console.log(errors[0].message);
+      });
   };
 
   return (
@@ -108,7 +132,7 @@ export default function RegisterForm() {
             type='password'
             name='password_confirmation'
             onChange={handleChange}
-            value={password_confirm}
+            value={password_confirmation}
           ></input>
           <svg width='16' height='21' className={s.inputIcon}>
             <use href={`${Icons}#icon-lock`} />
