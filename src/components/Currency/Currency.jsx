@@ -1,24 +1,35 @@
 import { useState, useEffect } from 'react';
 import CurrencyItem from './CurrencyItem';
 import { fetchCurrency } from 'api/currencyAPI';
+import Loader from 'components/Loader';
 
 import s from './Currency.module.css';
 
 function Currency() {
   const [exchanges, setExchanges] = useState([]);
+  const [loadings, setLoadings] = useState(false);
 
   useEffect(() => {
-    fetchCurrency()
-      .then(data => {
-        setExchanges([...data]);
-      })
-      .catch(error => {
-        throw Error;
-      });
+    const storedExchanges = JSON.parse(localStorage.getItem('exchanges'));
+    if (storedExchanges?.time + 3600000 > Date.now()) {
+      setExchanges(storedExchanges.data);
+    } else {
+      setLoadings(true);
+      fetchCurrency()
+        .then(data => {
+          localStorage.setItem('exchanges', JSON.stringify({ data, time: Date.now() }));
+          setExchanges(data);
+        })
+        .catch(error => {
+          throw Error(error);
+        })
+        .finally(() => setLoadings(false));
+    }
   }, []);
 
   return (
     <div className={s.table__container}>
+      {loadings && <Loader />}
       <table className={s.table}>
         <thead className={s.table__title_row}>
           <tr>

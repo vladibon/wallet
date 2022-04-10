@@ -1,6 +1,12 @@
 import s from './ModalLogout.module.css';
 
-import { useLogOutUserMutation, closeModalWindow, resetUser } from 'redux/index';
+import {
+  useLogOutUserMutation,
+  closeModalWindow,
+  resetUser,
+  resetTransactions,
+  resetStatistics,
+} from 'redux/index';
 import { useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
@@ -13,6 +19,8 @@ function ModalLogout() {
     logOutUser();
     dispatch(closeModalWindow());
     dispatch(resetUser());
+    dispatch(resetTransactions());
+    dispatch(resetStatistics());
   };
 
   const onCancelLogout = e => {

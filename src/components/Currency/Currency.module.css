@@ -1,5 +1,7 @@
 .table__container {
-  width: 280px;
+  width: 100%;
+  min-width: 280px;
+  max-width: 350px;
   height: 174px;
   margin-left: auto;
   margin-right: auto;
@@ -26,77 +28,53 @@
 @media (min-width: 1280px) {
   .table__container {
     margin-left: 0;
-    width: 393px;
+    width: 395px;
     height: 347px;
   }
 }
 
 .table {
   width: 100%;
-  /* width: 280px;
-  height: 174px;
-  color: var(--text-white-color);
-  background-color: var(--stat-home-color);
-  border-radius: 30px; */
-
-  /* overflow: hidden; */
-
   border-collapse: collapse;
   border-spacing: 0;
   border: 0;
 }
 
-/* @media (min-width: 768px) {
-  .table {
-    width: 336px;
-    height: 182px;
-  }
+.table__title {
+  padding: 10px 0 12px;
+  background-color: var(--header-currency-bg-color);
 }
 
 @media (min-width: 1280px) {
-  .table {
-    width: 393px;
-    height: 347px;
+  .table__title {
+    padding: 17px 0 16px;
   }
-} */
-
-.table__title {
-  font-size: 18px;
-  background-color: var(--header-currency-bg-color);
-  text-align: center;
 }
 
 .table__title_row {
+  font-size: 18px;
   height: 50px;
 }
 
-.table__row {
-  height: 35px;
-}
-
-@media (min-width: 768px) {
-  .table__row {
-    height: 40px;
+@media (min-width: 1280px) {
+  .table__title_row {
+    height: 60px;
   }
 }
 
 .table__text {
-  height: 10px;
-  font-size: 16px;
-  padding-left: 20px;
-
-  /* text-align: start; */
+  padding-top: 14px;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .table__text {
-    padding-left: 35px;
+    padding-top: 16px;
   }
 }
 
-/* .table__body {
-  background-image: url('../../images/currency.svg');
-  background-position-y: bottom;
-  background-repeat: no-repeat;
-  background-size: 100%;
-} */
+@media (min-width: 1280px) {
+  .table__text {
+    padding-top: 24px;
+  }
+}
