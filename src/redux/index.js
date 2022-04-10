@@ -17,6 +17,7 @@ import {
   setMoreTransactions,
   setNextPage,
   resetPage,
+  setStatistics,
 } from './finance/finance-slice';
 import { openModalLogout, openModalAddTransaction, closeModalWindow } from './global/global-slice';
 
@@ -30,6 +31,7 @@ export {
   setMoreTransactions,
   setNextPage,
   resetPage,
+  setStatistics,
   openModalAddTransaction,
   closeModalWindow,
 };

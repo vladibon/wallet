@@ -15,8 +15,8 @@ const financeAPI = emptySplitApi.injectEndpoints({
       invalidatesTags: ['Finance'],
     }),
     getStatistics: builder.query({
-      query: ({ body }) => ({ url: `/transactions/stats`, body }),
-      providesTags: ['Finance'],
+      query: ({ month, year }) => ({ url: `/transactions/stats`, body: { month, year } }),
+      // providesTags: ['Finance'],
     }),
   }),
   overrideExisting: false,

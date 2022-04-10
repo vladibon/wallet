@@ -1,9 +1,15 @@
 import s from './DiagramTab.module.css';
 
 import React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
+
+import {
+  useGetTransactionsQuery,
+  setLatestTransactions,
+  useGetStatisticsQuery,
+  setStatistics,
+} from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
@@ -35,6 +41,9 @@ const months = [
 ];
 
 export default function DiagramTab() {
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
+  // const { data, error } = useGetStatisticsQuery({ month, year });
   const { data } = useGetTransactionsQuery();
   const dispatch = useDispatch();
 
@@ -45,20 +54,36 @@ export default function DiagramTab() {
     else dispatch(setLatestTransactions([...data.transactions]));
   }, [data, dispatch]);
 
+  const onInputChange = e => {
+    console.log(e.value);
+    const { name, value } = e.currentTarget;
+    switch (name) {
+      case 'month':
+        setMonth(value);
+        break;
+      case 'year':
+        setYear(value);
+        break;
+      default:
+    }
+  };
+
   return (
     <div style={{ paddingTop: 32 }}>
       <DiagramChart colors={colors} data={transactions} />
       <div style={{ paddingTop: 32 }}>
-        <select className={s.select}>
-          <option value='' disabled selected>
+        <select className={s.select} onChange={onInputChange} defaultValue={month}>
+          <option value='' disabled>
             Month
           </option>
           {months.map((el, idx) => (
-            <option value={idx + 1}>{el}</option>
+            <option key={el} value={idx + 1}>
+              {el}
+            </option>
           ))}
         </select>
-        <select className={s.select}>
-          <option value='' disabled selected>
+        <select className={s.select} onChange={onInputChange} defaultValue={year}>
+          <option value='' disabled>
             Year
           </option>
           <option>2022</option>

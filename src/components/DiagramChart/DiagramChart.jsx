@@ -1,10 +1,8 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
-import { selectTransactions } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
 import s from './DiagramChart.module.css';
 import { selectBalance } from 'redux/selectors';
 
