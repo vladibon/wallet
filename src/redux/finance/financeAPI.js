@@ -14,8 +14,13 @@ const financeAPI = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ['Finance'],
     }),
+    getStatistics: builder.query({
+      query: ({ body }) => ({ url: `/transactions/stats`, body }),
+      providesTags: ['Finance'],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetTransactionsQuery, useAddTransactionMutation } = financeAPI;
+export const { useGetTransactionsQuery, useAddTransactionMutation, useGetStatisticsQuery } =
+  financeAPI;
