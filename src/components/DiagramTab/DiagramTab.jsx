@@ -10,7 +10,7 @@ import {
   useGetStatisticsQuery,
   setStatistics,
 } from 'redux/index';
-import { selectTransactions } from 'redux/selectors';
+import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 
@@ -43,19 +43,21 @@ const months = [
 export default function DiagramTab() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
-  // const { data, error } = useGetStatisticsQuery({ month, year });
-  const { data } = useGetTransactionsQuery();
+  const { data, error } = useGetStatisticsQuery({ month, year });
+  const [showExpense, setShowExpence] = useState(true);
   const dispatch = useDispatch();
+  const stats = useSelector(selectStatistics);
 
-  const transactions = useSelector(selectTransactions);
+  const statsToRender = () => (showExpense ? stats.expense : stats.income);
 
   useEffect(() => {
+    console.log('data', data);
+    console.log('error', error);
     if (!data) return;
-    else dispatch(setLatestTransactions([...data.transactions]));
-  }, [data, dispatch]);
+    else dispatch(setStatistics(data));
+  }, [data, error, dispatch]);
 
   const onInputChange = e => {
-    console.log(e.value);
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'month':
@@ -70,9 +72,9 @@ export default function DiagramTab() {
 
   return (
     <div style={{ paddingTop: 32 }}>
-      <DiagramChart colors={colors} data={transactions} />
+      <DiagramChart colors={colors} data={statsToRender()} />
       <div style={{ paddingTop: 32 }}>
-        <select className={s.select} onChange={onInputChange} defaultValue={month}>
+        <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
           <option value='' disabled>
             Month
           </option>
@@ -82,22 +84,22 @@ export default function DiagramTab() {
             </option>
           ))}
         </select>
-        <select className={s.select} onChange={onInputChange} defaultValue={year}>
+        <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
           <option value='' disabled>
             Year
           </option>
-          <option>2022</option>
+          <option value={2022}>2022</option>
         </select>
       </div>
 
-      <DiagramTable colors={colors} data={transactions} />
+      <DiagramTable colors={colors} data={statsToRender()} />
 
       <div className={s.amount}>
-        <p className={s.spent}>
-          Spent:<span className={s.spentMinus}>22259</span>
+        <p className={s.spent} onClick={() => setShowExpence(true)}>
+          Spent:<span className={s.spentMinus}>{stats.totalIncome}</span>
         </p>
-        <p className={s.spent}>
-          Income: <span className={s.spentPlus}>40000</span>
+        <p className={s.spent} onClick={() => setShowExpence(false)}>
+          Income: <span className={s.spentPlus}>{stats.totalExpense}</span>
         </p>
       </div>
     </div>

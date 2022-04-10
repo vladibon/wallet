@@ -12,11 +12,11 @@ export default function DiagramChart({ data, colors }) {
   const balance = useSelector(selectBalance);
 
   const user = {
-    labels: data.map(transaction => transaction.category),
+    labels: data.map(el => el.category),
     datasets: [
       {
         label: 'Transactions',
-        data: data.map(transaction => transaction.amount),
+        data: data.map(el => el.sum),
         backgroundColor: [...colors],
         borderWidth: 0,
       },

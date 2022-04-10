@@ -15,9 +15,11 @@ import { setCategories } from './categories/categories-slice';
 import {
   setLatestTransactions,
   setMoreTransactions,
+  resetTransactions,
   setNextPage,
   resetPage,
   setStatistics,
+  resetStatistics,
 } from './finance/finance-slice';
 import { openModalLogout, openModalAddTransaction, closeModalWindow } from './global/global-slice';
 
@@ -29,9 +31,11 @@ export {
   setCategories,
   setLatestTransactions,
   setMoreTransactions,
+  resetTransactions,
   setNextPage,
   resetPage,
   setStatistics,
+  resetStatistics,
   openModalAddTransaction,
   closeModalWindow,
 };

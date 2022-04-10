@@ -12,13 +12,13 @@ export default function DiagramTable({ data, colors }) {
         </tr>
       </thead>
       <tbody className={s.body}>
-        {data.map((transaction, idx) => (
-          <tr className={s.listItem} key={transaction._id}>
-            <th className={s.nameTansaction}>
+        {data.map((el, idx) => (
+          <tr className={s.listItem} key={el.category}>
+            <td className={s.nameTansaction}>
               <span className={s.color} style={{ backgroundColor: `${colors[idx]}` }}></span>
-              {transaction.category}
-            </th>
-            <th className={s.costs}>{transaction.amount}</th>
+              {el.category}
+            </td>
+            <td className={s.costs}>{el.sum}</td>
           </tr>
         ))}
       </tbody>
