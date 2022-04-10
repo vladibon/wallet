@@ -37,8 +37,9 @@ const months = [
 
 export default function DiagramTab() {
   const dispatch = useDispatch();
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+  const date = new Date();
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
   const [showExpense, setShowExpence] = useState(true);
 
   const { data, error } = useGetStatisticsQuery({ month, year });
@@ -74,7 +75,7 @@ export default function DiagramTab() {
             Month
           </option>
           {months.map((el, idx) => (
-            <option key={el} value={idx + 1}>
+            <option key={el} value={idx}>
               {el}
             </option>
           ))}
@@ -92,11 +93,11 @@ export default function DiagramTab() {
       <div className={s.amount}>
         <p className={s.spent} onClick={() => setShowExpence(true)}>
           <span className={s.spentText}>Spent:</span>
-          <span className={s.spentMinus}>{stats.totalIncome}</span>
+          <span className={s.spentMinus}>{stats.totalExpense}</span>
         </p>
         <p className={s.spent} onClick={() => setShowExpence(false)}>
           <span className={s.spentText}>Income:</span>
-          <span className={s.spentPlus}>{stats.totalExpense}</span>
+          <span className={s.spentPlus}>{stats.totalIncome}</span>
         </p>
       </div>
     </div>
