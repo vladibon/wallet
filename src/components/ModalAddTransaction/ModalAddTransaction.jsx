@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
-import { useAddTransactionMutation, closeModalWindow, setBalance, resetPage } from 'redux/index';
+import {
+  useAddTransactionMutation,
+  closeModalWindow,
+  setBalance,
+  resetPage,
+  setLatestTransactions,
+} from 'redux/index';
 
 import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
@@ -80,8 +86,8 @@ export default function ContactForm() {
 
     addTransaction({ transaction }).then(({ data, error }) => {
       if (data) {
-        console.log('Success', data);
         dispatch(setBalance({ balance: data.balance }));
+        dispatch(setLatestTransactions(data.transactions));
         dispatch(resetPage());
         dispatch(closeModalWindow());
         reset();
