@@ -52,28 +52,47 @@ function HomeTabDesktop() {
         <table className={s.table}>
           <thead className={s.tableThead}>
             <tr>
-              <th align='left'>Date</th>
-              <th>Type</th>
-              <th align='left'>Category</th>
-              <th align='left'>Comment</th>
-              <th align='right'>Amount</th>
-              <th align='right'>Balance</th>
+              <th className={s.tableThead__th} align='left'>
+                Date
+              </th>
+              <th className={s.tableThead__th}>Type</th>
+              <th className={s.tableThead__th} align='left'>
+                Category
+              </th>
+              <th className={s.tableThead__th} align='left'>
+                Comment
+              </th>
+              <th className={s.tableThead__th} align='right'>
+                Amount
+              </th>
+              <th className={s.tableThead__th} align='right'>
+                Balance
+              </th>
             </tr>
           </thead>
           {transactions.length ? (
             <tbody>
               {transactions.map(transaction => (
-                <tr key={transaction._id}>
-                  <td>{transaction.date}</td>
-                  <td align='center'>{transaction.type ? '+' : '-'}</td>
-                  <td>{transaction.category}</td>
-                  <td>{transaction.comment}</td>
-                  <td className={transaction.type ? s.income : s.expense} align='right'>
+                <tr className={s.tbody__tr} key={transaction._id}>
+                  <td className={s.tbody__td}>{transaction.date}</td>
+                  <td className={s.tbody__td} align='center'>
+                    {transaction.type ? '+' : '-'}
+                  </td>
+                  <td className={s.tbody__td}>{transaction.category}</td>
+                  <td className={s.tbody__td}>{transaction.comment}</td>
+                  <td
+                    className={
+                      transaction.type
+                        ? `${s.tbody__td} ${s.income}`
+                        : `${s.tbody__td} ${s.expense}`
+                    }
+                    align='right'
+                  >
                     {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
                       transaction.amount,
                     )}
                   </td>
-                  <td align='right'>
+                  <td className={s.tbody__td} align='right'>
                     {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
                       transaction.balance,
                     )}
