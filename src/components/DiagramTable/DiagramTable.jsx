@@ -3,23 +3,25 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
-import { DiagramChart } from 'components/DiagramChart/DiagramChart'
+import { DiagramChart } from 'components/DiagramChart/DiagramChart';
 // import { UserData } from './../DoughnutChart/data';
 import s from './DiagramTable.module.css';
 
-const colors = ['#FED057',
+const colors = [
+  '#FED057',
   '#FFD8D0',
   '#FD9498',
   '#C5BAFF',
   '#4A56E2',
   '#81E1FF',
   '#24CCA7',
-  '#00AD84',];
+  '#00AD84',
+];
 
 export default function DiagramTable() {
- const { data} = useGetTransactionsQuery();
+  const { data } = useGetTransactionsQuery();
   const dispatch = useDispatch();
-  
+
   const transactions = useSelector(selectTransactions);
 
   useEffect(() => {
@@ -28,10 +30,10 @@ export default function DiagramTable() {
   }, [data, dispatch]);
   return (
     <div style={{ paddingTop: 32 }}>
-       <DiagramChart />
+      <DiagramChart />
       <div style={{ paddingTop: 32 }}>
         <select className={s.select}>
-          <option >Month</option>
+          <option>Month</option>
           <option>January</option>
           <option>February</option>
           <option>March</option>
@@ -60,25 +62,24 @@ export default function DiagramTable() {
         </thead>
         <tbody className={s.body}>
           {transactions.map((transaction, idx) => (
-            <tr className={s.listItem} key={transaction.id}>
+            <tr className={s.listItem} key={transaction._id}>
               <th className={s.nameTansaction}>
-                <span className={s.color} style={{ backgroundColor: `${colors[idx]}` }}
-                ></span>
+                <span className={s.color} style={{ backgroundColor: `${colors[idx]}` }}></span>
                 {transaction.category}
               </th>
               <th className={s.costs}>{transaction.amount}</th>
-            </tr>    
+            </tr>
           ))}
-          </tbody>
-        </table>
-        <div className={s.amount}>
-          <p className={s.spent}>
-            Spent:<span className={s.spentMinus}>22259</span>
-          </p>
-          <p className={s.spent}>
-            Income: <span className={s.spentPlus}>40000</span>
-          </p>
-        </div>
+        </tbody>
+      </table>
+      <div className={s.amount}>
+        <p className={s.spent}>
+          Spent:<span className={s.spentMinus}>22259</span>
+        </p>
+        <p className={s.spent}>
+          Income: <span className={s.spentPlus}>40000</span>
+        </p>
+      </div>
     </div>
   );
 }

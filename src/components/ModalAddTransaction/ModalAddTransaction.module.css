@@ -38,22 +38,6 @@
   margin-bottom: 40px;
 }
 
-.btnClose {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  outline: none;
-  background-color: var(--text-white-color);
-  border: none;
-}
-
 .formCheckbox {
   text-align: center;
   margin-bottom: 40px;
@@ -94,7 +78,11 @@
   height: 40px;
   border-radius: 20px;
   border: var(--model-border);
-  transition: 0.2s;
+  transition: var(--animation);
+}
+
+.checkbox:hover + label:before {
+  border: var(--btn-secondary-border);
 }
 
 .checkbox + label:after {
@@ -104,18 +92,18 @@
   left: 36px;
   width: 44px;
   height: 44px;
-  background: url(./minus.svg) no-repeat center;
+  background: url(../../images/minus.svg) no-repeat center;
   background-color: var(--expenditure-red-color);
   border: none;
   color: var(--text-white-color);
   border-radius: 50%;
   box-shadow: 0 6px 15px 0 rgba(255, 101, 150, 0.5);
-  transition: 0.2s;
+  transition: var(--animation);
 }
 
 .checkbox:checked + label:after {
   content: '';
-  background: url(./add.svg) no-repeat center;
+  background: url(../../images/add.svg) no-repeat center;
   background-color: var(--earnings-green-color);
   box-shadow: 0 6px 15px 0 rgba(36, 204, 167, 0.5);
   left: -2px;
@@ -130,11 +118,24 @@
   padding-left: 20px;
   font-size: 18px;
   line-height: 1.5;
+  outline: none;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px solid;
   border-color: var(--grey-color);
+  transition: border-color var(--animation);
+}
+
+.formCategories:hover,
+.formInput:hover,
+.formDate:hover,
+.formComent:hover,
+.formCategories:focus,
+.formInput:focus,
+.formDate:focus,
+.formComent:focus {
+  border-color: var(--btn-secondary-color);
 }
 
 @media (min-width: 768px) {
@@ -164,7 +165,7 @@ input[type='number']::-webkit-outer-spin-button {
 ::-webkit-calendar-picker-indicator {
   color: transparent;
   opacity: 1;
-  background: url(./calendar.svg) no-repeat center;
+  background: url(../../images/calendar.svg) no-repeat center;
   background-size: contain;
 }
 
