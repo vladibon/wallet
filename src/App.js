@@ -2,7 +2,8 @@ import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { FetchCurrentUser } from 'hooks/FetchCurrentUser';
+import { FetchCurrentUser } from 'services/FetchCurrentUser';
+import { SaveCategories } from 'services/SaveCategories';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
@@ -11,7 +12,7 @@ import Modal from 'components/Modal';
 import ModalLogout from 'components/ModalLogout';
 import ModalAddTransaction from 'components/ModalAddTransaction';
 import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
-import SaveCategoriesHook from 'hooks/SaveCategoriesHook';
+
 import Spinner from 'components/Spinner';
 import Loader from 'components/Loader';
 
@@ -24,7 +25,7 @@ const RegisterPage = lazy(() =>
 );
 
 function App() {
-  SaveCategoriesHook();
+  SaveCategories();
   const isFetching = FetchCurrentUser();
 
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);

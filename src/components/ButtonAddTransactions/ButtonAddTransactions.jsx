@@ -1,6 +1,5 @@
 import s from './ButtonAddTransactions.module.css';
-import { ReactComponent as AddIcon } from './add.svg';
-
+import { ReactComponent as AddIcon } from '../../images/add.svg';
 import { useDispatch } from 'react-redux';
 import { openModalAddTransaction } from 'redux/index';
 

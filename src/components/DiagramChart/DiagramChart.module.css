@@ -39,12 +39,28 @@
   .sectionDoughnut {
     width: 288px;
   }
+}
 
-  .doughnut {
-    width: 288px;
-  }
+.balance__sum {
+  font-family: var(--title-font);
+  color: var(--title-black-color);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+   position: relative;
+  left: 75px;
+  top: 155px;
+}
 
-  .title {
-    width: 288px;
+@media screen and (min-width: 768px) {
+  .balance__sum{
+    left: 100px;
+    top: 180px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .balance__sum {
+    left: 80px;
+    top: 160px;
+  }}

@@ -1,32 +1,70 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useGetTransactionsQuery, setTransactions } from 'redux/index';
-import { selectTransactions } from 'redux/selectors';
 import HomeTabBackground from '../../images/home-tab-bg.png';
 import s from './HomeTabMobile.module.css';
 
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetTransactionsQuery, setLatestTransactions } from 'redux/index';
+import { selectTransactions } from 'redux/selectors';
+
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+
 function HomeTabMobile() {
   const dispatch = useDispatch();
-  const { data } = useGetTransactionsQuery();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const { data } = useGetTransactionsQuery(page);
   const transactions = useSelector(selectTransactions);
 
   useEffect(() => {
-    if (!data) return;
-    else dispatch(setTransactions([...data.transactions]));
-  }, [data, dispatch]);
+    if (data?.transactions?.length) {
+      setTotalPages(data.totalPages);
+      dispatch(setLatestTransactions([...data.transactions]));
+    }
+  }, [data, dispatch, page]);
+
+  const showPrevPage = () => setPage(page === 1 ? 1 : page - 1);
+
+  const showNextPage = () => setPage(page >= totalPages ? page : page + 1);
 
   return (
     <>
-      {transactions.length ? (
-        <ul className={s.homeTab}>
-          {transactions.map(transaction => (
-            <li
+      <Accordion allowZeroExpanded className={s.homeTab}>
+        {transactions.map(transaction => (
+          <AccordionItem key={transaction._id}>
+            <AccordionItemHeading
               className={
                 transaction.type
-                  ? `${s.homeTab__items}  ${s.incomeBorder}`
+                  ? `${s.homeTab__itemsTitle} ${s.incomeBorder}`
+                  : `${s.homeTab__itemsTitle} ${s.expenseBorder}`
+              }
+            >
+              <AccordionItemButton className={`${s.accordion__button} ${s.homeTabButton}`}>
+                <span className={s.homeTabItems__colorTitle}>10.04.2022 06:38</span>
+                <span
+                  className={
+                    transaction.type
+                      ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
+                      : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
+                  }
+                >
+                  {Intl.NumberFormat('ru-Ru', {
+                    minimumFractionDigits: 2,
+                  }).format(transaction.amount)}
+                </span>
+              </AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel
+              className={
+                transaction.type
+                  ? `${s.homeTab__items} ${s.incomeBorder}`
                   : `${s.homeTab__items}  ${s.expenseBorder}`
               }
-              key={transaction._id}
             >
               <ul className={s.homeTabItems__list}>
                 <li className={s.homeTabItems__listCell}>
@@ -84,12 +122,10 @@ function HomeTabMobile() {
                   </span>
                 </li>
               </ul>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
-      )}
+            </AccordionItemPanel>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </>
   );
 }

@@ -9324,6 +9324,11 @@
     "iconv-lite" "0.4.24"
     "unpipe" "1.0.0"
 
+"react-accessible-accordion@^4.0.0":
+  "integrity" "sha512-MovuWj2Uweo57LSgTIPpB83IYq8BNdZJ44j4NmDKYxaHC/H0JjYiqt8OfNMt+YK+XN8qRON13ERQnLfM73vmqw=="
+  "resolved" "https://registry.npmjs.org/react-accessible-accordion/-/react-accessible-accordion-4.0.0.tgz"
+  "version" "4.0.0"
+
 "react-app-polyfill@^2.0.0":
   "integrity" "sha512-0sF4ny9v/B7s6aoehwze9vJNWcmCemAUYBVasscVr92+UYiEqDXOxfKjXN685mDaMRNF3WdhHQs76oTODMocFA=="
   "resolved" "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-2.0.0.tgz"
@@ -9378,7 +9383,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^17.0.2", "react-dom@>=16", "react-dom@>=16.8":
+"react-dom@^16.3.3 || ^17.0.0", "react-dom@^17.0.2", "react-dom@>=16", "react-dom@>=16.8":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -9401,6 +9406,13 @@
   "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
   "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
   "version" "4.3.1"
+
+"react-infinite-scroll-component@^6.1.0":
+  "integrity" "sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ=="
+  "resolved" "https://registry.npmjs.org/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz"
+  "version" "6.1.0"
+  dependencies:
+    "throttle-debounce" "^2.1.0"
 
 "react-is@^16.13.1", "react-is@^16.7.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
@@ -9532,7 +9544,7 @@
   dependencies:
     "clsx" "^1.1.1"
 
-"react@*", "react@^16.5.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17 || ^18", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.2", "react@>= 16", "react@>=16", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
+"react@*", "react@^16.3.2 || ^17.0.0", "react@^16.5.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17 || ^18", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.2", "react@>= 16", "react@>=16", "react@>=16.0.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -11018,6 +11030,11 @@
   "integrity" "sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA=="
   "resolved" "https://registry.npmjs.org/throat/-/throat-5.0.0.tgz"
   "version" "5.0.0"
+
+"throttle-debounce@^2.1.0":
+  "integrity" "sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ=="
+  "resolved" "https://registry.npmjs.org/throttle-debounce/-/throttle-debounce-2.3.0.tgz"
+  "version" "2.3.0"
 
 "through@^2.3.8":
   "integrity" "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="

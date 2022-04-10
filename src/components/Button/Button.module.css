@@ -40,6 +40,12 @@
   border: var(--btn-secondary-border);
 }
 
+.btn__tetriary {
+  composes: btn;
+  background-color: var(--btn-tetriary-color);
+  border: none;
+}
+
 .btn__secondary-logout {
   composes: btn__secondary;
   width: 100px;

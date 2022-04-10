@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { Link } from 'react-router-dom';
+import Button from 'components/Button';
 
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -77,14 +78,12 @@ export default function LoginForm() {
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
-        <button className={s.logBtn} type='submit'>
-          log in
-        </button>
-        <Link to='/register' className={s.authLink}>
-          <button className={s.regBtn} type='button'>
-            sign up
-          </button>
-        </Link>
+        <div className={s.wrapper}>
+          <Button className='btn__primary' type='submit' text='log in' />
+          <Link to='/register' className={s.authLink}>
+            <Button className='btn__secondary' type='buttom' text='sign up' />
+          </Link>
+        </div>
       </form>
     </div>
   );
