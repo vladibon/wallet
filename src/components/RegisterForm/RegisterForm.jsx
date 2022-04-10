@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useCreateUserMutation, setUser } from 'redux/index';
+import { toast } from 'react-toastify';
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -51,6 +52,7 @@ export default function RegisterForm() {
     if (data) {
       dispatch(setUser(data));
     } else if (error) {
+      toast.error('Your request failed');
       console.log('Your request failed');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

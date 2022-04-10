@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Button from 'components/Button';
 
 import { useDispatch } from 'react-redux';
@@ -33,6 +34,7 @@ export default function LoginForm() {
     if (data) {
       dispatch(setUser(data));
     } else if (error) {
+      toast.error('Your request failed');
       console.log('Your request failed');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
