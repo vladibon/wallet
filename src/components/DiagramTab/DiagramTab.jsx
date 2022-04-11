@@ -3,11 +3,12 @@ import s from './DiagramTab.module.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Select from 'react-select';
 import { useGetStatisticsQuery, setStatistics } from 'redux/index';
 import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
+import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
 
 const colors = [
   '#FED057',
@@ -46,6 +47,8 @@ export default function DiagramTab() {
   const stats = useSelector(selectStatistics);
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
+  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
 
   useEffect(() => {
     if (!data) return;
@@ -65,12 +68,81 @@ export default function DiagramTab() {
     }
   };
 
+  const monthsSelection = months.map((el, idx) => ({ value: idx, label: el }));
+  const monthStyle = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? '#4a56e2' : '#000000',
+      padding: 20,
+    }),
+
+    control: styles => ({
+      ...styles,
+      ...generalStyle,
+      fontSize: '16px',
+      fontFamily: 'Poppins',
+      border: '1px solid black',
+      fontWeight: 400,
+      lineHeight: 1.3,
+      marginBottom: 20,
+      borderRadius: 30,
+      cursor: 'pointer',
+      padding: '12px 20px',
+      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      maxWidth: 280,
+    }),
+    menu: styles => ({
+      ...styles,
+      ...menuStyle,
+      top: 60,
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    },
+  };
+  const handleMonthChange = selectedMonth => {
+    setSelectedMonth(selectedMonth);
+    setMonth(selectedMonth.value);
+  };
+
+  const SelectMonth = () => (
+    <Select
+      placeholder='Month'
+      styles={monthStyle}
+      defaultValue={selectedMonth}
+      onChange={handleMonthChange}
+      options={monthsSelection}
+    />
+  );
+
+  const yearSelection = [{ value: 2022, label: '2022' }];
+
+  const handleYearChange = selectedYear => {
+    setSelectedYear(selectedYear);
+    setYear(selectedYear.value);
+  };
+
+  const SelectYear = () => (
+    <Select
+      placeholder='Year'
+      styles={monthStyle}
+      defaultValue={selectedYear}
+      onChange={handleYearChange}
+      options={yearSelection}
+    />
+  );
+
   return (
     <div className={s.DiagramTab}>
       <DiagramChart colors={colors} data={statsToRender()} />
       <div className={s.conteinerTable}>
         <div className={s.selectWrapper}>
-          <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
+          <div className={s.selectwr}>
+            <SelectMonth />
+          </div>
+          {/* <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
             <option value='' disabled>
               Month
             </option>
@@ -79,13 +151,16 @@ export default function DiagramTab() {
                 {el}
               </option>
             ))}
-          </select>
-          <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
+          </select> */}
+          {/* <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
             <option value='' disabled>
               Year
             </option>
             <option value={2022}>2022</option>
-          </select>
+          </select> */}
+          <div className={s.selectwr}>
+            <SelectYear />
+          </div>
         </div>
 
         <DiagramTable colors={colors} data={statsToRender()} />
