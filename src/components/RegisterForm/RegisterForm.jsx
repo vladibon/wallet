@@ -10,33 +10,47 @@ import { useCreateUserMutation, setUser } from 'redux/index';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 
+const rules = {
+  email: 'required|email',
+  password: 'required|min:6|max:12|confirmed',
+  password_confirmation: 'required|min:6|max:12',
+  name: 'required|string|min:1|max:12',
+};
+
+const messages = {
+  required: field => `${field} is required`,
+  email: 'Enter valid email address',
+  min: field => `The ${field} is too short`,
+  max: field => `The ${field} is too long`,
+  confirmed: 'Entered passwords do not match',
+  'password.min': 'Password is too short',
+};
+
+function protectionLine(password) {
+  const passLength = password.length;
+  if (passLength >= 1 && passLength < 7) {
+    return s.lowProtection;
+  }
+  if (passLength >= 7 && passLength < 10) {
+    return s.middleProtection;
+  }
+  if (passLength >= 10) {
+    return s.strongProtection;
+  }
+}
+
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirm] = useState('');
   const [name, setName] = useState('');
-  const [errors, setErrors] = useState('');
+  const [validationError, setValidationError] = useState({ field: null, message: '' });
   const [createUser, { data, error }] = useCreateUserMutation();
   const dispatch = useDispatch();
 
-  const rules = {
-    email: 'required|email',
-    password: 'required|min:6|max:12|confirmed',
-    password_confirmation: 'required|min:6|max:12',
-    name: 'string|min:1|max:12',
-  };
-
-  const messages = {
-    required: field => `${field} is required`,
-    email: 'Enter valid email address',
-    min: 'The value is too small',
-    max: 'The value is too large',
-    confirmed: 'Entered passwords do not match',
-    'password.min': 'Password is too short',
-  };
-
   const handleChange = event => {
     const { name, value } = event.target;
+    setValidationError({ field: null, message: '' });
 
     switch (name) {
       case 'email':
@@ -52,24 +66,12 @@ export default function RegisterForm() {
     }
   };
 
-  function protectionLine() {
-    const passLength = password.length;
-    if (passLength >= 1 && passLength < 7) {
-      return s.lowProtection;
-    }
-    if (passLength >= 7 && passLength < 10) {
-      return s.middleProtection;
-    }
-    if (passLength >= 10) {
-      return s.strongProtection;
-    }
-  }
-
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
+      resetForm();
     } else if (error) {
-      toast.error('Your request failed');
+      toast.error(error.data?.message || 'your request failed');
     }
   }, [data, dispatch, error]);
 
@@ -79,18 +81,20 @@ export default function RegisterForm() {
       .then(() => {
         const user = { name, email, password };
         createUser({ user });
-        setName('');
-        setEmail('');
-        setPassword('');
-        setPasswordConfirm('');
-        e.target.reset();
-        console.log(`Congrats ${name} you have successfully logged in `);
       })
       .catch(errors => {
-        console.log(errors[0]);
-        setErrors(errors[0].message);
+        setValidationError({ field: errors[0].field, message: errors[0].message });
       });
   };
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
+  };
+
+  const { message, field } = validationError;
 
   return (
     <div className={s.authForm}>
@@ -98,6 +102,7 @@ export default function RegisterForm() {
         <Logo />
       </div>
       <form className={s.form} onSubmit={onRegisterSubmit}>
+        {field && <p className={s[`${field}Error`]}>{message}</p>}
         <label className={s.authLabel}>
           <input
             className={s.input}
@@ -106,7 +111,6 @@ export default function RegisterForm() {
             onChange={handleChange}
             value={email}
           ></input>
-          <p>{errors}</p>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
           </svg>
@@ -139,7 +143,7 @@ export default function RegisterForm() {
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
-        <div className={protectionLine()}></div>
+        <div className={protectionLine(password)}></div>
         <label className={s.authLabel}>
           <input
             className={s.input}
