@@ -1,4 +1,4 @@
-import { useState, useEffect, Component } from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -99,7 +99,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     const transaction = {
-      date,
+      date: new Date(),
       type,
       category,
       comment,

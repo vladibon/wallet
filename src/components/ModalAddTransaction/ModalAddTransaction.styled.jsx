@@ -24,7 +24,7 @@ export const menuStyle = {
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
   boxShadow: ' 0px 6px 15px rgba(0, 0, 0, 0.1)',
   backdropFilter: 'blur(50px)',
-  opacity: 0.9,
+  opacity: 0.95,
   top: 34,
 };
 
