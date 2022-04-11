@@ -47,9 +47,56 @@ export default function ContactForm() {
     setCategory(selectedOption.value);
   };
 
+  const customStyles = {
+    option: (provided, state) => {
+      return {
+        ...provided,
+        // borderBottom: '1px dotted pink',
+
+        color: state.isSelected ? '#4a56e2' : '#000000',
+        padding: 20,
+      };
+    },
+
+    control: styles => ({
+      // none of react-select's styles are passed to <Control />
+      // width: 200,
+      ...styles,
+      width: '100%',
+      marginBottom: '20px',
+      paddingLeft: '20px',
+      fontSize: '18px',
+      outline: 'none',
+      borderTop: 'none',
+      borderLeft: 'none',
+      borderRight: 'none',
+      borderBottom: '1px solid #e0e0e0',
+      borderRadius: 0,
+      '&:hover, &:focus': {
+        borderBottom: '1px solid #4a56e2',
+        outline: 'none',
+      },
+    }),
+    menu: styles => ({
+      ...styles,
+      overFlow: 'hidden',
+      marginBottom: '-20px',
+      borderRadius: '30px',
+      color: 'black',
+      opacity: 0.8,
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+
+      return { ...provided, opacity, transition };
+    },
+  };
+
   const MySelect = () => (
     <Select
-      styles={s.formCategories}
+      placeholder='Choose category'
+      styles={customStyles}
       defaultValue={selectedOption}
       onChange={handleChange}
       options={options}
