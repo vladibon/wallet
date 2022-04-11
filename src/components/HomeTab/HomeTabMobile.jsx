@@ -45,20 +45,17 @@ function HomeTabMobile() {
     setPage(page + 1);
   };
 
-  start();
+  const [scrHeight, setSrcHeight] = useState(100);
+
+  useEffect(() => {
+    start();
+  }, []);
   window.addEventListener('resize', start);
 
   function start() {
-    console.dir(document.getElementById('infscr'));
-    // console.log(document.documentElement.clientHeight);
-    // const height =
-    return document.documentElement.clientHeight - 255;
-    // document.getElementById('SpanID1').innerText = document.documentElement.clientWidth;
-    // document.getElementById('SpanID2').innerText = document.documentElement.clientHeight;
+    setSrcHeight(document.documentElement.clientHeight - 255);
   }
 
-  const height = start();
-  console.log(height);
   return (
     <>
       <Balance />
@@ -69,7 +66,7 @@ function HomeTabMobile() {
             dataLength={transactions.length}
             next={scroll}
             hasMore={hasMore}
-            height={height}
+            height={scrHeight}
             endMessage={
               <p style={{ textAlign: 'center' }}>
                 <span>
@@ -185,11 +182,3 @@ function HomeTabMobile() {
 }
 
 export default HomeTabMobile;
-
-// start();
-// window.addEventListener('resize', start);
-
-// function start() {
-//   document.getElementById('SpanID1').innerText = document.documentElement.clientWidth;
-//   document.getElementById('SpanID2').innerText = document.documentElement.clientHeight;
-// }
