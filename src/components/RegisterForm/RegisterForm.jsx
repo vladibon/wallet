@@ -14,27 +14,27 @@ const rules = {
   email: 'required|email',
   password: 'required|min:6|max:12|confirmed',
   password_confirmation: 'required|min:6|max:12',
-  name: 'required|string|min:3|max:12',
+  name: 'required|string|min:1|max:12',
 };
 
 const messages = {
   required: field => `${field} is required`,
   email: 'Enter valid email address',
-  min: 'The value is too short',
-  max: 'The value is too long',
+  min: field => `The ${field} is too short`,
+  max: field => `The ${field} is too long`,
   confirmed: 'Entered passwords do not match',
   'password.min': 'Password is too short',
 };
 
 function protectionLine(password) {
   const passLength = password.length;
-  if (passLength >= 1 && passLength < 6) {
+  if (passLength >= 1 && passLength < 7) {
     return s.lowProtection;
   }
-  if (passLength >= 6 && passLength < 8) {
+  if (passLength >= 7 && passLength < 10) {
     return s.middleProtection;
   }
-  if (passLength >= 8) {
+  if (passLength >= 10) {
     return s.strongProtection;
   }
 }
