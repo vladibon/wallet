@@ -38,6 +38,28 @@ function HomeTabDesktop() {
 
   return (
     <div className={s.tableSection}>
+      <table className={`${s.table} ${s.tableTitle}`}>
+        <thead className={s.tableThead}>
+          <tr>
+            <th className={s.tableCell} align='left'>
+              Date
+            </th>
+            <th className={s.tableCell}>Type</th>
+            <th className={s.tableCell} align='left'>
+              Category
+            </th>
+            <th className={s.tableCell} align='left'>
+              Comment
+            </th>
+            <th className={s.tableCell} align='right'>
+              Amount
+            </th>
+            <th className={s.tableCell} align='right'>
+              Balance
+            </th>
+          </tr>
+        </thead>
+      </table>
       <InfiniteScroll
         dataLength={transactions.length}
         next={scroll}
@@ -49,42 +71,22 @@ function HomeTabDesktop() {
           </p>
         }
       >
-        <table className={s.table}>
-          <thead className={s.tableThead}>
-            <tr>
-              <th className={s.tableThead__th} align='left'>
-                Date
-              </th>
-              <th className={s.tableThead__th}>Type</th>
-              <th className={s.tableThead__th} align='left'>
-                Category
-              </th>
-              <th className={s.tableThead__th} align='left'>
-                Comment
-              </th>
-              <th className={s.tableThead__th} align='right'>
-                Amount
-              </th>
-              <th className={s.tableThead__th} align='right'>
-                Balance
-              </th>
-            </tr>
-          </thead>
-          {transactions.length ? (
+        {transactions.length ? (
+          <table className={s.table}>
             <tbody>
               {transactions.map(transaction => (
                 <tr className={s.tbody__tr} key={transaction._id}>
-                  <td className={s.tbody__td}>{transaction.date}</td>
-                  <td className={s.tbody__td} align='center'>
+                  <td className={s.tableCell}>{transaction.date}</td>
+                  <td className={s.tableCell} align='center'>
                     {transaction.type ? '+' : '-'}
                   </td>
-                  <td className={s.tbody__td}>{transaction.category}</td>
-                  <td className={s.tbody__td}>{transaction.comment}</td>
+                  <td className={s.tableCell}>{transaction.category}</td>
+                  <td className={s.tableCell}>{transaction.comment}</td>
                   <td
                     className={
                       transaction.type
-                        ? `${s.tbody__td} ${s.income}`
-                        : `${s.tbody__td} ${s.expense}`
+                        ? `${s.tableCell} ${s.income}`
+                        : `${s.tableCell} ${s.expense}`
                     }
                     align='right'
                   >
@@ -92,7 +94,7 @@ function HomeTabDesktop() {
                       transaction.amount,
                     )}
                   </td>
-                  <td className={s.tbody__td} align='right'>
+                  <td className={s.tableCell} align='right'>
                     {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
                       transaction.balance,
                     )}
@@ -100,16 +102,10 @@ function HomeTabDesktop() {
                 </tr>
               ))}
             </tbody>
-          ) : (
-            <tbody>
-              <tr>
-                <td colSpan='6'>
-                  <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
-                </td>
-              </tr>
-            </tbody>
-          )}
-        </table>
+          </table>
+        ) : (
+          <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+        )}
       </InfiniteScroll>
     </div>
   );
