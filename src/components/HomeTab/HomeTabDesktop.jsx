@@ -42,7 +42,7 @@ function HomeTabDesktop() {
         dataLength={transactions.length}
         next={scroll}
         hasMore={hasMore}
-        height={500}
+        height={400}
         endMessage={
           <p style={{ textAlign: 'center' }}>
             <b>sorry, you don't have any transactions yet...</b>

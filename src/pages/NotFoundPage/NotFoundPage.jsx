@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import sound from './glassBreak.mp3';
 import s from './NotFoundPage.module.css';
@@ -20,9 +20,9 @@ export default function NotFoundPage() {
           Page not found :(
       </p>
 
-      <NavLink to='/home'>
-        <Button className='btn__primary' onClick={null} type='button' text='Back to Homepage' /> 
-      </NavLink>
+      <Link to='/home'>
+        <Button className='btn__primary' type='button' text='Back to Homepage' /> 
+      </Link>
     </div>
   );
 }

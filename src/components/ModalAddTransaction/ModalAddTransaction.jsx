@@ -1,6 +1,9 @@
 import { useState, useEffect, Component } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import Icons from 'images/sprite.svg';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
 import {
@@ -70,7 +73,8 @@ export default function ContactForm() {
         break;
 
       case 'date':
-        setDate(value);
+        if (value !== currentDate)
+          toast.error('sorry, only current date is available at the moment');
         break;
 
       case 'comment':
@@ -81,7 +85,6 @@ export default function ContactForm() {
     }
   };
 
-  // console.log(income, expense);
   const reset = () => {
     setType(false);
     setCategory('default');
@@ -108,7 +111,9 @@ export default function ContactForm() {
         dispatch(closeModalWindow());
         reset();
       } else if (error) {
-        console.log(error.data.message);
+        if (error.data.message === 'Balance cannot be negative')
+          toast.error("sorry, you don't have enough money for this expense");
+        else toast.error(error.data.message);
       }
     });
   };
@@ -179,13 +184,16 @@ export default function ContactForm() {
           />
           <input
             className={s.formDate}
-            type='date'
             name='date'
             value={date}
             min={currentDate}
+            max={currentDate}
             onChange={handleInputChange}
             required
           />
+          <svg width='24' height='24' className={s.inputIcon}>
+            <use href={`${Icons}#icon-calendar`} />
+          </svg>
         </div>
 
         <textarea

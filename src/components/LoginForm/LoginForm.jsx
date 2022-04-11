@@ -3,7 +3,9 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Button from 'components/Button';
+import { validate } from 'indicative/validator';
 
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -15,6 +17,17 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+
+  const rules = {
+    email: 'required|email',
+    password: 'required|min:6|max:16',
+  };
+  const messages = {
+    required: field => `${field} is required`,
+    email: 'Enter valid email address',
+    min: field => `The ${field} value is too small`,
+    max: field => `The ${field} value is too large`,
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -33,17 +46,23 @@ export default function LoginForm() {
     if (data) {
       dispatch(setUser(data));
     } else if (error) {
-      console.log('Your request failed');
+      toast.error('Your request failed');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
+  }, [data, dispatch, error]);
 
   const onLoginSubmit = e => {
     e.preventDefault();
-    const user = { email, password };
-    loginUser({ user });
-    setEmail('');
-    setPassword('');
+    validate({ email, password }, rules, messages)
+      .then(() => {
+        const user = { email, password };
+        loginUser({ user });
+        setEmail('');
+        setPassword('');
+        console.log(`Congrats you have successfully logged in `);
+      })
+      .catch(errors => {
+        console.log(errors[0].message);
+      });
   };
 
   return (

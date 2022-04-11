@@ -1,11 +1,12 @@
 .sectionDoughnut {
   max-width: 280px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.doughnut {
-  margin-top: 8px;
+.title {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: var(--title-font);
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 768px) {
@@ -14,7 +15,6 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .doughnut {
@@ -35,20 +35,6 @@
   font-size: 18px;
   line-height: 1.5;
   position: relative;
-  left: 75px;
-  top: 155px;
-}
-
-@media screen and (min-width: 768px) {
-  .balance__sum {
-    left: 100px;
-    top: 180px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .balance__sum {
-    left: 80px;
-    top: 160px;
-  }
+  left: 100px;
+  top: 150px;
 }

@@ -1,6 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { FetchCurrentUser } from 'services/FetchCurrentUser';
 import { SaveCategories } from 'services/SaveCategories';
@@ -84,6 +86,7 @@ function App() {
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
           {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
+          <ToastContainer autoClose={3000} theme='colored' />
         </>
       ) : (
         <Loader />

@@ -26,6 +26,11 @@
   color: var(--title-black-color);
 }
 
+.white {
+  composes: spinner;
+  color: var(--text-white-color);
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

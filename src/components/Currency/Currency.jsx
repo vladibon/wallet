@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import CurrencyItem from './CurrencyItem';
 import { fetchCurrency } from 'api/currencyAPI';
-import Loader from 'components/Loader';
-
+import Spinner from 'components/Spinner';
 import s from './Currency.module.css';
 
 function Currency() {
   const [exchanges, setExchanges] = useState([]);
   const [loadings, setLoadings] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const storedExchanges = JSON.parse(localStorage.getItem('exchanges'));
@@ -21,7 +21,7 @@ function Currency() {
           setExchanges(data);
         })
         .catch(error => {
-          throw Error(error);
+          setError(error);
         })
         .finally(() => setLoadings(false));
     }
@@ -29,7 +29,7 @@ function Currency() {
 
   return (
     <div className={s.table__container}>
-      {loadings && <Loader />}
+      {loadings && <Spinner size={100} color='white' />}
       <table className={s.table}>
         <thead className={s.table__title_row}>
           <tr>
@@ -39,9 +39,10 @@ function Currency() {
           </tr>
         </thead>
         <tbody className={s.table__body}>
-          {exchanges.map(el => (
-            <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
-          ))}
+          {!error &&
+            exchanges.map(el => (
+              <CurrencyItem key={el.ccy} ccy={el.ccy} buy={el.buy} sale={el.sale} />
+            ))}
         </tbody>
       </table>
     </div>
