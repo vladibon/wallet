@@ -15,6 +15,7 @@ import {
 
 import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
+import { selectionStyles } from './index.js';
 
 export default function ContactForm() {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -47,59 +48,10 @@ export default function ContactForm() {
     setCategory(selectedOption.value);
   };
 
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      // borderBottom: '1px dotted pink',
-
-      color: state.isSelected ? '#4a56e2' : '#000000',
-      padding: 20,
-    }),
-
-    control: styles => ({
-      // none of react-select's styles are passed to <Control />
-      // width: 200,
-      ...styles,
-      boxShadow: 'none',
-      width: '100%',
-      marginBottom: '20px',
-      paddingLeft: '20px',
-      fontSize: '18px',
-      outline: 'none',
-      borderTop: 'none',
-      borderLeft: 'none',
-      borderRight: 'none',
-      borderBottom: '1px solid #e0e0e0',
-      borderRadius: 0,
-
-      '&:hover, &:focus': {
-        borderBottom: '1px solid #4a56e2',
-        outline: 'none',
-      },
-    }),
-    menu: styles => ({
-      ...styles,
-      overflow: 'hidden',
-      borderRadius: '20px',
-      color: 'black',
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      boxShadow: ' 0px 6px 15px rgba(0, 0, 0, 0.1)',
-      backdropFilter: 'blur(50px)',
-      opacity: 0.9,
-      top: 34,
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-
-      return { ...provided, opacity, transition };
-    },
-  };
-
-  const MySelect = () => (
+  const SelectCategory = () => (
     <Select
       placeholder='Choose category'
-      styles={customStyles}
+      styles={selectionStyles}
       defaultValue={selectedOption}
       onChange={handleChange}
       options={options}
@@ -201,23 +153,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        {/* <select
-          className={s.formCategories}
-          name='category'
-          onChange={handleInputChange}
-          defaultValue={category}
-          required
-        >
-          <option value='default' disabled hidden>
-            Choose category
-          </option>
-          {categories.map(el => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select> */}
-        <MySelect />
+        <SelectCategory />
         <span></span>
 
         <div className={s.inputConatainer}>
