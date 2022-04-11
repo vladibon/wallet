@@ -8,10 +8,9 @@ import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency';
-import DiagramTable from 'components/DiagramTable'
+import DiagramTab from 'components/DiagramTab';
 
 const HomeTab = lazy(() => import('components/HomeTab' /* webpackChunkName: "home-tab" */));
-
 
 function DashboardPage() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -25,7 +24,7 @@ function DashboardPage() {
         <div className={s.dashboardPage__section}>
           <div className={s.dashboardPage__subSection}>
             <Navigation />
-            <Balance />
+            {isTabletOrDesktop && <Balance />}
           </div>
           {isTabletOrDesktop && <Currency />}
           <Outlet />
@@ -34,8 +33,8 @@ function DashboardPage() {
         <Suspense>
           <Routes>
             <Route path='*' element={<HomeTab />} />
-            <Route path='/statistics' element={<DiagramTable />} />
-            {isMobile && <Route path='/currency' element={<Currency />} />}
+            <Route path='statistics' element={<DiagramTab />} />
+            {isMobile && <Route path='currency' element={<Currency />} />}
           </Routes>
         </Suspense>
       </main>

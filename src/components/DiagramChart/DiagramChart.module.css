@@ -1,43 +1,30 @@
 .sectionDoughnut {
-  width: 280px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 280px;
 }
 
 .title {
   font-size: 30px;
   font-weight: 400;
   font-family: var(--title-font);
-  list-style: 1.5;
-  margin-bottom: 10px;
-}
-
-.doughnut {
-  margin-top: 8px;
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 768px) {
   .sectionDoughnut {
-    width: 336px;
+    max-width: 336px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .doughnut {
-    width: 336px;
-  }
-
-  .title {
-    width: 336px;
-    margin-bottom: 20px;
+    max-width: 336px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .sectionDoughnut {
-    width: 288px;
+    max-width: 288px;
   }
 }
 
@@ -47,20 +34,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
-   position: relative;
-  left: 75px;
-  top: 155px;
+  position: relative;
+  left: 100px;
+  top: 150px;
 }
-
-@media screen and (min-width: 768px) {
-  .balance__sum{
-    left: 100px;
-    top: 180px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .balance__sum {
-    left: 80px;
-    top: 160px;
-  }}

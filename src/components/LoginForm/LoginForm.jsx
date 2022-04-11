@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Button from 'components/Button';
 import { validate } from 'indicative/validator';
 
@@ -19,7 +20,7 @@ export default function LoginForm() {
 
   const rules = {
     email: 'required|email',
-    password: 'required|min:6|max:12',
+    password: 'required|min:6|max:16',
   };
   const messages = {
     required: field => `${field} is required`,
@@ -45,10 +46,9 @@ export default function LoginForm() {
     if (data) {
       dispatch(setUser(data));
     } else if (error) {
-      console.log('Your request failed');
+      toast.error('Your request failed');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
+  }, [data, dispatch, error]);
 
   const onLoginSubmit = e => {
     e.preventDefault();

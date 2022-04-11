@@ -1,19 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import Icons from 'images/sprite.svg';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
 import {
   useAddTransactionMutation,
   closeModalWindow,
   setBalance,
-  resetPage,
   setLatestTransactions,
 } from 'redux/index';
 
 import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
+import { selectionStyles } from './index.js';
 
 export default function ContactForm() {
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const [type, setType] = useState(false);
   const [category, setCategory] = useState('default');
@@ -36,6 +41,23 @@ export default function ContactForm() {
     }
   }, [expense, income, type]);
 
+  const options = categories.map(category => ({ value: category, label: category }));
+
+  const handleChange = selectedOption => {
+    setSelectedOption(selectedOption);
+    setCategory(selectedOption.value);
+  };
+
+  const SelectCategory = () => (
+    <Select
+      placeholder='Choose category'
+      styles={selectionStyles}
+      defaultValue={selectedOption}
+      onChange={handleChange}
+      options={options}
+    />
+  );
+
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
 
@@ -53,7 +75,8 @@ export default function ContactForm() {
         break;
 
       case 'date':
-        setDate(value);
+        if (value !== currentDate)
+          toast.error('sorry, only current date is available at the moment');
         break;
 
       case 'comment':
@@ -64,7 +87,6 @@ export default function ContactForm() {
     }
   };
 
-  // console.log(income, expense);
   const reset = () => {
     setType(false);
     setCategory('default');
@@ -88,11 +110,12 @@ export default function ContactForm() {
       if (data) {
         dispatch(setBalance({ balance: data.balance }));
         dispatch(setLatestTransactions(data.transactions));
-        dispatch(resetPage());
         dispatch(closeModalWindow());
         reset();
       } else if (error) {
-        console.log(error.data.message);
+        if (error.data.message === 'Balance cannot be negative')
+          toast.error("sorry, you don't have enough money for this expense");
+        else toast.error(error.data.message);
       }
     });
   };
@@ -130,22 +153,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        <select
-          className={s.formCategories}
-          name='category'
-          onChange={handleInputChange}
-          defaultValue={category}
-          required
-        >
-          <option value='default' disabled hidden>
-            Choose category
-          </option>
-          {categories.map(el => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select>
+        <SelectCategory />
         <span></span>
 
         <div className={s.inputConatainer}>
@@ -162,13 +170,16 @@ export default function ContactForm() {
           />
           <input
             className={s.formDate}
-            type='date'
             name='date'
             value={date}
             min={currentDate}
+            max={currentDate}
             onChange={handleInputChange}
             required
           />
+          <svg width='24' height='24' className={s.inputIcon}>
+            <use href={`${Icons}#icon-calendar`} />
+          </svg>
         </div>
 
         <textarea

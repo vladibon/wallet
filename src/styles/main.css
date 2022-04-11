@@ -26,6 +26,11 @@ body {
   color: var(--title-black-color);
   font-family: var(--main-font);
   background-color: var(--primary-bg-color);
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -73,4 +78,19 @@ body {
     padding-left: 32px;
     padding-right: 32px;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--btn-primary-bg-color);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }

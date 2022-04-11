@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { store } from 'redux/store';
-import { useGetCurrenthUserQuery, setUser, resetUser } from 'redux/index';
+import {
+  useGetCurrenthUserQuery,
+  setUser,
+  resetUser,
+  resetTransactions,
+  resetStatistics,
+} from 'redux/index';
 
 export const FetchCurrentUser = () => {
   const token = store.getState().auth?.token;
@@ -11,9 +18,10 @@ export const FetchCurrentUser = () => {
 
   useEffect(() => {
     if (error) {
-      console.log('please, log in');
+      toast.info('please, log in');
       dispatch(resetUser());
-  
+      dispatch(resetTransactions());
+      dispatch(resetStatistics());
     }
     if (data) dispatch(setUser({ user: data, token }));
 

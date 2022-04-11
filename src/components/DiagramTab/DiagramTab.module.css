@@ -1,0 +1,114 @@
+@media screen and (min-width: 768px) {
+  .DiagramTab {
+    display: flex;
+    padding-top: 32px;
+  }
+
+  .conteinerTable {
+    margin-left: 32px;
+  }
+}
+
+.selectWrapper {
+  display: flex;
+  padding-top: 32px;
+  flex-direction: column;
+}
+
+.select {
+  display: block;
+  font-size: 16px;
+  font-family: var(--title-font);
+  border: 1px solid black;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 12px 20px;
+  max-width: 280px;
+  background-color: var(--desktop-bg-color);
+}
+
+@media screen and (min-width: 768px) {
+  .selectWrapper {
+    flex-direction: row;
+  }
+
+  .select {
+    margin-right: 15px;
+    width: 160px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .select {
+    margin-right: 32px;
+    width: 182px;
+  }
+}
+
+.amount {
+  max-width: 280px;
+  padding-top: 16px;
+}
+
+@media screen and (min-width: 767px) {
+  .amount {
+    max-width: 336px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .amount {
+    max-width: 395px;
+  }
+}
+
+.spent {
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.47;
+  font-family: var(--title-font);
+  justify-content: space-between;
+  margin: 15px 20px;
+  display: flex;
+  cursor: pointer;
+}
+
+.spentText::after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  content: '';
+  display: block;
+  width: 90px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--header-currency-bg-color);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+
+  transition: transform var(--animation);
+}
+
+.spent:hover .spentText::after {
+  transform: scaleX(1);
+}
+
+.spentMinus {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.47;
+  font-family: var(--title-font);
+  color: var(--expenditure-red-color);
+}
+
+.spentPlus {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.47;
+  font-family: var(--title-font);
+  color: var(--earnings-green-color);
+}
