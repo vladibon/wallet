@@ -23,6 +23,10 @@ p {
   height: 30px;
 }
 
+.form {
+  position: relative;
+}
+
 .input {
   width: 280px;
   height: 34px;
@@ -75,37 +79,34 @@ p {
   outline: none;
   text-decoration: none;
 }
-.lowProtection {
+
+.protection {
   display: block;
   position: relative;
   top: -20px;
   height: 4px;
-  transition: 1s;
   border-radius: 4px;
+}
+
+.lowProtection {
+  composes: protection;
+  transition: 1s;
   width: 33%;
   border: var(--protection-line-low);
   background-color: var(--line-bg-low);
   box-shadow: 0px 1px 8px rgba(235, 126, 167, 0.5);
 }
 .middleProtection {
-  display: block;
-  position: relative;
-  top: -20px;
-  height: 4px;
+  composes: protection;
   transition: 1.5s;
-  border-radius: 4px;
   width: 66%;
   border: var(--protection-line-middle);
   background-color: var(--line-bg-middle);
   box-shadow: 0px 1px 8px rgba(255, 220, 143, 0.5);
 }
 .strongProtection {
-  display: block;
-  position: relative;
-  top: -20px;
-  height: 4px;
+  composes: protection;
   transition: 1.5s;
-  border-radius: 4px;
   width: 100%;
   border: var(--protection-line-strong);
   background-color: var(--line-bg-strong);
@@ -174,5 +175,52 @@ p {
     height: auto;
     margin-top: 0;
     /* margin-bottom: 116px; */
+  }
+}
+
+/* validation errors */
+.error {
+  position: absolute;
+  color: red;
+  /* animation: errorAnimation 100ms ease-out; */
+}
+
+.emailError {
+  composes: error;
+  top: 44px;
+}
+
+.passwordError {
+  composes: error;
+  top: 120px;
+}
+
+.nameError {
+  composes: error;
+  top: 274px;
+}
+
+@media screen and (min-width: 780px) {
+  .emailError {
+    top: 54px;
+  }
+
+  .passwordError {
+    top: 130px;
+  }
+
+  .nameError {
+    top: 282px;
+  }
+}
+
+@keyframes errorAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
