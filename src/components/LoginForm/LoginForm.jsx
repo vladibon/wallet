@@ -12,25 +12,27 @@ import { useState, useEffect } from 'react';
 
 import { useLogInUserMutation, setUser } from 'redux/index';
 
+const rules = {
+  email: 'required|email',
+  password: 'required|min:6|max:12',
+};
+const messages = {
+  required: field => `${field} is required`,
+  email: 'Enter valid email address',
+  min: field => `The ${field} is too short`,
+  max: field => `The ${field} is too long`,
+};
+
 export default function LoginForm() {
   const [loginUser, { data, error }] = useLogInUserMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [validationError, setValidationError] = useState({ field: null, message: '' });
   const dispatch = useDispatch();
-
-  const rules = {
-    email: 'required|email',
-    password: 'required|min:6|max:16',
-  };
-  const messages = {
-    required: field => `${field} is required`,
-    email: 'Enter valid email address',
-    min: field => `The ${field} value is too small`,
-    max: field => `The ${field} value is too large`,
-  };
 
   const handleChange = event => {
     const { name, value } = event.target;
+    setValidationError({ field: null, message: '' });
 
     switch (name) {
       case 'email':
@@ -45,8 +47,9 @@ export default function LoginForm() {
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
+      resetForm();
     } else if (error) {
-      toast.error('Your request failed');
+      toast.error(error.data?.message || 'Your request failed');
     }
   }, [data, dispatch, error]);
 
@@ -56,14 +59,18 @@ export default function LoginForm() {
       .then(() => {
         const user = { email, password };
         loginUser({ user });
-        setEmail('');
-        setPassword('');
-        console.log(`Congrats you have successfully logged in `);
       })
       .catch(errors => {
-        console.log(errors[0].message);
+        setValidationError({ field: errors[0].field, message: errors[0].message });
       });
   };
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const { message, field } = validationError;
 
   return (
     <div className={s.authForm}>
@@ -71,6 +78,7 @@ export default function LoginForm() {
         <Logo />
       </div>
       <form className={s.form} onSubmit={onLoginSubmit}>
+        {field && <p className={s[`${field}Error`]}>{message}</p>}
         <label className={s.authLabel}>
           <input
             className={s.input}
