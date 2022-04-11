@@ -45,16 +45,27 @@ function HomeTabMobile() {
     setPage(page + 1);
   };
 
-  const screenHeight = addEventListener;
+  start();
+  window.addEventListener('resize', start);
 
-  const height = document.documentElement.clientHeight - 255;
+  function start() {
+    console.dir(document.getElementById('infscr'));
+    // console.log(document.documentElement.clientHeight);
+    // const height =
+    return document.documentElement.clientHeight - 255;
+    // document.getElementById('SpanID1').innerText = document.documentElement.clientWidth;
+    // document.getElementById('SpanID2').innerText = document.documentElement.clientHeight;
+  }
 
+  const height = start();
+  console.log(height);
   return (
     <>
       <Balance />
       <div className={s.homeTab__section}>
         <div className={s.homeTab__block}>
           <InfiniteScroll
+            id='infscr'
             dataLength={transactions.length}
             next={scroll}
             hasMore={hasMore}
@@ -174,3 +185,11 @@ function HomeTabMobile() {
 }
 
 export default HomeTabMobile;
+
+// start();
+// window.addEventListener('resize', start);
+
+// function start() {
+//   document.getElementById('SpanID1').innerText = document.documentElement.clientWidth;
+//   document.getElementById('SpanID2').innerText = document.documentElement.clientHeight;
+// }
