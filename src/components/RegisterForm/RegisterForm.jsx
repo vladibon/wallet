@@ -14,6 +14,7 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirm] = useState('');
   const [name, setName] = useState('');
+  const [errors, setErrors] = useState('');
   const [createUser, { data, error }] = useCreateUserMutation();
   const dispatch = useDispatch();
 
@@ -86,7 +87,8 @@ export default function RegisterForm() {
         console.log(`Congrats ${name} you have successfully logged in `);
       })
       .catch(errors => {
-        console.log(errors[0].message);
+        console.log(errors[0]);
+        setErrors(errors[0].message);
       });
   };
 
@@ -104,6 +106,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             value={email}
           ></input>
+          <p>{errors}</p>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
           </svg>
