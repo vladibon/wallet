@@ -49,7 +49,15 @@ function HomeTabMobile() {
 
   useEffect(() => {
     start();
-  }, []);
+
+    return () => start();
+  }, [scrHeight]);
+
+  // useEffect(() => {
+  //   start();
+  //   return start();
+  // }, [scrHeight]);
+
   window.addEventListener('resize', start);
 
   function start() {
@@ -88,7 +96,11 @@ function HomeTabMobile() {
                     <AccordionItemButton className={s.homeTabButton}>
                       <div className={s.flex}>
                         <div className={s.accordion__button}></div>
-                        <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
+                        <span className={s.homeTabItems__colorTitle}>
+                          {transaction.date}
+                          <br />
+                          {transaction.date}
+                        </span>
                       </div>
                       <span
                         className={
