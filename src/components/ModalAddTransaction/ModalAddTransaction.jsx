@@ -48,20 +48,19 @@ export default function ContactForm() {
   };
 
   const customStyles = {
-    option: (provided, state) => {
-      return {
-        ...provided,
-        // borderBottom: '1px dotted pink',
+    option: (provided, state) => ({
+      ...provided,
+      // borderBottom: '1px dotted pink',
 
-        color: state.isSelected ? '#4a56e2' : '#000000',
-        padding: 20,
-      };
-    },
+      color: state.isSelected ? '#4a56e2' : '#000000',
+      padding: 20,
+    }),
 
     control: styles => ({
       // none of react-select's styles are passed to <Control />
       // width: 200,
       ...styles,
+      boxShadow: 'none',
       width: '100%',
       marginBottom: '20px',
       paddingLeft: '20px',
@@ -72,6 +71,7 @@ export default function ContactForm() {
       borderRight: 'none',
       borderBottom: '1px solid #e0e0e0',
       borderRadius: 0,
+
       '&:hover, &:focus': {
         borderBottom: '1px solid #4a56e2',
         outline: 'none',
@@ -79,11 +79,11 @@ export default function ContactForm() {
     }),
     menu: styles => ({
       ...styles,
-      overFlow: 'hidden',
-      marginBottom: '-20px',
+      overflow: 'hidden',
       borderRadius: '30px',
       color: 'black',
       opacity: 0.8,
+      top: 30,
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
