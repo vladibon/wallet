@@ -11,6 +11,7 @@ import {
   closeModalWindow,
   setBalance,
   setLatestTransactions,
+  setError,
 } from 'redux/index';
 
 import { setCurrentDate } from './setCurrentDate';
@@ -113,9 +114,14 @@ export default function ContactForm() {
         dispatch(closeModalWindow());
         reset();
       } else if (error) {
-        if (error.data.message === 'Balance cannot be negative')
-          toast.error("sorry, you don't have enough money for this expense");
-        else toast.error(error.data.message);
+        try {
+          if (error.data?.message === 'Balance cannot be negative')
+            toast.error("sorry, you don't have enough money for this expense");
+          else toast.error(error?.data.message || 'your request failed');
+        } catch {
+          dispatch(setError(500));
+          dispatch(closeModalWindow());
+        }
       }
     });
   };
