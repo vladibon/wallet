@@ -80,10 +80,13 @@ export default function ContactForm() {
     menu: styles => ({
       ...styles,
       overflow: 'hidden',
-      borderRadius: '30px',
+      borderRadius: '20px',
       color: 'black',
-      opacity: 0.8,
-      top: 30,
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      boxShadow: ' 0px 6px 15px rgba(0, 0, 0, 0.1)',
+      backdropFilter: 'blur(50px)',
+      opacity: 0.9,
+      top: 34,
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
