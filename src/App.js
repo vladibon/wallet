@@ -73,14 +73,7 @@ function App() {
                 }
               />
               <Route path='/' element={<Navigate to='/home' />} />
-              <Route
-                path='/*'
-                element={
-                  <PublicRoute restricted>
-                    <NotFoundPage />
-                  </PublicRoute>
-                }
-              />
+              <Route path='/*' element={<NotFoundPage />} />
             </Routes>
           </Suspense>
 
