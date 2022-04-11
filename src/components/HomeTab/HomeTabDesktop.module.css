@@ -1,10 +1,16 @@
+.homeTab__section {
+  display: flex;
+  justify-content: center;
+}
+
 .tableSection {
-  width: 100%;
+  /* width: 100%; */
+  display: inline-block;
 }
 
 .table {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   /* max-width: 95%; */
 
   border-spacing: 0;
@@ -71,7 +77,7 @@
 
 .homeTab__bg {
   margin: 20px auto;
-
+  max-width: 350px;
   mix-blend-mode: luminosity;
   opacity: 0.2;
 }
@@ -80,11 +86,7 @@
   .tableSection {
     margin-top: 45px;
 
-    width: 100%;
+    /* width: 100%; */
     padding-left: 32px;
   }
 }
-
-/* * {
-  outline: 1px solid tomato;
-} */

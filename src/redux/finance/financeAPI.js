@@ -3,7 +3,7 @@ import { emptySplitApi } from '../mainAPISlice';
 const financeAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     getTransactions: builder.query({
-      query: (page = 1) => `/transactions?page=${page}`,
+      query: (page = 1) => `/transactions?page=${page}&limit=12`,
       providesTags: ['Finance'],
     }),
     addTransaction: builder.mutation({

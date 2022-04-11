@@ -1,6 +1,14 @@
+.homeTab__section {
+  display: flex;
+  justify-content: center;
+}
+
+.homeTab__block {
+  width: 350px;
+}
+
 .homeTab {
   max-width: 350px;
-
   padding: 0;
   margin-left: auto;
   margin-right: auto;
