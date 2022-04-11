@@ -47,9 +47,9 @@ export default function LoginForm() {
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
-      restForm();
+      resetForm();
     } else if (error) {
-      toast.error('Your request failed');
+      toast.error(error.data?.message || 'Your request failed');
     }
   }, [data, dispatch, error]);
 
@@ -59,14 +59,13 @@ export default function LoginForm() {
       .then(() => {
         const user = { email, password };
         loginUser({ user });
-        // console.log(`Congrats you have successfully logged in `);
       })
       .catch(errors => {
         setValidationError({ field: errors[0].field, message: errors[0].message });
       });
   };
 
-  const restForm = () => {
+  const resetForm = () => {
     setEmail('');
     setPassword('');
   };
