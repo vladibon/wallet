@@ -99,7 +99,6 @@ export default function DiagramTab() {
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = 'opacity 300ms';
-      console.log('provided', provided);
       return { ...provided, opacity, transition };
     },
   };
