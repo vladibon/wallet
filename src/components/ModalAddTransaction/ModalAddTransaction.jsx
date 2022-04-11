@@ -99,7 +99,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     const transaction = {
-      date,
+      date: new Date(),
       type,
       category,
       comment,
