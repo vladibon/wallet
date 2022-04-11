@@ -6,7 +6,7 @@ import Button from 'components/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useCreateUserMutation, setUser } from 'redux/index';
+import { useCreateUserMutation, setUser, setError } from 'redux/index';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 
@@ -37,6 +37,7 @@ function protectionLine(password) {
   if (passLength >= 10) {
     return s.strongProtection;
   }
+  return s.protection;
 }
 
 export default function RegisterForm() {
@@ -45,7 +46,7 @@ export default function RegisterForm() {
   const [password_confirmation, setPasswordConfirm] = useState('');
   const [name, setName] = useState('');
   const [validationError, setValidationError] = useState({ field: null, message: '' });
-  const [createUser, { data, error }] = useCreateUserMutation();
+  const [createUser, { data, error, isLoading }] = useCreateUserMutation();
   const dispatch = useDispatch();
 
   const handleChange = event => {
@@ -71,6 +72,7 @@ export default function RegisterForm() {
       dispatch(setUser(data));
       resetForm();
     } else if (error) {
+      if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
       toast.error(error.data?.message || 'your request failed');
     }
   }, [data, dispatch, error]);
@@ -157,7 +159,7 @@ export default function RegisterForm() {
           </svg>
         </label>
         <div className={s.wrapper}>
-          <Button className='btn__primary' type='submit' text='sign up' />
+          <Button className='btn__primary' type='submit' text='sign up' isLoading={isLoading} />
           <Link to='/login' className={s.authLink}>
             <Button className='btn__secondary' type='buttom' text='log in' />
           </Link>

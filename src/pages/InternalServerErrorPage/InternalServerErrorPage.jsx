@@ -11,9 +11,9 @@ import { resetError } from 'redux/index';
 export default function InternalServerErrorPage() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    new Audio(sound).play();
-  }, []);
+  // useEffect(() => {
+  //   new Audio(sound).play();
+  // }, []);
 
   const onClick = () => {
     dispatch(resetError());

@@ -20,7 +20,7 @@ export const FetchCurrentUser = () => {
 
   useEffect(() => {
     if (error) {
-      if (error.status >= 500) dispatch(setError(500));
+      if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
       else {
         toast.info('please, log in');
         dispatch(resetUser());
