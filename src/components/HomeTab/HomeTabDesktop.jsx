@@ -67,9 +67,9 @@ function HomeTabDesktop() {
           hasMore={hasMore}
           height={400}
           endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>sorry, you don't have any transactions yet...</b>
-            </p>
+            <span className={s.message}>
+              &#8212; <i>this was the last one </i>&#8212;
+            </span>
           }
         >
           {transactions.length ? (
@@ -105,7 +105,10 @@ function HomeTabDesktop() {
               </tbody>
             </table>
           ) : (
-            <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+            <>
+              <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+              <p className={s.message}>sorry, you don't have any transactions yet...</p>
+            </>
           )}
         </InfiniteScroll>
       </div>

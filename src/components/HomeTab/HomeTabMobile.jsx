@@ -49,20 +49,14 @@ function HomeTabMobile() {
 
   useEffect(() => {
     start();
+    window.addEventListener('resize', start);
 
-    return () => start();
-  }, [scrHeight]);
+    function start() {
+      setSrcHeight(document.documentElement.clientHeight - 255);
+    }
 
-  // useEffect(() => {
-  //   start();
-  //   return start();
-  // }, [scrHeight]);
-
-  window.addEventListener('resize', start);
-
-  function start() {
-    setSrcHeight(document.documentElement.clientHeight - 255);
-  }
+    return () => window.removeEventListener('resize', start);
+  }, []);
 
   return (
     <>
@@ -77,9 +71,7 @@ function HomeTabMobile() {
             height={scrHeight}
             endMessage={
               <p style={{ textAlign: 'center' }}>
-                <span>
-                  <b>sorry, you don't have any transactions yet...</b>
-                </span>
+                <span>- this was the last one -</span>
               </p>
             }
           >
@@ -96,11 +88,7 @@ function HomeTabMobile() {
                     <AccordionItemButton className={s.homeTabButton}>
                       <div className={s.flex}>
                         <div className={s.accordion__button}></div>
-                        <span className={s.homeTabItems__colorTitle}>
-                          {transaction.date}
-                          <br />
-                          {transaction.date}
-                        </span>
+                        <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
                       </div>
                       <span
                         className={
