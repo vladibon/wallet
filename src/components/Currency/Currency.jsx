@@ -29,6 +29,7 @@ function Currency() {
 
   return (
     <div className={s.table__container}>
+      {error && <h3 className={s.table__error}>…sorry, server error occurred</h3>}
       {loadings && <Spinner size={100} color='white' />}
       <table className={s.table}>
         <thead className={s.table__title_row}>
