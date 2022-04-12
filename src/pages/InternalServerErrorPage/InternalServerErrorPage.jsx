@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
-import sound from './programError.mp3';
+// import sound from './programError.mp3';
 import internalServerError from './internalServerError.png';
 import s from './InternalServerErrorPage.module.css';
 import { resetError } from 'redux/index';
