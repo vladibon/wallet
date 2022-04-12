@@ -7,6 +7,12 @@
   border-radius: 30px;
 }
 
+@media (max-width: 767px) {
+  .balance {
+    margin: 0 auto 15px;
+  }
+}
+
 @media (min-width: 768px) {
   .balance {
     padding-left: 40px;
