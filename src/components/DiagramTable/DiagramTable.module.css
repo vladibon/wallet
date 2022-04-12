@@ -5,44 +5,8 @@
   margin-right: auto;
 }
 
-@media screen and (min-width: 768px) {
-  .diagramTable__section {
-    display: flex;
-  }
-
-  .diagramTable {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 .table {
-  max-width: 280px;
-}
-
-@media screen and (min-width: 767px) {
-  .table {
-    max-width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .table {
-    max-width: 395px;
-  }
-
-  .diagramTable__section {
-    width: 63%;
-    margin-top: 40px;
-  }
-
-  .diagramTable {
-    padding: 0;
-    margin: 65px 0 45px;
-    max-width: 395px;
-  }
+  width: 280px;
 }
 
 .tableHead {
@@ -56,18 +20,6 @@
   display: table;
 }
 
-@media screen and (min-width: 767px) {
-  .trHead {
-    max-width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .trHead {
-    max-width: 395px;
-  }
-}
-
 .tableTop {
   font-size: 18px;
   font-weight: 700;
@@ -78,12 +30,6 @@
   padding-left: 20px;
 }
 
-@media screen and (min-width: 1280px) {
-  .tableTop {
-    width: 270px;
-  }
-}
-
 .tableTop2 {
   font-size: 18px;
   font-weight: 700;
@@ -91,12 +37,6 @@
   font-family: var(--title-font);
   min-width: 80px;
   padding-right: 20px;
-}
-
-@media screen and (min-width: 767px) {
-  .tableTop2 {
-    padding: 0;
-  }
 }
 
 .body {
@@ -109,18 +49,6 @@
   height: 50px;
   border-color: #dcdcdf;
   border-bottom: 1px solid #dcdcdf;
-}
-
-@media screen and (min-width: 767px) {
-  .listItem {
-    width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .listItem {
-    width: 395px;
-  }
 }
 
 .color {
@@ -152,4 +80,62 @@
   width: 80px;
   align-items: center;
   text-align: end;
+}
+
+@media screen and (min-width: 768px) {
+  .diagramTable__section {
+    display: flex;
+  }
+
+  .diagramTable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table {
+    width: 336px;
+  }
+
+  .trHead {
+    max-width: 336px;
+  }
+
+  .tableTop2 {
+    padding: 0;
+  }
+
+  .listItem {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .table {
+    width: 395px;
+  }
+
+  .diagramTable__section {
+    width: 63%;
+    margin-top: 40px;
+  }
+
+  .diagramTable {
+    padding: 0;
+    margin: 65px 0 45px;
+    max-width: 395px;
+  }
+
+  .trHead {
+    max-width: 395px;
+  }
+
+  .tableTop {
+    width: 270px;
+  }
+
+  .listItem {
+    width: 395px;
+  }
 }

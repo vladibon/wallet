@@ -14,10 +14,7 @@
 
 @media (min-width: 768px) {
   .modal {
-    padding-top: 40px;
-    padding-bottom: 60px;
-    padding-right: 73px;
-    padding-left: 73px;
+    padding: 40px 70px 60px;
   }
 }
 
@@ -211,4 +208,10 @@ select {
 .inputIcon {
   position: absolute;
   right: 20px;
+}
+
+@media (min-width: 768px) {
+  .inputIcon {
+    right: 70px;
+  }
 }

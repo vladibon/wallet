@@ -49,8 +49,10 @@ export default function DiagramChart({ data, colors }) {
       <div className={s.doughnut}>
         {data?.length ? (
           <>
-            <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>{' '}
-            <Doughnut data={user} options={options} />
+            <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
+            <div className={s.canvas}>
+              <Doughnut data={user} options={options} />
+            </div>
           </>
         ) : null}
       </div>

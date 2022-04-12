@@ -6,6 +6,7 @@ import {
   resetUser,
   resetTransactions,
   resetStatistics,
+  resetError,
 } from 'redux/index';
 import { useDispatch } from 'react-redux';
 
@@ -21,6 +22,7 @@ function ModalLogout() {
     dispatch(resetUser());
     dispatch(resetTransactions());
     dispatch(resetStatistics());
+    dispatch(resetError());
   };
 
   const onCancelLogout = e => {

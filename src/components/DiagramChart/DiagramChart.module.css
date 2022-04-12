@@ -2,10 +2,36 @@
   max-width: 280px;
 }
 
+.doughnut {
+  position: relative;
+}
+
 .title {
   font-size: 30px;
   font-weight: 400;
   font-family: var(--title-font);
+  line-height: 1.5;
+  align-self: start;
+}
+
+.canvas {
+  position: relative;
+  display: flex;
+  width: 280px;
+  height: 280px;
+  justify-content: center;
+  align-items: center;
+}
+
+.balance__sum {
+  position: relative;
+  left: 100px;
+  top: 150px;
+  display: inline-block;
+  font-family: var(--title-font);
+  color: var(--title-black-color);
+  font-weight: 700;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -18,23 +44,12 @@
   }
 
   .doughnut {
-    max-width: 336px;
+    width: 336px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .sectionDoughnut {
-    max-width: 288px;
+    width: 288px;
   }
-}
-
-.balance__sum {
-  font-family: var(--title-font);
-  color: var(--title-black-color);
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.5;
-  position: relative;
-  left: 100px;
-  top: 150px;
 }

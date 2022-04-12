@@ -1,10 +1,13 @@
-import PropTypes from "prop-types";
-import s from "./Button.module.css";
+import PropTypes from 'prop-types';
+import s from './Button.module.css';
+import Spinner from 'components/Spinner';
 
-function Button({className, onClick, type, disabled = false, text }) {
+function Button({ className, onClick, type, disabled = false, text, isLoading = false }) {
   return (
-    <button className={s[className]} onClick={onClick} type={type} disabled={disabled}>{text}</button>
-    )
+    <button className={s[className]} onClick={onClick} type={type} disabled={disabled}>
+      {text} {isLoading && <Spinner size={30} color='white' />}
+    </button>
+  );
 }
 
 Button.prototypes = {
@@ -13,6 +16,6 @@ Button.prototypes = {
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   text: PropTypes.string,
-}
+};
 
 export default Button;
