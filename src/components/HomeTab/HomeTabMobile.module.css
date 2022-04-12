@@ -1,6 +1,14 @@
+.homeTab__section {
+  display: flex;
+  justify-content: center;
+}
+
+.homeTab__block {
+  width: 350px;
+}
+
 .homeTab {
   max-width: 350px;
-
   padding: 0;
   margin-left: auto;
   margin-right: auto;
@@ -127,4 +135,27 @@
 .flex {
   display: flex;
   align-items: center;
+}
+
+.homeTab__bg {
+  margin: 20px auto;
+  width: 80%;
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.message i {
+  padding: 0 5px;
 }
