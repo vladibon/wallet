@@ -72,7 +72,8 @@ p {
   transition: color var(--animation);
 }
 
-.authLabel:hover {
+.authLabel:hover,
+.authLabel:focus-within {
   color: var(--main-currency-bg-color);
 }
 
