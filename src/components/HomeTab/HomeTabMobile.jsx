@@ -143,9 +143,13 @@ function HomeTabMobile() {
                         >
                           <span className={s.homeTabItems__listTitle}>Comment</span>
                           <span
-                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWrap}`}
                           >
-                            {transaction.comment}
+                            {transaction.comment.length ? (
+                              transaction.comment
+                            ) : (
+                              <span>&#8212;</span>
+                            )}
                           </span>
                         </li>
                         <li className={s.homeTabItems__listCell}>
