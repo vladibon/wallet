@@ -63,6 +63,14 @@
   transform: scaleX(1);
 }
 
+.spentActive {
+  composes: spent;
+}
+
+.spentActive .spentText::after {
+  transform: scaleX(1);
+}
+
 .spentMinus {
   font-size: 16px;
   font-weight: 700;

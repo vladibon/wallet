@@ -49,6 +49,8 @@ export default function DiagramTab() {
   const stats = useSelector(selectStatistics);
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
+  const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
+
   const [selectedMonth, setSelectedMonth] = useState({
     value: date.getMonth(),
     label: months[date.getMonth()],
@@ -133,7 +135,7 @@ export default function DiagramTab() {
 
   return (
     <div className={s.DiagramTab}>
-      <DiagramChart colors={colors} data={statsToRender()} />
+      <DiagramChart colors={colors} data={statsToRender()} total={totalToRender()} />
       <div className={s.conteinerTable}>
         <div className={s.selectWrapper}>
           <div className={s.selectwr}>
@@ -148,11 +150,17 @@ export default function DiagramTab() {
         <DiagramTable colors={colors} data={statsToRender()} />
 
         <div className={s.amount}>
-          <p className={s.spent} onClick={() => setShowExpence(true)}>
+          <p
+            className={s[!showExpense ? 'spent' : 'spentActive']}
+            onClick={() => setShowExpence(true)}
+          >
             <span className={s.spentText}>Spent:</span>
             <span className={s.spentMinus}>{stats.totalExpense}</span>
           </p>
-          <p className={s.spent} onClick={() => setShowExpence(false)}>
+          <p
+            className={s[showExpense ? 'spent' : 'spentActive']}
+            onClick={() => setShowExpence(false)}
+          >
             <span className={s.spentText}>Income:</span>
             <span className={s.spentPlus}>{stats.totalIncome}</span>
           </p>
