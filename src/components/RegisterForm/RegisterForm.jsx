@@ -12,8 +12,8 @@ import { toast } from 'react-toastify';
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:6|max:12|confirmed',
-  password_confirmation: 'required|min:6|max:12',
+  password: 'required|min:6|max:16|confirmed',
+  password_confirmation: 'required|min:6|max:16',
   name: 'required|string|min:1|max:12',
 };
 
