@@ -204,6 +204,7 @@ export default function ContactForm() {
 
         <textarea
           className={s.formComent}
+          type='textarea'
           name='comment'
           value={comment}
           onChange={handleInputChange}
