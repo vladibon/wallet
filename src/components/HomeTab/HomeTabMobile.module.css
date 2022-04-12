@@ -27,7 +27,6 @@
 
 .homeTabButton {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   padding: 5px 20px 5px 10px;
@@ -139,6 +138,8 @@
 
 .flex {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 }
 
