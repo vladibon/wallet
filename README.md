@@ -11,7 +11,7 @@ requests. Render page markup dynamically after fetching client's private data fr
 
 ## Tools used:
 
-### Technical instruments
+### Technical tools
 
 #### Client side:
 
@@ -41,7 +41,7 @@ requests. Render page markup dynamically after fetching client's private data fr
 - Joi;
 - Swagger Ui Express;
 
-### Additional instruments
+### Developer tools
 
 - VS Code;
 - Figma;
@@ -54,12 +54,12 @@ requests. Render page markup dynamically after fetching client's private data fr
 
 - Team leader [Vladimir Bondar](https://github.com/vladibon);
 - Scrum master [Olena Horobets](https://github.com/Olena-Horobets);
-- Front end developer [Valeriy Fedulov](https://github.com/Valeriy-Fedulov);
-- Front end developer [Iryna Grabovska](https://github.com/Iryna-Grabovska);
-- Front end developer [Eduard Konovka](https://github.com/Eduard-Konovka);
-- Front end developer [Konstantin Zakrzhevskyi](https://github.com/KonstantinZakrzhevskyi);
-- Front end developer [Anna Holub](https://github.com/Anna-Sergeevna);
-- Front end developer [Andrii Svyshch](https://github.com/andrii-svyshch);
-- Front end developer [Vitaly Ivlev](https://github.com/vitaly171);
-- Back end developer [Michael Paukov](https://github.com/mpaukov);
-- Back end developer [Valerii](https://github.com/Caraset);
+- Full stack developer [Valeriy Fedulov](https://github.com/Valeriy-Fedulov);
+- Full stack developer [Iryna Grabovska](https://github.com/Iryna-Grabovska);
+- Full stack developer [Eduard Konovka](https://github.com/Eduard-Konovka);
+- Full stack developer [Konstantin Zakrzhevskyi](https://github.com/KonstantinZakrzhevskyi);
+- Full stack developer [Anna Holub](https://github.com/Anna-Sergeevna);
+- Full stack developer [Andrii Svyshch](https://github.com/andrii-svyshch);
+- Full stack developer [Vitaly Ivlev](https://github.com/vitaly171);
+- Full stack developer [Michael Paukov](https://github.com/mpaukov);
+- Full stack developer [Valerii Kalenyuk](https://github.com/Caraset);
