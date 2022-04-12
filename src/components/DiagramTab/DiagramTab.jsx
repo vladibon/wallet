@@ -69,7 +69,7 @@ export default function DiagramTab() {
   const monthStyle = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? '#4a56e2' : '#000000',
+      color: state.isSelected ? '#ffffff' : '#000000',
       padding: 20,
     }),
 
@@ -79,7 +79,7 @@ export default function DiagramTab() {
       fontSize: '16px',
       fontFamily: 'Poppins',
       border: '1px solid black',
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: 1.3,
       marginBottom: 20,
       borderRadius: 30,
