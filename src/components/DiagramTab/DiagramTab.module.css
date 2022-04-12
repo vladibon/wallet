@@ -1,12 +1,7 @@
-@media screen and (min-width: 768px) {
-  .DiagramTab {
-    display: flex;
-    padding-top: 32px;
-  }
-
-  .conteinerTable {
-    margin-left: 32px;
-  }
+.DiagramTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .selectWrapper {
@@ -30,58 +25,9 @@
   background-color: var(--desktop-bg-color);
 }
 
-@media screen and (min-width: 768px) {
-  .selectWrapper {
-    flex-direction: row;
-  }
-
-  .select {
-    margin-right: 15px;
-    width: 160px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .select {
-    margin-right: 32px;
-    width: 182px;
-  }
-}
-
-
-
-@media screen and (min-width: 768px) {
-
-
-  .selectwr {
-  
-    margin-right: 15px;
-    width: 160px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .selectwr {
-    margin-right: 32px;
-    width: 182px;
-  }
-}
-
 .amount {
   max-width: 280px;
   padding-top: 16px;
-}
-
-@media screen and (min-width: 767px) {
-  .amount {
-    max-width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .amount {
-    max-width: 395px;
-  }
 }
 
 .spent {
@@ -130,4 +76,48 @@
   line-height: 1.47;
   font-family: var(--title-font);
   color: var(--earnings-green-color);
+}
+
+@media screen and (min-width: 768px) {
+  .DiagramTab {
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding-top: 32px;
+  }
+
+  .conteinerTable {
+    margin-left: 32px;
+  }
+
+  .selectwr {
+    width: 160px;
+  }
+
+  .selectWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .select {
+    width: 160px;
+  }
+
+  .amount {
+    max-width: 336px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .selectwr {
+    width: 182px;
+  }
+
+  .select {
+    width: 182px;
+  }
+
+  .amount {
+    max-width: 395px;
+  }
 }
