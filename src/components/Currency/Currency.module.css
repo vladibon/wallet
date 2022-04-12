@@ -5,6 +5,7 @@
   height: 174px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 
   color: var(--text-white-color);
   background-color: var(--stat-home-color);
@@ -78,4 +79,13 @@
   .table__text {
     padding-top: 24px;
   }
+}
+
+.table__error {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 20px;
 }
