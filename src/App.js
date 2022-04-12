@@ -28,6 +28,9 @@ const RegisterPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import('pages/NotFoundPage' /* webpackChunkName: "notfound-page" */),
 );
+const InternalServerErrorPage = lazy(() =>
+  import('pages/InternalServerErrorPage' /* webpackChunkName: "server-error-page" */),
+);
 
 function App() {
   SaveCategories();
@@ -73,6 +76,7 @@ function App() {
                 }
               />
               <Route path='/' element={<Navigate to='/home' />} />
+              <Route path='/server-error' element={<InternalServerErrorPage />} />
               <Route path='/*' element={<NotFoundPage />} />
             </Routes>
           </Suspense>

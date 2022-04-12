@@ -71,6 +71,7 @@ p {
   color: var(--grey-color);
   transition: color var(--animation);
 }
+
 .authLabel:hover {
   color: var(--main-currency-bg-color);
 }
@@ -85,12 +86,15 @@ p {
   position: relative;
   top: -20px;
   height: 4px;
+  width: 1%;
+  border: 3px solid transparent;
+  background-color: transparent;
   border-radius: 4px;
 }
 
 .lowProtection {
   composes: protection;
-  transition: 1s;
+  transition: 0.4s;
   width: 33%;
   border: var(--protection-line-low);
   background-color: var(--line-bg-low);

@@ -4,7 +4,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { useGetStatisticsQuery, setStatistics } from 'redux/index';
+import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
 import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
@@ -51,22 +51,11 @@ export default function DiagramTab() {
   const [selectedYear, setSelectedYear] = useState(null);
 
   useEffect(() => {
+    if (error?.status >= 500) dispatch(setError(500));
+
     if (!data) return;
     else dispatch(setStatistics(data));
   }, [data, error, dispatch]);
-
-  const onInputChange = e => {
-    const { name, value } = e.currentTarget;
-    switch (name) {
-      case 'month':
-        setMonth(value);
-        break;
-      case 'year':
-        setYear(value);
-        break;
-      default:
-    }
-  };
 
   const monthsSelection = months.map((el, idx) => ({ value: idx, label: el }));
   const monthStyle = {
@@ -142,22 +131,7 @@ export default function DiagramTab() {
           <div className={s.selectwr}>
             <SelectMonth />
           </div>
-          {/* <select className={s.select} onChange={onInputChange} name={'month'} value={month}>
-            <option value='' disabled>
-              Month
-            </option>
-            {months.map((el, idx) => (
-              <option key={el} value={idx}>
-                {el}
-              </option>
-            ))}
-          </select> */}
-          {/* <select className={s.select} onChange={onInputChange} name={'year'} value={year}>
-            <option value='' disabled>
-              Year
-            </option>
-            <option value={2022}>2022</option>
-          </select> */}
+
           <div className={s.selectwr}>
             <SelectYear />
           </div>

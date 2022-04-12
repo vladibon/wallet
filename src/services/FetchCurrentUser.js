@@ -9,6 +9,8 @@ import {
   resetUser,
   resetTransactions,
   resetStatistics,
+  setError,
+  resetError,
 } from 'redux/index';
 
 export const FetchCurrentUser = () => {
@@ -18,12 +20,18 @@ export const FetchCurrentUser = () => {
 
   useEffect(() => {
     if (error) {
-      toast.info('please, log in');
-      dispatch(resetUser());
-      dispatch(resetTransactions());
-      dispatch(resetStatistics());
+      if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
+      else {
+        toast.info('please, log in');
+        dispatch(resetUser());
+        dispatch(resetTransactions());
+        dispatch(resetStatistics());
+      }
     }
-    if (data) dispatch(setUser({ user: data, token }));
+    if (data) {
+      dispatch(resetError());
+      dispatch(setUser({ user: data, token }));
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);

@@ -1,20 +1,19 @@
 import s from './LoginForm.module.css';
 import React from 'react';
-import Logo from 'components/Logo';
-import Icons from 'images/sprite.svg';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Button from 'components/Button';
 import { validate } from 'indicative/validator';
 
-import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-
-import { useLogInUserMutation, setUser } from 'redux/index';
+import { toast } from 'react-toastify';
+import Logo from 'components/Logo';
+import Icons from 'images/sprite.svg';
+import Button from 'components/Button';
+import { useLogInUserMutation, setUser, setError } from 'redux/index';
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:6|max:12',
+  password: 'required|min:6|max:16',
 };
 const messages = {
   required: field => `${field} is required`,
@@ -24,7 +23,7 @@ const messages = {
 };
 
 export default function LoginForm() {
-  const [loginUser, { data, error }] = useLogInUserMutation();
+  const [loginUser, { data, error, isLoading }] = useLogInUserMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validationError, setValidationError] = useState({ field: null, message: '' });
@@ -49,7 +48,8 @@ export default function LoginForm() {
       dispatch(setUser(data));
       resetForm();
     } else if (error) {
-      toast.error(error.data?.message || 'Your request failed');
+      if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
+      else toast.error(error.data?.message || 'Your request failed');
     }
   }, [data, dispatch, error]);
 
@@ -106,7 +106,7 @@ export default function LoginForm() {
           </svg>
         </label>
         <div className={s.wrapper}>
-          <Button className='btn__primary' type='submit' text='log in' />
+          <Button className='btn__primary' type='submit' text='log in' isLoading={isLoading} />
           <Link to='/register' className={s.authLink}>
             <Button className='btn__secondary' type='buttom' text='sign up' />
           </Link>
