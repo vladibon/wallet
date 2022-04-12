@@ -61,18 +61,18 @@ function HomeTabDesktop() {
             </tr>
           </thead>
         </table>
-        <InfiniteScroll
-          dataLength={transactions.length}
-          next={scroll}
-          hasMore={hasMore}
-          height={400}
-          endMessage={
-            <span className={s.message}>
-              &#8212; <i>this was the last one </i>&#8212;
-            </span>
-          }
-        >
-          {transactions.length ? (
+        {transactions.length ? (
+          <InfiniteScroll
+            dataLength={transactions.length}
+            next={scroll}
+            hasMore={hasMore}
+            height={400}
+            endMessage={
+              <span className={s.message}>
+                &#8212; <i>this was the last one </i>&#8212;
+              </span>
+            }
+          >
             <table className={s.table}>
               <tbody>
                 {transactions.map(transaction => (
@@ -104,13 +104,15 @@ function HomeTabDesktop() {
                 ))}
               </tbody>
             </table>
-          ) : (
-            <>
-              <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
-              <p className={s.message}>sorry, you don't have any transactions yet...</p>
-            </>
-          )}
-        </InfiniteScroll>
+          </InfiniteScroll>
+        ) : (
+          <>
+            <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+            <span className={s.message}>
+              &#8212; <i>sorry, you don't have any transactions yet...</i>&#8212;
+            </span>
+          </>
+        )}
       </div>
     </div>
   );

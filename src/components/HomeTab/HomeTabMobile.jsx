@@ -61,94 +61,36 @@ function HomeTabMobile() {
   return (
     <>
       <Balance />
-      <div className={s.homeTab__section}>
-        <div className={s.homeTab__block}>
-          <InfiniteScroll
-            id='infscr'
-            dataLength={transactions.length}
-            next={scroll}
-            hasMore={hasMore}
-            height={scrHeight}
-            endMessage={
-              <p style={{ textAlign: 'center' }}>
-                <span>- this was the last one -</span>
-              </p>
-            }
-          >
-            <Accordion allowZeroExpanded className={s.homeTab}>
-              {transactions.map(transaction => (
-                <AccordionItem key={transaction._id}>
-                  <AccordionItemHeading
-                    className={
-                      transaction.type
-                        ? `${s.homeTab__itemsTitle} ${s.incomeBorder}`
-                        : `${s.homeTab__itemsTitle} ${s.expenseBorder}`
-                    }
-                  >
-                    <AccordionItemButton className={s.homeTabButton}>
-                      <div className={s.flex}>
-                        <div className={s.accordion__button}></div>
-                        <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
-                      </div>
-                      <span
-                        className={
-                          transaction.type
-                            ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
-                            : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
-                        }
-                      >
-                        {Intl.NumberFormat('ru-Ru', {
-                          minimumFractionDigits: 2,
-                        }).format(transaction.amount)}
-                      </span>
-                    </AccordionItemButton>
-                  </AccordionItemHeading>
-                  <AccordionItemPanel
-                    className={
-                      transaction.type
-                        ? `${s.homeTab__items} ${s.incomeBorder}`
-                        : `${s.homeTab__items}  ${s.expenseBorder}`
-                    }
-                  >
-                    <ul className={s.homeTabItems__list}>
-                      <li className={s.homeTabItems__listCell}>
-                        <span className={s.homeTabItems__listTitle}>Date</span>
-                        <span
-                          className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
-                        >
-                          {transaction.date}
-                        </span>
-                      </li>
-                      <li className={s.homeTabItems__listCell}>
-                        <span className={s.homeTabItems__listTitle}>Type</span>
-                        <span
-                          className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningCenter}`}
-                        >
-                          {transaction.type ? '+' : '-'}
-                        </span>
-                      </li>
-                      <li
-                        className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}
-                      >
-                        <span className={s.homeTabItems__listTitle}>Category</span>
-                        <span
-                          className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
-                        >
-                          {transaction.category}
-                        </span>
-                      </li>
-                      <li
-                        className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}
-                      >
-                        <span className={s.homeTabItems__listTitle}>Comment</span>
-                        <span
-                          className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
-                        >
-                          {transaction.comment}
-                        </span>
-                      </li>
-                      <li className={s.homeTabItems__listCell}>
-                        <span className={s.homeTabItems__listTitle}>Amount</span>
+      {transactions.length ? (
+        <div className={s.homeTab__section}>
+          <div className={s.homeTab__block}>
+            <InfiniteScroll
+              id='infscr'
+              dataLength={transactions.length}
+              next={scroll}
+              hasMore={hasMore}
+              height={scrHeight}
+              endMessage={
+                <span className={s.message}>
+                  &#8212; <i>this was the last one </i>&#8212;
+                </span>
+              }
+            >
+              <Accordion allowZeroExpanded className={s.homeTab}>
+                {transactions.map(transaction => (
+                  <AccordionItem key={transaction._id}>
+                    <AccordionItemHeading
+                      className={
+                        transaction.type
+                          ? `${s.homeTab__itemsTitle} ${s.incomeBorder}`
+                          : `${s.homeTab__itemsTitle} ${s.expenseBorder}`
+                      }
+                    >
+                      <AccordionItemButton className={s.homeTabButton}>
+                        <div className={s.flex}>
+                          <div className={s.accordion__button}></div>
+                          <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
+                        </div>
                         <span
                           className={
                             transaction.type
@@ -160,23 +102,90 @@ function HomeTabMobile() {
                             minimumFractionDigits: 2,
                           }).format(transaction.amount)}
                         </span>
-                      </li>
-                      <li className={s.homeTabItems__listCell}>
-                        <span className={s.homeTabItems__listTitle}>Balance</span>
-                        <span className={s.homeTabItems__listMeaning}>
-                          {Intl.NumberFormat('ru-Ru', {
-                            minimumFractionDigits: 2,
-                          }).format(transaction.balance)}
-                        </span>
-                      </li>
-                    </ul>
-                  </AccordionItemPanel>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </InfiniteScroll>
+                      </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel
+                      className={
+                        transaction.type
+                          ? `${s.homeTab__items} ${s.incomeBorder}`
+                          : `${s.homeTab__items}  ${s.expenseBorder}`
+                      }
+                    >
+                      <ul className={s.homeTabItems__list}>
+                        <li className={s.homeTabItems__listCell}>
+                          <span className={s.homeTabItems__listTitle}>Date</span>
+                          <span
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
+                          >
+                            {transaction.date}
+                          </span>
+                        </li>
+                        <li className={s.homeTabItems__listCell}>
+                          <span className={s.homeTabItems__listTitle}>Type</span>
+                          <span
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningCenter}`}
+                          >
+                            {transaction.type ? '+' : '-'}
+                          </span>
+                        </li>
+                        <li
+                          className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}
+                        >
+                          <span className={s.homeTabItems__listTitle}>Category</span>
+                          <span
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
+                          >
+                            {transaction.category}
+                          </span>
+                        </li>
+                        <li
+                          className={`${s.homeTabItems__listCell} ${s.homeTabItems__listCellWidth}`}
+                        >
+                          <span className={s.homeTabItems__listTitle}>Comment</span>
+                          <span
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
+                          >
+                            {transaction.comment}
+                          </span>
+                        </li>
+                        <li className={s.homeTabItems__listCell}>
+                          <span className={s.homeTabItems__listTitle}>Amount</span>
+                          <span
+                            className={
+                              transaction.type
+                                ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
+                                : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
+                            }
+                          >
+                            {Intl.NumberFormat('ru-Ru', {
+                              minimumFractionDigits: 2,
+                            }).format(transaction.amount)}
+                          </span>
+                        </li>
+                        <li className={s.homeTabItems__listCell}>
+                          <span className={s.homeTabItems__listTitle}>Balance</span>
+                          <span className={s.homeTabItems__listMeaning}>
+                            {Intl.NumberFormat('ru-Ru', {
+                              minimumFractionDigits: 2,
+                            }).format(transaction.balance)}
+                          </span>
+                        </li>
+                      </ul>
+                    </AccordionItemPanel>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </InfiniteScroll>
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+          <span className={s.message}>
+            &#8212; <i>sorry, you don't have any transactions yet...</i>&#8212;
+          </span>
+        </>
+      )}
     </>
   );
 }
