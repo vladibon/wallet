@@ -83,7 +83,7 @@ function App() {
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
           {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
-          <ToastContainer autoClose={3000} theme='colored' />
+          <ToastContainer autoClose={3000} theme='colored' limit={1} />
         </>
       ) : (
         <Loader />

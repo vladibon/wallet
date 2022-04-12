@@ -10,20 +10,20 @@ const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    openModalLogout: (state, action) => {
+    openModalLogout: (state, _) => {
       state.isModalLogoutOpen = true;
     },
-    openModalAddTransaction: (state, action) => {
+    openModalAddTransaction: (state, _) => {
       state.isModalAddTransactionOpen = true;
     },
-    closeModalWindow: (state, action) => {
+    closeModalWindow: (state, _) => {
       state.isModalLogoutOpen = false;
       state.isModalAddTransactionOpen = false;
     },
     setError: (state, action) => {
       state.errorStatus = action.payload;
     },
-    resetError: (state, action) => {
+    resetError: (state, _) => {
       state.errorStatus = null;
     },
   },

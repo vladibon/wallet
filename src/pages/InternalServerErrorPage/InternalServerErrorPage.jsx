@@ -1,19 +1,13 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
-import sound from './programError.mp3';
 import internalServerError from './internalServerError.png';
 import s from './InternalServerErrorPage.module.css';
 import { resetError } from 'redux/index';
 
 export default function InternalServerErrorPage() {
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   new Audio(sound).play();
-  // }, []);
 
   const onClick = () => {
     dispatch(resetError());
