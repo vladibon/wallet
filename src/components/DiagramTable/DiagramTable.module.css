@@ -6,7 +6,7 @@
 }
 
 .table {
-  max-width: 280px;
+  width: 280px;
 }
 
 .tableHead {
@@ -95,7 +95,7 @@
   }
 
   .table {
-    max-width: 336px;
+    width: 336px;
   }
 
   .trHead {
@@ -113,7 +113,7 @@
 
 @media screen and (min-width: 1280px) {
   .table {
-    max-width: 395px;
+    width: 395px;
   }
 
   .diagramTable__section {
