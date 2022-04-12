@@ -19,6 +19,8 @@ const colors = [
   '#81E1FF',
   '#24CCA7',
   '#00AD84',
+  '#ad0090',
+  '#e21373',
 ];
 
 const months = [
@@ -47,8 +49,14 @@ export default function DiagramTab() {
   const stats = useSelector(selectStatistics);
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
-  const [selectedMonth, setSelectedMonth] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState({
+    value: date.getMonth(),
+    label: months[date.getMonth()],
+  });
+  const [selectedYear, setSelectedYear] = useState({
+    value: date.getFullYear(),
+    label: date.getFullYear().toString(),
+  });
 
   useEffect(() => {
     if (error?.status >= 500) dispatch(setError(500));
@@ -61,7 +69,7 @@ export default function DiagramTab() {
   const monthStyle = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? '#4a56e2' : '#000000',
+      color: state.isSelected ? '#ffffff' : '#000000',
       padding: 20,
     }),
 
@@ -71,7 +79,7 @@ export default function DiagramTab() {
       fontSize: '16px',
       fontFamily: 'Poppins',
       border: '1px solid black',
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: 1.3,
       marginBottom: 20,
       borderRadius: 30,

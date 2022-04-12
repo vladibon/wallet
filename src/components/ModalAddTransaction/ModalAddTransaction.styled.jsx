@@ -31,7 +31,8 @@ export const menuStyle = {
 export const selectionStyles = {
   option: (provided, state) => ({
     ...provided,
-    color: state.isSelected ? '#4a56e2' : '#000000',
+    color: state.isSelected ? '#ffffff' : '#000000',
+    fontWeight: 500,
     padding: 20,
   }),
 
