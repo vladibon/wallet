@@ -95,6 +95,11 @@
   text-align: end;
 }
 
+.homeTabItems__listMeaningWrap {
+  width: 130px;
+  word-wrap: break-word;
+}
+
 .homeTabItems__listMeaningWeight {
   font-weight: 700;
 }

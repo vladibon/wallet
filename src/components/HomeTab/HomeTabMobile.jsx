@@ -142,7 +142,7 @@ function HomeTabMobile() {
                         >
                           <span className={s.homeTabItems__listTitle}>Comment</span>
                           <span
-                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
+                            className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWrap}`}
                           >
                             {transaction.comment.length ? (
                               transaction.comment
