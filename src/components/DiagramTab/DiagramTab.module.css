@@ -48,6 +48,25 @@
   }
 }
 
+
+
+@media screen and (min-width: 768px) {
+
+
+  .selectwr {
+  
+    margin-right: 15px;
+    width: 160px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .selectwr {
+    margin-right: 32px;
+    width: 182px;
+  }
+}
+
 .amount {
   max-width: 280px;
   padding-top: 16px;

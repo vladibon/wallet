@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -14,8 +15,10 @@ import {
 
 import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
+import { selectionStyles } from './index.js';
 
 export default function ContactForm() {
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const [type, setType] = useState(false);
   const [category, setCategory] = useState('default');
@@ -37,6 +40,23 @@ export default function ContactForm() {
       setCategory(expense[0]);
     }
   }, [expense, income, type]);
+
+  const options = categories.map(category => ({ value: category, label: category }));
+
+  const handleChange = selectedOption => {
+    setSelectedOption(selectedOption);
+    setCategory(selectedOption.value);
+  };
+
+  const SelectCategory = () => (
+    <Select
+      placeholder='Choose category'
+      styles={selectionStyles}
+      defaultValue={selectedOption}
+      onChange={handleChange}
+      options={options}
+    />
+  );
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
@@ -79,7 +99,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     const transaction = {
-      date,
+      date: new Date(),
       type,
       category,
       comment,
@@ -133,22 +153,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        <select
-          className={s.formCategories}
-          name='category'
-          onChange={handleInputChange}
-          defaultValue={category}
-          required
-        >
-          <option value='default' disabled hidden>
-            Choose category
-          </option>
-          {categories.map(el => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select>
+        <SelectCategory />
         <span></span>
 
         <div className={s.inputConatainer}>
