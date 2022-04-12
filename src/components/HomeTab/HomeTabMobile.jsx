@@ -86,22 +86,21 @@ function HomeTabMobile() {
                           : `${s.homeTab__itemsTitle} ${s.expenseBorder}`
                       }
                     >
-                      <AccordionItemButton className={s.homeTabButton}>
+                      <AccordionItemButton className={`${s.homeTabButton} ${s.accordion__button}`}>
                         <div className={s.flex}>
-                          <div className={s.accordion__button}></div>
                           <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
+                          <span
+                            className={
+                              transaction.type
+                                ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
+                                : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
+                            }
+                          >
+                            {Intl.NumberFormat('ru-Ru', {
+                              minimumFractionDigits: 2,
+                            }).format(transaction.amount)}
+                          </span>
                         </div>
-                        <span
-                          className={
-                            transaction.type
-                              ? `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.income}`
-                              : `${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningWeight} ${s.expense}`
-                          }
-                        >
-                          {Intl.NumberFormat('ru-Ru', {
-                            minimumFractionDigits: 2,
-                          }).format(transaction.amount)}
-                        </span>
                       </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel
@@ -145,7 +144,6 @@ function HomeTabMobile() {
                           <span
                             className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
                           >
-                            {/* {transaction.comment} */}
                             {transaction.comment.length ? (
                               transaction.comment
                             ) : (
