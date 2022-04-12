@@ -19,6 +19,8 @@ const colors = [
   '#81E1FF',
   '#24CCA7',
   '#00AD84',
+  '#ad0090',
+  '#e21373',
 ];
 
 const months = [
@@ -47,8 +49,14 @@ export default function DiagramTab() {
   const stats = useSelector(selectStatistics);
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
-  const [selectedMonth, setSelectedMonth] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState({
+    value: date.getMonth(),
+    label: months[date.getMonth()],
+  });
+  const [selectedYear, setSelectedYear] = useState({
+    value: date.getFullYear(),
+    label: date.getFullYear().toString(),
+  });
 
   useEffect(() => {
     if (error?.status >= 500) dispatch(setError(500));
