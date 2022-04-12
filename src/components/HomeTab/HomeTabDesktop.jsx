@@ -82,7 +82,9 @@ function HomeTabDesktop() {
                       {transaction.type ? '+' : '-'}
                     </td>
                     <td className={s.tableCell}>{transaction.category}</td>
-                    <td className={s.tableCell}>{transaction.comment}</td>
+                    <td className={s.tableCell}>
+                      {transaction.comment.length ? transaction.comment : <span>&#8212;</span>}
+                    </td>
                     <td
                       className={
                         transaction.type

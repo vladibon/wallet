@@ -27,6 +27,7 @@ body {
   font-family: var(--main-font);
   background-color: var(--primary-bg-color);
   cursor: default;
+  overflow-y: overlay;
 }
 
 a {
