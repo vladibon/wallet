@@ -37,80 +37,85 @@ function HomeTabDesktop() {
   };
 
   return (
-    <div className={s.tableSection}>
-      <InfiniteScroll
-        dataLength={transactions.length}
-        next={scroll}
-        hasMore={hasMore}
-        height={500}
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>sorry, you don't have any transactions yet...</b>
-          </p>
-        }
-      >
-        <table className={s.table}>
+    <div className={s.homeTab__section}>
+      <div className={s.tableSection}>
+        <table className={`${s.table} ${s.tableTitle}`}>
           <thead className={s.tableThead}>
             <tr>
-              <th className={s.tableThead__th} align='left'>
+              <th className={s.tableCell} align='left'>
                 Date
               </th>
-              <th className={s.tableThead__th}>Type</th>
-              <th className={s.tableThead__th} align='left'>
+              <th className={s.tableCell}>Type</th>
+              <th className={s.tableCell} align='left'>
                 Category
               </th>
-              <th className={s.tableThead__th} align='left'>
+              <th className={s.tableCell} align='left'>
                 Comment
               </th>
-              <th className={s.tableThead__th} align='right'>
+              <th className={s.tableCell} align='right'>
                 Amount
               </th>
-              <th className={s.tableThead__th} align='right'>
+              <th className={s.tableCell} align='right'>
                 Balance
               </th>
             </tr>
           </thead>
-          {transactions.length ? (
-            <tbody>
-              {transactions.map(transaction => (
-                <tr className={s.tbody__tr} key={transaction._id}>
-                  <td className={s.tbody__td}>{transaction.date}</td>
-                  <td className={s.tbody__td} align='center'>
-                    {transaction.type ? '+' : '-'}
-                  </td>
-                  <td className={s.tbody__td}>{transaction.category}</td>
-                  <td className={s.tbody__td}>{transaction.comment}</td>
-                  <td
-                    className={
-                      transaction.type
-                        ? `${s.tbody__td} ${s.income}`
-                        : `${s.tbody__td} ${s.expense}`
-                    }
-                    align='right'
-                  >
-                    {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
-                      transaction.amount,
-                    )}
-                  </td>
-                  <td className={s.tbody__td} align='right'>
-                    {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
-                      transaction.balance,
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          ) : (
-            <tbody>
-              <tr>
-                <td colSpan='6'>
-                  <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
-                </td>
-              </tr>
-            </tbody>
-          )}
         </table>
-      </InfiniteScroll>
+        {transactions.length ? (
+          <InfiniteScroll
+            dataLength={transactions.length}
+            next={scroll}
+            hasMore={hasMore}
+            height={400}
+            endMessage={
+              <span className={s.message}>
+                &#8212; <i>this was the last one </i>&#8212;
+              </span>
+            }
+          >
+            <table className={s.table}>
+              <tbody>
+                {transactions.map(transaction => (
+                  <tr className={s.tbody__tr} key={transaction._id}>
+                    <td className={s.tableCell}>{transaction.date}</td>
+                    <td className={s.tableCell} align='center'>
+                      {transaction.type ? '+' : '-'}
+                    </td>
+                    <td className={s.tableCell}>{transaction.category}</td>
+                    <td className={s.tableCell}>
+                      {transaction.comment.length ? transaction.comment : <span>&#8212;</span>}
+                    </td>
+                    <td
+                      className={
+                        transaction.type
+                          ? `${s.tableCell} ${s.income}`
+                          : `${s.tableCell} ${s.expense}`
+                      }
+                      align='right'
+                    >
+                      {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
+                        transaction.amount,
+                      )}
+                    </td>
+                    <td className={s.tableCell} align='right'>
+                      {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(
+                        transaction.balance,
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </InfiniteScroll>
+        ) : (
+          <>
+            <img className={s.homeTab__bg} src={HomeTabBackground} alt='Transactions' />
+            <span className={s.message}>
+              &#8212; <i>sorry, you don't have any transactions yet...</i>&#8212;
+            </span>
+          </>
+        )}
+      </div>
     </div>
   );
 }

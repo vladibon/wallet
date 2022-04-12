@@ -20,6 +20,7 @@
 
 @media (min-width: 768px) {
   .table__container {
+    margin: 0;
     width: 336px;
     height: 182px;
   }

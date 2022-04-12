@@ -12,11 +12,11 @@ export default function DiagramChart({ data, colors }) {
   const balance = useSelector(selectBalance);
 
   const user = {
-    labels: data.map(transaction => transaction.category),
+    labels: data.map(el => el.category),
     datasets: [
       {
         label: 'Transactions',
-        data: data.map(transaction => transaction.amount),
+        data: data.map(el => el.sum),
         backgroundColor: [...colors],
         borderWidth: 0,
       },
@@ -45,9 +45,16 @@ export default function DiagramChart({ data, colors }) {
   return (
     <div className={s.sectionDoughnut}>
       <h2 className={s.title}>Statistics</h2>
+
       <div className={s.doughnut}>
-        <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
-        <Doughnut data={user} options={options} />
+        {data?.length ? (
+          <>
+            <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
+            <div className={s.canvas}>
+              <Doughnut data={user} options={options} />
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

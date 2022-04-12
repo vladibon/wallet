@@ -1,9 +1,13 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function PrivateRoute({ children }) {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+import { selectIsLoggedIn, selectError } from 'redux/selectors';
 
+function PrivateRoute({ children }) {
+  const errorStatus = useSelector(selectError);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  if (errorStatus === 500) return <Navigate replace to='/server-error' />;
   return isLoggedIn ? children : <Navigate to='/login' />;
 }
 

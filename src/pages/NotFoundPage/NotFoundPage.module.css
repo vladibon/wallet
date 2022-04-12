@@ -1,0 +1,48 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #27282a;
+  background-image: url(./brokenGlass.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.text {
+  font-size: 8vw;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--title-black-color);
+  margin-bottom: 5vw;
+}
+
+.title {
+  font-size: 10vw;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+  .text {
+    font-size: 7vw;
+    margin-bottom: 3vw;
+  }
+
+  .title {
+    font-size: 9vw;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .text {
+    font-size: 5vw;
+    margin-bottom: 2vw;
+  }
+  
+  .title {
+    font-size: 7vw;
+  }
+}

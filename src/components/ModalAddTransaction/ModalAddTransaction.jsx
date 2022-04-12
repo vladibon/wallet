@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import { validate } from 'indicative/validator';
+import { toast } from 'react-toastify';
+
+import Icons from 'images/sprite.svg';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
 import {
@@ -7,36 +12,80 @@ import {
   closeModalWindow,
   setBalance,
   setLatestTransactions,
+  setError,
 } from 'redux/index';
 
 import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
+import { selectionStyles } from './index.js';
+
+const rules = {
+  category: 'required',
+  comment: 'string|max:40',
+};
+
+const messages = {
+  required: field => `${field} is required`,
+  'comment.max': 'only 40 characters allowed',
+};
 
 export default function ContactForm() {
   const dispatch = useDispatch();
-  const [type, setType] = useState(false);
-  const [category, setCategory] = useState('default');
+  const { income, expense } = useSelector(selectCategories);
   const [categories, setCategories] = useState([]);
+
+  const [type, setType] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [amount, setAmount] = useState('');
   const currentDate = setCurrentDate();
   const [date, setDate] = useState(currentDate);
   const [comment, setComment] = useState('');
 
-  const { income, expense } = useSelector(selectCategories);
-  const [addTransaction] = useAddTransactionMutation();
+  const [addTransaction, { data, error, isLoading }] = useAddTransactionMutation();
+  const options = categories.map(category => ({ value: category, label: category }));
+  const [validationError, setValidationError] = useState({ field: null, message: '' });
 
   useEffect(() => {
-    if (type) {
-      setCategories(income);
-      setCategory(income[0]);
-    } else {
-      setCategories(expense);
-      setCategory(expense[0]);
-    }
+    type ? setCategories(income) : setCategories(expense);
   }, [expense, income, type]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setBalance({ balance: data.balance }));
+      dispatch(setLatestTransactions(data.transactions));
+      dispatch(closeModalWindow());
+      reset();
+    } else if (error) {
+      try {
+        if (error.data?.message === 'Balance cannot be negative')
+          toast.error("sorry, you don't have enough money for this expense");
+        else toast.error(error.data?.message || 'your request failed');
+      } catch {
+        dispatch(setError(500));
+        dispatch(closeModalWindow());
+      }
+    }
+  }, [data, dispatch, error]);
+
+  const handleChange = selectedOption => {
+    setValidationError({ field: null, message: '' });
+    setSelectedOption(selectedOption);
+  };
+
+  const SelectCategory = () => (
+    <Select
+      placeholder='Choose category'
+      styles={selectionStyles}
+      defaultValue={selectedOption}
+      onChange={handleChange}
+      options={options}
+      name='category'
+    />
+  );
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
+    setValidationError({ field: null, message: '' });
 
     switch (name) {
       case 'type':
@@ -47,12 +96,9 @@ export default function ContactForm() {
         setAmount(value);
         break;
 
-      case 'category':
-        setCategory(value);
-        break;
-
       case 'date':
-        setDate(value);
+        if (value !== currentDate)
+          toast.error('sorry, only current date is available at the moment');
         break;
 
       case 'comment':
@@ -63,10 +109,9 @@ export default function ContactForm() {
     }
   };
 
-  // console.log(income, expense);
   const reset = () => {
     setType(false);
-    setCategory('default');
+    setSelectedOption(null);
     setAmount('');
     setDate('');
     setComment('');
@@ -75,29 +120,29 @@ export default function ContactForm() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const transaction = {
-      date,
-      type,
-      category,
-      comment,
-      amount,
-    };
-
-    addTransaction({ transaction }).then(({ data, error }) => {
-      if (data) {
-        dispatch(setBalance({ balance: data.balance }));
-        dispatch(setLatestTransactions(data.transactions));
-        dispatch(closeModalWindow());
-        reset();
-      } else if (error) {
-        console.log(error.data.message);
-      }
-    });
+    validate({ category: selectedOption?.value, comment }, rules, messages)
+      .then(() => {
+        const transaction = {
+          date: new Date(),
+          type,
+          category: selectedOption.value,
+          comment,
+          amount,
+        };
+        addTransaction({ transaction });
+      })
+      .catch(errors => {
+        setValidationError({ field: errors[0].field, message: errors[0].message });
+      });
   };
+
+  const { message, field } = validationError;
+
   return (
     <div className={s.modal}>
       <p className={s.title}>Add transaction</p>
       <form className={s.form} onSubmit={handleSubmit}>
+        {field && <p className={s[`${field}Error`]}>{message}</p>}
         <div className={s.formCheckbox}>
           <span
             className={s.formCheckbox__label}
@@ -128,22 +173,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        <select
-          className={s.formCategories}
-          name='category'
-          onChange={handleInputChange}
-          defaultValue={category}
-          required
-        >
-          <option value='default' disabled hidden>
-            Choose category
-          </option>
-          {categories.map(el => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select>
+        <SelectCategory />
         <span></span>
 
         <div className={s.inputConatainer}>
@@ -160,14 +190,15 @@ export default function ContactForm() {
           />
           <input
             className={s.formDate}
-            type='date'
             name='date'
             value={date}
-            min={currentDate}
             onChange={handleInputChange}
             required
           />
         </div>
+        <svg width='24' height='24' className={s.inputIcon}>
+          <use href={`${Icons}#icon-calendar`} />
+        </svg>
 
         <textarea
           className={s.formComent}
@@ -178,7 +209,7 @@ export default function ContactForm() {
         />
 
         <div className={s.btnContainer}>
-          <Button className='btn__primary' type='submit' text='ADD' />
+          <Button className='btn__primary' type='submit' text='ADD' isLoading={isLoading} />
           <Button
             className='btn__secondary'
             onClick={() => dispatch(closeModalWindow())}

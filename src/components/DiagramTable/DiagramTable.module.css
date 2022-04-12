@@ -5,91 +5,8 @@
   margin-right: auto;
 }
 
-
-@media screen and (max-width: 767px) {
-  .select {
-    display: block;
-    font-size: 16px;
-    font-family: var(--title-font);
-    border: 1px solid black;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    padding: 12px 20px;
-    max-width: 280px;
-    background-color: var(--desktop-bg-color);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .diagramTable__section {
-    display: flex;
-  }
-
-  .diagramTable {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .select {
-    font-size: 16px;
-    font-family: var(--title-font);
-    border: 1px solid black;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 20px;
-    margin-right: 15px;
-    border-radius: 30px;
-    cursor: pointer;
-    padding: 12px 20px;
-    width: 160px;
-    background-color: var(--desktop-bg-color);
-  }
-}
-
 .table {
-  max-width: 280px;
-}
-
-@media screen and (min-width: 767px) {
-  .table {
-    max-width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .select {
-    font-size: 16px;
-    font-family: var(--title-font);
-    border: 1px solid black;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 20px;
-    margin-right: 32px;
-    border-radius: 30px;
-    cursor: pointer;
-    padding: 12px 20px;
-    width: 182px;
-    background-color: var(--desktop-bg-color);
-  }
-  .table {
-    max-width: 395px;
-  }
-
-  .diagramTable__section {
-    width: 63%;
-    margin-top: 40px;
-  }
-
-  .diagramTable {
-    padding: 0;
-    margin: 65px 0 45px;
-    max-width: 395px;
-  }
+  width: 280px;
 }
 
 .tableHead {
@@ -103,18 +20,6 @@
   display: table;
 }
 
-@media screen and (min-width: 767px) {
-  .trHead {
-    max-width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .trHead {
-    max-width: 395px;
-  }
-}
-
 .tableTop {
   font-size: 18px;
   font-weight: 700;
@@ -125,12 +30,6 @@
   padding-left: 20px;
 }
 
-@media screen and (min-width: 1280px) {
-  .tableTop {
-    width: 270px;
-  }
-}
-
 .tableTop2 {
   font-size: 18px;
   font-weight: 700;
@@ -138,12 +37,6 @@
   font-family: var(--title-font);
   min-width: 80px;
   padding-right: 20px;
-}
-
-@media screen and (min-width: 767px) {
-  .tableTop2 {
-    padding: 0;
-  }
 }
 
 .body {
@@ -156,18 +49,6 @@
   height: 50px;
   border-color: #dcdcdf;
   border-bottom: 1px solid #dcdcdf;
-}
-
-@media screen and (min-width: 767px) {
-  .listItem {
-    width: 336px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .listItem {
-    width: 395px;
-  }
 }
 
 .color {
@@ -201,48 +82,60 @@
   text-align: end;
 }
 
-.amount {
-  max-width: 280px;
-  padding-top: 16px;
-}
+@media screen and (min-width: 768px) {
+  .diagramTable__section {
+    display: flex;
+  }
 
-@media screen and (min-width: 767px) {
-  .amount {
+  .diagramTable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table {
+    width: 336px;
+  }
+
+  .trHead {
     max-width: 336px;
+  }
+
+  .tableTop2 {
+    padding: 0;
+  }
+
+  .listItem {
+    width: 336px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .amount {
+  .table {
+    width: 395px;
+  }
+
+  .diagramTable__section {
+    width: 63%;
+    margin-top: 40px;
+  }
+
+  .diagramTable {
+    padding: 0;
+    margin: 65px 0 45px;
     max-width: 395px;
   }
-}
 
-.spent {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.47;
-  font-family: var(--title-font);
-  justify-content: space-between;
-  margin: 15px 20px;
-  display: flex;
-}
+  .trHead {
+    max-width: 395px;
+  }
 
-.spentMinus {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.47;
-  font-family: var(--title-font);
-  color: var(--expenditure-red-color);
-}
+  .tableTop {
+    width: 270px;
+  }
 
-.spentPlus {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.47;
-  font-family: var(--title-font);
-  color: var(--earnings-green-color);
-}
-
-@media screen and (min-width: 768px) {
+  .listItem {
+    width: 395px;
+  }
 }

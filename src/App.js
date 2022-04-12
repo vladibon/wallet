@@ -1,6 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { FetchCurrentUser } from 'services/FetchCurrentUser';
 import { SaveCategories } from 'services/SaveCategories';
@@ -22,6 +24,12 @@ const DashboardPage = lazy(() =>
 const LoginPage = lazy(() => import('pages/LoginPage' /* webpackChunkName: "login-page" */));
 const RegisterPage = lazy(() =>
   import('pages/RegisterPage' /* webpackChunkName: "register-page" */),
+);
+const NotFoundPage = lazy(() =>
+  import('pages/NotFoundPage' /* webpackChunkName: "notfound-page" */),
+);
+const InternalServerErrorPage = lazy(() =>
+  import('pages/InternalServerErrorPage' /* webpackChunkName: "server-error-page" */),
 );
 
 function App() {
@@ -67,12 +75,15 @@ function App() {
                   </PublicRoute>
                 }
               />
-              <Route path='*' element={<Navigate to='/home' />} />
+              <Route path='/' element={<Navigate to='/home' />} />
+              <Route path='/server-error' element={<InternalServerErrorPage />} />
+              <Route path='/*' element={<NotFoundPage />} />
             </Routes>
           </Suspense>
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
           {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
+          <ToastContainer autoClose={3000} theme='colored' />
         </>
       ) : (
         <Loader />

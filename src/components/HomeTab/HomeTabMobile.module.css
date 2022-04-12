@@ -1,6 +1,14 @@
+.homeTab__section {
+  display: flex;
+  justify-content: center;
+}
+
+.homeTab__block {
+  width: 350px;
+}
+
 .homeTab {
   max-width: 350px;
-
   padding: 0;
   margin-left: auto;
   margin-right: auto;
@@ -22,9 +30,15 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 12px 20px 12px 10px;
+  padding: 5px 20px 5px 10px;
   border-radius: 0 10px 10px 0;
   background: var(--hometab-title-bg-color);
+}
+
+.homeTabButton__flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .homeTab__items {
@@ -72,13 +86,19 @@
 }
 
 .homeTabItems__colorTitle {
-  width: 100%;
+  display: inline-block;
 
+  width: 100px;
   color: white;
 }
 
 .homeTabItems__listMeaning {
   text-align: end;
+}
+
+.homeTabItems__listMeaningWrap {
+  width: 130px;
+  word-wrap: break-word;
 }
 
 .homeTabItems__listMeaningWeight {
@@ -102,6 +122,7 @@
 }
 
 .accordion__button:before {
+  display: inline-block;
   content: '';
   height: 10px;
   min-width: 10px;
@@ -114,4 +135,32 @@
 .accordion__button[aria-expanded='true']::before,
 .accordion__button[aria-selected='true']::before {
   transform: rotate(45deg);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.homeTab__bg {
+  margin: 20px auto;
+  width: 80%;
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.message i {
+  padding: 0 5px;
 }

@@ -3,7 +3,7 @@ import { emptySplitApi } from '../mainAPISlice';
 const financeAPI = emptySplitApi.injectEndpoints({
   endpoints: builder => ({
     getTransactions: builder.query({
-      query: (page = 1) => `/transactions?page=${page}`,
+      query: (page = 1) => `/transactions?page=${page}&limit=12`,
       providesTags: ['Finance'],
     }),
     addTransaction: builder.mutation({
@@ -15,8 +15,9 @@ const financeAPI = emptySplitApi.injectEndpoints({
       invalidatesTags: ['Finance'],
     }),
     getStatistics: builder.query({
-      query: ({ month, year }) => ({ url: `/transactions/stats`, body: { month, year } }),
-      // providesTags: ['Finance'],
+      query: ({ month, year }) => ({
+        url: `/transactions/stats?month=${month}&year=${year}`,
+      }),
     }),
   }),
   overrideExisting: false,

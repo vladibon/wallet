@@ -20,6 +20,9 @@ p {
   padding-top: 110px;
   min-width: 320px;
 }
+.form {
+  position: relative;
+}
 
 .logo {
   display: flex;
@@ -69,13 +72,36 @@ p {
   color: var(--grey-color);
   transition: color var(--animation);
 }
-.authLabel:hover {
+
+.authLabel:hover,
+.authLabel:focus-within {
   color: var(--main-currency-bg-color);
 }
 
 .authLink {
   outline: none;
   text-decoration: none;
+}
+
+/* validation errors */
+.error {
+  position: absolute;
+  color: red;
+}
+
+.emailError {
+  composes: error;
+  top: 44px;
+}
+
+.passwordError {
+  composes: error;
+  top: 120px;
+}
+
+.nameError {
+  composes: error;
+  top: 274px;
 }
 
 @media screen and (max-width: 767px) {
@@ -122,6 +148,17 @@ p {
     margin-top: 20px;
     margin-bottom: 20px;
     outline: none;
+  }
+  .emailError {
+    top: 54px;
+  }
+
+  .passwordError {
+    top: 130px;
+  }
+
+  .nameError {
+    top: 282px;
   }
 }
 

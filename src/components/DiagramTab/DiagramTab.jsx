@@ -3,16 +3,12 @@ import s from './DiagramTab.module.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import {
-  useGetTransactionsQuery,
-  setLatestTransactions,
-  useGetStatisticsQuery,
-  setStatistics,
-} from 'redux/index';
-import { selectTransactions } from 'redux/selectors';
+import Select from 'react-select';
+import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
+import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
+import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
 
 const colors = [
   '#FED057',
@@ -23,6 +19,8 @@ const colors = [
   '#81E1FF',
   '#24CCA7',
   '#00AD84',
+  '#ad0090',
+  '#e21373',
 ];
 
 const months = [
@@ -41,64 +39,124 @@ const months = [
 ];
 
 export default function DiagramTab() {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  // const { data, error } = useGetStatisticsQuery({ month, year });
-  const { data } = useGetTransactionsQuery();
   const dispatch = useDispatch();
+  const date = new Date();
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
+  const [showExpense, setShowExpence] = useState(true);
 
-  const transactions = useSelector(selectTransactions);
+  const { data, error } = useGetStatisticsQuery({ month, year });
+  const stats = useSelector(selectStatistics);
+
+  const statsToRender = () => (showExpense ? stats.expense : stats.income);
+  const [selectedMonth, setSelectedMonth] = useState({
+    value: date.getMonth(),
+    label: months[date.getMonth()],
+  });
+  const [selectedYear, setSelectedYear] = useState({
+    value: date.getFullYear(),
+    label: date.getFullYear().toString(),
+  });
 
   useEffect(() => {
-    if (!data) return;
-    else dispatch(setLatestTransactions([...data.transactions]));
-  }, [data, dispatch]);
+    if (error?.status >= 500) dispatch(setError(500));
 
-  const onInputChange = e => {
-    console.log(e.value);
-    const { name, value } = e.currentTarget;
-    switch (name) {
-      case 'month':
-        setMonth(value);
-        break;
-      case 'year':
-        setYear(value);
-        break;
-      default:
-    }
+    if (!data) return;
+    else dispatch(setStatistics(data));
+  }, [data, error, dispatch]);
+
+  const monthsSelection = months.map((el, idx) => ({ value: idx, label: el }));
+  const monthStyle = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? '#ffffff' : '#000000',
+      padding: 20,
+    }),
+
+    control: styles => ({
+      ...styles,
+      ...generalStyle,
+      fontSize: '16px',
+      fontFamily: 'Poppins',
+      border: '1px solid black',
+      fontWeight: 500,
+      lineHeight: 1.3,
+      marginBottom: 20,
+      borderRadius: 30,
+      cursor: 'pointer',
+      padding: '12px 20px',
+      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      maxWidth: 280,
+    }),
+    menu: styles => ({
+      ...styles,
+      ...menuStyle,
+      top: 60,
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    },
+  };
+  const handleMonthChange = selectedMonth => {
+    setSelectedMonth(selectedMonth);
+    setMonth(selectedMonth.value);
   };
 
+  const SelectMonth = () => (
+    <Select
+      placeholder='Month'
+      styles={monthStyle}
+      defaultValue={selectedMonth}
+      onChange={handleMonthChange}
+      options={monthsSelection}
+    />
+  );
+
+  const yearSelection = [{ value: 2022, label: '2022' }];
+
+  const handleYearChange = selectedYear => {
+    setSelectedYear(selectedYear);
+    setYear(selectedYear.value);
+  };
+
+  const SelectYear = () => (
+    <Select
+      placeholder='Year'
+      styles={monthStyle}
+      defaultValue={selectedYear}
+      onChange={handleYearChange}
+      options={yearSelection}
+    />
+  );
+
   return (
-    <div style={{ paddingTop: 32 }}>
-      <DiagramChart colors={colors} data={transactions} />
-      <div style={{ paddingTop: 32 }}>
-        <select className={s.select} onChange={onInputChange} defaultValue={month}>
-          <option value='' disabled>
-            Month
-          </option>
-          {months.map((el, idx) => (
-            <option key={el} value={idx + 1}>
-              {el}
-            </option>
-          ))}
-        </select>
-        <select className={s.select} onChange={onInputChange} defaultValue={year}>
-          <option value='' disabled>
-            Year
-          </option>
-          <option>2022</option>
-        </select>
-      </div>
+    <div className={s.DiagramTab}>
+      <DiagramChart colors={colors} data={statsToRender()} />
+      <div className={s.conteinerTable}>
+        <div className={s.selectWrapper}>
+          <div className={s.selectwr}>
+            <SelectMonth />
+          </div>
 
-      <DiagramTable colors={colors} data={transactions} />
+          <div className={s.selectwr}>
+            <SelectYear />
+          </div>
+        </div>
 
-      <div className={s.amount}>
-        <p className={s.spent}>
-          Spent:<span className={s.spentMinus}>22259</span>
-        </p>
-        <p className={s.spent}>
-          Income: <span className={s.spentPlus}>40000</span>
-        </p>
+        <DiagramTable colors={colors} data={statsToRender()} />
+
+        <div className={s.amount}>
+          <p className={s.spent} onClick={() => setShowExpence(true)}>
+            <span className={s.spentText}>Spent:</span>
+            <span className={s.spentMinus}>{stats.totalExpense}</span>
+          </p>
+          <p className={s.spent} onClick={() => setShowExpence(false)}>
+            <span className={s.spentText}>Income:</span>
+            <span className={s.spentPlus}>{stats.totalIncome}</span>
+          </p>
+        </div>
       </div>
     </div>
   );

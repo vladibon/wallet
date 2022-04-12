@@ -15,11 +15,17 @@ import { setCategories } from './categories/categories-slice';
 import {
   setLatestTransactions,
   setMoreTransactions,
-  setNextPage,
-  resetPage,
+  resetTransactions,
   setStatistics,
+  resetStatistics,
 } from './finance/finance-slice';
-import { openModalLogout, openModalAddTransaction, closeModalWindow } from './global/global-slice';
+import {
+  openModalLogout,
+  openModalAddTransaction,
+  closeModalWindow,
+  setError,
+  resetError,
+} from './global/global-slice';
 
 export {
   setUser,
@@ -29,11 +35,13 @@ export {
   setCategories,
   setLatestTransactions,
   setMoreTransactions,
-  setNextPage,
-  resetPage,
+  resetTransactions,
   setStatistics,
+  resetStatistics,
   openModalAddTransaction,
   closeModalWindow,
+  setError,
+  resetError,
 };
 export {
   useCreateUserMutation,

@@ -17,7 +17,9 @@
 @media screen and (min-width: 768px) {
   .dashboardPage__section {
     display: flex;
+    justify-content: space-between;
     padding-top: 40px;
+    margin-bottom: 20px;
   }
 
   .dashboardPage__subSection {
@@ -28,6 +30,8 @@
 @media screen and (min-width: 1280px) {
   .dashboardPage {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
   .dashboardPage__section {
