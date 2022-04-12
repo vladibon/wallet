@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
+
+import Datetime from 'react-datetime';
+import moment from 'moment';
+import 'react-datetime/css/react-datetime.css';
 
 import Icons from 'images/sprite.svg';
 import s from './ModalAddTransaction.module.css';
@@ -19,34 +22,30 @@ import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
 import { selectionStyles } from './index.js';
 
-const rules = {
-  category: 'required',
-  comment: 'string|max:40',
-};
-
-const messages = {
-  required: field => `${field} is required`,
-  'comment.max': 'only 40 characters allowed',
-};
-
 export default function ContactForm() {
   const dispatch = useDispatch();
   const { income, expense } = useSelector(selectCategories);
-  const [categories, setCategories] = useState([]);
 
-  const [type, setType] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [type, setType] = useState(false);
+  const [category, setCategory] = useState('default');
+  const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState('');
   const currentDate = setCurrentDate();
-  const [date, setDate] = useState(currentDate);
+  const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
 
   const [addTransaction, { data, error, isLoading }] = useAddTransactionMutation();
   const options = categories.map(category => ({ value: category, label: category }));
-  const [validationError, setValidationError] = useState({ field: null, message: '' });
 
   useEffect(() => {
-    type ? setCategories(income) : setCategories(expense);
+    if (type) {
+      setCategories(income);
+      setCategory(income[0]);
+    } else {
+      setCategories(expense);
+      setCategory(expense[0]);
+    }
   }, [expense, income, type]);
 
   useEffect(() => {
@@ -54,13 +53,12 @@ export default function ContactForm() {
       dispatch(setBalance({ balance: data.balance }));
       dispatch(setLatestTransactions(data.transactions));
       dispatch(closeModalWindow());
-      toast.success('Transaction added');
       reset();
     } else if (error) {
       try {
-        if (error.data.message === 'Balance cannot be negative')
-          toast.error("Sorry, you don't have enough money for this expense");
-        else toast.error(error.data.message);
+        if (error.data?.message === 'Balance cannot be negative')
+          toast.error("sorry, you don't have enough money for this expense");
+        else toast.error(error.data?.message || 'your request failed');
       } catch {
         dispatch(setError(500));
         dispatch(closeModalWindow());
@@ -69,8 +67,8 @@ export default function ContactForm() {
   }, [data, dispatch, error]);
 
   const handleChange = selectedOption => {
-    setValidationError({ field: null, message: '' });
     setSelectedOption(selectedOption);
+    setCategory(selectedOption.value);
   };
 
   const SelectCategory = () => (
@@ -80,22 +78,23 @@ export default function ContactForm() {
       defaultValue={selectedOption}
       onChange={handleChange}
       options={options}
-      name='category'
     />
   );
 
   const handleInputChange = e => {
     const { name, value, checked } = e.target;
-    setValidationError({ field: null, message: '' });
 
     switch (name) {
       case 'type':
         setType(checked);
-        setSelectedOption(null);
         break;
 
       case 'amount':
         setAmount(value);
+        break;
+
+      case 'category':
+        setCategory(value);
         break;
 
       case 'date':
@@ -113,7 +112,7 @@ export default function ContactForm() {
 
   const reset = () => {
     setType(false);
-    setSelectedOption(null);
+    setCategory('default');
     setAmount('');
     setDate('');
     setComment('');
@@ -122,29 +121,21 @@ export default function ContactForm() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    validate({ category: selectedOption?.value, comment }, rules, messages)
-      .then(() => {
-        const transaction = {
-          date: new Date(),
-          type,
-          category: selectedOption.value,
-          comment,
-          amount,
-        };
-        addTransaction({ transaction });
-      })
-      .catch(errors => {
-        setValidationError({ field: errors[0].field, message: errors[0].message });
-      });
-  };
+    const transaction = {
+      date,
+      type,
+      category,
+      comment,
+      amount,
+    };
 
-  const { message, field } = validationError;
+    addTransaction({ transaction });
+  };
 
   return (
     <div className={s.modal}>
       <p className={s.title}>Add transaction</p>
       <form className={s.form} onSubmit={handleSubmit}>
-        {field && <p className={s[`${field}Error`]}>{message}</p>}
         <div className={s.formCheckbox}>
           <span
             className={s.formCheckbox__label}
@@ -190,21 +181,24 @@ export default function ContactForm() {
             placeholder='0.00'
             required
           />
-          <input
+          <Datetime
             className={s.formDate}
-            name='date'
-            value={date}
-            onChange={handleInputChange}
-            required
+            onChange={date => setDate(date._d)}
+            isValidDate={function valid(current) {
+              return current.isAfter(moment().subtract(1, 'day'));
+            }}
+            inputProps={{ style: { border: 'none', outline: 'none' } }}
+            dateFormat={'DD-MM-YYYY'}
+            initialValue={new Date()}
+            closeOnSelect={true}
           />
+          <svg width='24' height='24' className={s.inputIcon}>
+            <use href={`${Icons}#icon-calendar`} />
+          </svg>
         </div>
-        <svg width='24' height='24' className={s.inputIcon}>
-          <use href={`${Icons}#icon-calendar`} />
-        </svg>
 
         <textarea
           className={s.formComent}
-          type='textarea'
           name='comment'
           value={comment}
           onChange={handleInputChange}
