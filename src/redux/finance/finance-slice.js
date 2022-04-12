@@ -20,7 +20,7 @@ const financeSlice = createSlice({
     setMoreTransactions: (state, action) => {
       state.transactions = [...state.transactions, ...action.payload];
     },
-    resetTransactions: (state, action) => {
+    resetTransactions: (state, _) => {
       state.transactions = [];
     },
     setStatistics: (state, action) => {
@@ -29,7 +29,7 @@ const financeSlice = createSlice({
       state.stats.totalIncome = action.payload.totalIncome;
       state.stats.totalExpense = action.payload.totalExpenses;
     },
-    resetStatistics: (state, action) => {
+    resetStatistics: (state, _) => {
       state.stats.income = [];
       state.stats.expense = [];
       state.stats.totalIncome = 0;

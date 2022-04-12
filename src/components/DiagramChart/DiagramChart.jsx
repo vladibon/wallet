@@ -1,16 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 import s from './DiagramChart.module.css';
-import { selectBalance } from 'redux/selectors';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function DiagramChart({ data, colors }) {
-  const balance = useSelector(selectBalance);
-
+export default function DiagramChart({ data, colors, total }) {
   const user = {
     labels: data.map(el => el.category),
     datasets: [
@@ -49,7 +46,7 @@ export default function DiagramChart({ data, colors }) {
       <div className={s.doughnut}>
         {data?.length ? (
           <>
-            <p className={s.balance__sum}>&#8372; {balance.toFixed(2)}</p>
+            <p className={s.balance__sum}>&#8372; {total}</p>
             <div className={s.canvas}>
               <Doughnut data={user} options={options} />
             </div>

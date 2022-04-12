@@ -63,6 +63,14 @@
   transform: scaleX(1);
 }
 
+.spentActive {
+  composes: spent;
+}
+
+.spentActive .spentText::after {
+  transform: scaleX(1);
+}
+
 .spentMinus {
   font-size: 16px;
   font-weight: 700;
@@ -85,10 +93,6 @@
     align-items: start;
     justify-content: space-between;
     padding-top: 32px;
-  }
-
-  .conteinerTable {
-    margin-left: 32px;
   }
 
   .selectwr {

@@ -41,7 +41,7 @@ function Modal({ children }) {
           onClick={onModalClose}
           aria-label='close Modal Window'
         >
-          <svg className={s.icon} width='32' height='32'>
+          <svg className={s.icon} width='24' height='24'>
             <use href={`${Icons}#icon-close-cross`}></use>
           </svg>
         </button>

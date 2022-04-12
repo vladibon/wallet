@@ -54,12 +54,13 @@ export default function ContactForm() {
       dispatch(setBalance({ balance: data.balance }));
       dispatch(setLatestTransactions(data.transactions));
       dispatch(closeModalWindow());
+      toast.success('Transaction added');
       reset();
     } else if (error) {
       try {
-        if (error.data?.message === 'Balance cannot be negative')
-          toast.error("sorry, you don't have enough money for this expense");
-        else toast.error(error.data?.message || 'your request failed');
+        if (error.data.message === 'Balance cannot be negative')
+          toast.error("Sorry, you don't have enough money for this expense");
+        else toast.error(error.data.message);
       } catch {
         dispatch(setError(500));
         dispatch(closeModalWindow());
@@ -90,6 +91,7 @@ export default function ContactForm() {
     switch (name) {
       case 'type':
         setType(checked);
+        setSelectedOption(null);
         break;
 
       case 'amount':
@@ -202,6 +204,7 @@ export default function ContactForm() {
 
         <textarea
           className={s.formComent}
+          type='textarea'
           name='comment'
           value={comment}
           onChange={handleInputChange}
