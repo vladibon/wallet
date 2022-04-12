@@ -112,6 +112,8 @@ export default function RegisterForm() {
             name='email'
             onChange={handleChange}
             value={email}
+            autoFocus
+            autoComplete='false'
           ></input>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
