@@ -1,0 +1,31 @@
+.btn__scroll {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 100;
+  padding: 0;
+
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  
+  background-color: var(--btn-tetriary-color);
+  border: none;
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  transition: background-color var(--animation), opacity var(--animation);
+}
+
+.btn__scroll:hover {
+    background-color: var(--btn-primary-bg-color);
+}
+
+.btn__icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--text-white-color);
+  background-color: inherit;
+}
