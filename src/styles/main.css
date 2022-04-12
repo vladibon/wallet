@@ -45,7 +45,7 @@ a {
     content: '';
     position: absolute;
     display: block;
-    top: 1px;
+    top: 0;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
