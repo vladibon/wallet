@@ -13,7 +13,7 @@ import { useLogInUserMutation, setUser, setError } from 'redux/index';
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:6|max:12',
+  password: 'required|min:6|max:16',
 };
 const messages = {
   required: field => `${field} is required`,
