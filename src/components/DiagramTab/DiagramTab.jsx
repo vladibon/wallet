@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
-import { selectStatistics } from 'redux/selectors';
+import { selectStatistics, selectTransactions } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
@@ -44,6 +44,16 @@ export default function DiagramTab() {
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [showExpense, setShowExpence] = useState(true);
+  const transactions = useSelector(selectTransactions);
+  let m = [];
+  let y = [];
+  transactions.forEach(({ date }) => {
+    m.push(Number(date.slice(3, 5)) - 1);
+    y.push(Number(date.slice(6, 10)));
+  });
+  const monthNew = Array.from(new Set(m));
+
+  const yearNew = Array.from(new Set(y));
 
   const { data, error } = useGetStatisticsQuery({ month, year });
   const stats = useSelector(selectStatistics);
@@ -67,7 +77,10 @@ export default function DiagramTab() {
     else dispatch(setStatistics(data));
   }, [data, error, dispatch]);
 
-  const monthsSelection = months.map((el, idx) => ({ value: idx, label: el }));
+  const monthsSelection = months
+    .map((el, idx) => ({ value: idx, label: el }))
+    .filter(({ value }) => monthNew.includes(value));
+
   const monthStyle = {
     option: (provided, state) => ({
       ...provided,
@@ -116,7 +129,7 @@ export default function DiagramTab() {
     />
   );
 
-  const yearSelection = [{ value: 2022, label: '2022' }];
+  const yearSelection = yearNew.map(year => ({ value: year, label: year }));
 
   const handleYearChange = selectedYear => {
     setSelectedYear(selectedYear);
