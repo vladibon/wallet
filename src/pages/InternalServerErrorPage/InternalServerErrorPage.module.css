@@ -58,6 +58,11 @@ body {
 @media screen and (max-width: 767px) {
   .container {
     background-color: var(--text-white-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .img {
@@ -106,7 +111,6 @@ body {
     margin-top: 148px;
     padding: 40px 65px 60px;
     width: 540px;
-    height: 100%;
     border-radius: 20px;
   }
 
