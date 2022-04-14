@@ -30,10 +30,7 @@ body {
 }
 
 .img {
-  display: block;
-  margin: auto;
   width: 100%;
-  height: 100%;
 }
 
 .text {
@@ -83,23 +80,15 @@ body {
   .heroContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .loginImage {
-    position: absolute;
-    margin-right: 265px;
     width: 350px;
-    height: 350px;
-    background-image: url(./internalServerError.png);
-    background-position: top -35px right 0px;
-    background-repeat: no-repeat;
-    background-size: contain;
   }
 
   .title {
     display: block;
-    margin-top: 107px;
-    margin-left: 280px;
     font-family: var(--title-font);
     font-weight: 400;
     font-size: 30px;
@@ -108,14 +97,10 @@ body {
 
   .desktopContainer {
     background-color: var(--secondary-bg-color);
-    margin-top: 148px;
+    margin-top: 50px;
     padding: 40px 65px 60px;
     width: 540px;
     border-radius: 20px;
-  }
-
-  .img {
-    display: none;
   }
 
   .text {
@@ -148,8 +133,8 @@ body {
   }
 
   .heroContainer {
-    max-width: 100%;
-    padding-top: 150px;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .spanContainer {
@@ -158,8 +143,6 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 77px;
-    margin-top: 463px;
   }
 
   .title {
@@ -168,13 +151,7 @@ body {
   }
 
   .loginImage {
-    margin: 0;
     width: 500px;
-    height: 500px;
-    background-image: url(./internalServerError.png);
-    background-position: top -50px right 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 
   .text {
