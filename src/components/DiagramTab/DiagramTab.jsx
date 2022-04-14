@@ -97,7 +97,7 @@ export default function DiagramTab() {
   const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
 
   useEffect(() => {
-    if (error?.status >= 500) dispatch(setError(500));
+    if (error?.status >= 500 || error?.status === 'FETCH_ERROR') dispatch(setError(500));
 
     if (!data) return;
     else dispatch(setStatistics(data));

@@ -17,6 +17,7 @@ import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/
 
 import Spinner from 'components/Spinner';
 import Loader from 'components/Loader';
+import InternalServerErrorPage from 'pages/InternalServerErrorPage';
 
 const DashboardPage = lazy(() =>
   import('pages/DashboardPage' /* webpackChunkName: "dashboard-page" */),
@@ -27,9 +28,6 @@ const RegisterPage = lazy(() =>
 );
 const NotFoundPage = lazy(() =>
   import('pages/NotFoundPage' /* webpackChunkName: "notfound-page" */),
-);
-const InternalServerErrorPage = lazy(() =>
-  import('pages/InternalServerErrorPage' /* webpackChunkName: "server-error-page" */),
 );
 
 function App() {

@@ -21,7 +21,7 @@ const authAPI = emptySplitApi.injectEndpoints({
     logOutUser: builder.mutation({
       query: () => ({
         url: `/auth/logout`,
-        providesTags: ['Users'],
+        invalidatesTags: ['Users', 'Finance'],
       }),
     }),
     getCurrenthUser: builder.query({
