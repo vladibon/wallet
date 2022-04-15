@@ -9,7 +9,6 @@ function Balance() {
     <div className={s.balance}>
       <h3 className={s.balance__title}>YOUR BALANCE</h3>
       <p className={s.balance__sum}>
-        {' '}
         &#8372; {Intl.NumberFormat('ru-Ru', { minimumFractionDigits: 2 }).format(balance)}
       </p>
     </div>
