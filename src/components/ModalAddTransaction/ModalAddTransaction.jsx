@@ -5,7 +5,6 @@ import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 
 import Datetime from 'react-datetime';
-import moment from 'moment';
 import 'react-datetime/css/react-datetime.css';
 
 import Icons from 'images/sprite.svg';
@@ -197,9 +196,6 @@ export default function ContactForm() {
           <Datetime
             className={s.formDate}
             onChange={date => setDate(date._d)}
-            isValidDate={function valid(current) {
-              return current.isAfter(moment().subtract(1, 'day'));
-            }}
             inputProps={{ style: { border: 'none', outline: 'none' } }}
             dateFormat={'DD-MM-YYYY'}
             initialValue={new Date()}
