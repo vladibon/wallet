@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetTransactionsQuery, setLatestTransactions, setMoreTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
+import { formatDate } from './formatDate';
 
 import {
   Accordion,
@@ -88,7 +89,9 @@ function HomeTabMobile() {
                     >
                       <AccordionItemButton className={`${s.homeTabButton} ${s.accordion__button}`}>
                         <div className={s.flex}>
-                          <span className={s.homeTabItems__colorTitle}>{transaction.date}</span>
+                          <span className={s.homeTabItems__colorTitle}>
+                            {formatDate(transaction.date)}
+                          </span>
                           <span
                             className={
                               transaction.type
@@ -116,7 +119,7 @@ function HomeTabMobile() {
                           <span
                             className={`${s.homeTabItems__listMeaning} ${s.homeTabItems__listMeaningStart}`}
                           >
-                            {transaction.date}
+                            {formatDate(transaction.date)}
                           </span>
                         </li>
                         <li className={s.homeTabItems__listCell}>

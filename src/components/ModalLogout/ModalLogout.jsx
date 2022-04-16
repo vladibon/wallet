@@ -8,6 +8,7 @@ import {
   resetStatistics,
   resetError,
 } from 'redux/index';
+import { emptySplitApi } from 'redux/mainAPISlice';
 import { useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
@@ -18,6 +19,8 @@ function ModalLogout() {
 
   const onLogout = e => {
     logOutUser();
+
+    dispatch(emptySplitApi.util.resetApiState());
     dispatch(closeModalWindow());
     dispatch(resetUser());
     dispatch(resetTransactions());

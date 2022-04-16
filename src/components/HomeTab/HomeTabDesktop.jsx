@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetTransactionsQuery, setLatestTransactions, setMoreTransactions } from 'redux/index';
 import { selectTransactions } from 'redux/selectors';
+import { formatDate } from './formatDate';
 
 function HomeTabDesktop() {
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ function HomeTabDesktop() {
               <tbody>
                 {transactions.map(transaction => (
                   <tr className={s.tbody__tr} key={transaction._id}>
-                    <td className={s.tableCell}>{transaction.date}</td>
+                    <td className={s.tableCell}>{formatDate(transaction.date)}</td>
                     <td className={s.tableCell} align='center'>
                       {transaction.type ? '+' : '-'}
                     </td>

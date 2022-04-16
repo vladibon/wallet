@@ -38,97 +38,87 @@ const months = [
   'December',
 ];
 
+const monthStyle = {
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? '#ffffff' : '#000000',
+    padding: 20,
+  }),
+
+  control: styles => ({
+    ...styles,
+    ...generalStyle,
+    fontSize: '16px',
+    fontFamily: 'Poppins',
+    border: '1px solid black',
+    fontWeight: 500,
+    lineHeight: 1.3,
+    marginBottom: 20,
+    borderRadius: 30,
+    cursor: 'pointer',
+    padding: '12px 20px',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    maxWidth: 280,
+  }),
+  menu: styles => ({
+    ...styles,
+    ...menuStyle,
+    top: 60,
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+    return { ...provided, opacity, transition };
+  },
+};
+
 export default function DiagramTab() {
   const dispatch = useDispatch();
   const date = new Date();
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
+  const [month, setMonth] = useState({
+    value: date.getMonth(),
+    label: months[date.getMonth()],
+  });
+  const [year, setYear] = useState({
+    value: date.getFullYear(),
+    label: date.getFullYear().toString(),
+  });
   const [showExpense, setShowExpence] = useState(true);
 
-  const { data, error } = useGetStatisticsQuery({ month, year });
+  const { data, error } = useGetStatisticsQuery({ month: month.value, year: year.value });
   const stats = useSelector(selectStatistics);
+
+  const monthsSelection = months
+    .map((el, idx) => ({ value: idx, label: el }))
+    .splice(0, date.getMonth() + 1);
+  const yearSelection = [{ value: 2022, label: '2022' }];
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
   const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
 
-  const [selectedMonth, setSelectedMonth] = useState({
-    value: date.getMonth(),
-    label: months[date.getMonth()],
-  });
-  const [selectedYear, setSelectedYear] = useState({
-    value: date.getFullYear(),
-    label: date.getFullYear().toString(),
-  });
-
   useEffect(() => {
-    if (error?.status >= 500) dispatch(setError(500));
+    if (error?.status >= 500 || error?.status === 'FETCH_ERROR') dispatch(setError(500));
 
     if (!data) return;
     else dispatch(setStatistics(data));
   }, [data, error, dispatch]);
 
-  const monthsSelection = months.map((el, idx) => ({ value: idx, label: el }));
-  const monthStyle = {
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? '#ffffff' : '#000000',
-      padding: 20,
-    }),
-
-    control: styles => ({
-      ...styles,
-      ...generalStyle,
-      fontSize: '16px',
-      fontFamily: 'Poppins',
-      border: '1px solid black',
-      fontWeight: 500,
-      lineHeight: 1.3,
-      marginBottom: 20,
-      borderRadius: 30,
-      cursor: 'pointer',
-      padding: '12px 20px',
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-      maxWidth: 280,
-    }),
-    menu: styles => ({
-      ...styles,
-      ...menuStyle,
-      top: 60,
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-      return { ...provided, opacity, transition };
-    },
-  };
-  const handleMonthChange = selectedMonth => {
-    setSelectedMonth(selectedMonth);
-    setMonth(selectedMonth.value);
-  };
-
   const SelectMonth = () => (
     <Select
       placeholder='Month'
       styles={monthStyle}
-      defaultValue={selectedMonth}
-      onChange={handleMonthChange}
+      defaultValue={month}
+      onChange={value => setMonth(value)}
       options={monthsSelection}
     />
   );
-
-  const yearSelection = [{ value: 2022, label: '2022' }];
-
-  const handleYearChange = selectedYear => {
-    setSelectedYear(selectedYear);
-    setYear(selectedYear.value);
-  };
 
   const SelectYear = () => (
     <Select
       placeholder='Year'
       styles={monthStyle}
-      defaultValue={selectedYear}
-      onChange={handleYearChange}
+      defaultValue={year}
+      onChange={value => setYear(value)}
       options={yearSelection}
     />
   );
