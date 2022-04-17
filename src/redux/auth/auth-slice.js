@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: { name: null, email: null, balance: 0 },
+  user: { name: null, email: null, balance: 0, categories: { income: [], expense: [] } },
   token: null,
   isLoggedIn: false,
 };
@@ -16,15 +16,19 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     resetUser: (state, _) => {
-      state.user = { name: null, email: null, balance: 0 };
+      state.user = { name: null, email: null, balance: 0, categories: { income: [], expense: [] } };
       state.token = null;
       state.isLoggedIn = false;
     },
     setBalance: (state, action) => {
       state.user.balance = action.payload.balance;
     },
+    setUserCategories: (state, action) => {
+      state.user.categories.income = [...action.payload.income];
+      state.user.categories.expense = [...action.payload.expense];
+    },
   },
 });
 
-export const { setUser, resetUser, setBalance } = authSlice.actions;
+export const { setUser, resetUser, setBalance, setUserCategories } = authSlice.actions;
 export const authReducer = authSlice.reducer;

@@ -3,15 +3,14 @@ import {
   useLogInUserMutation,
   useLogOutUserMutation,
   useGetCurrenthUserQuery,
+  useAddCategoryMutation,
 } from './auth/authAPI';
-import { useGetCategoriesQuery } from './categories/categoriesAPI';
 import {
   useGetTransactionsQuery,
   useAddTransactionMutation,
   useGetStatisticsQuery,
 } from './finance/financeAPI';
-import { setUser, resetUser, setBalance } from './auth/auth-slice';
-import { setCategories } from './categories/categories-slice';
+import { setUser, resetUser, setBalance, setUserCategories } from './auth/auth-slice';
 import {
   setLatestTransactions,
   setMoreTransactions,
@@ -31,8 +30,8 @@ export {
   setUser,
   resetUser,
   setBalance,
+  setUserCategories,
   openModalLogout,
-  setCategories,
   setLatestTransactions,
   setMoreTransactions,
   resetTransactions,
@@ -48,8 +47,8 @@ export {
   useLogInUserMutation,
   useLogOutUserMutation,
   useGetCurrenthUserQuery,
-  useGetCategoriesQuery,
   useGetTransactionsQuery,
   useAddTransactionMutation,
   useGetStatisticsQuery,
+  useAddCategoryMutation,
 };
