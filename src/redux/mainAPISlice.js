@@ -4,6 +4,7 @@ export const emptySplitApi = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'https://wallet-proj.herokuapp.com/api',
     baseUrl: 'https://wallet-proj.osc-fr1.scalingo.io/api',
+    // baseUrl: 'http://localhost:4000/api',
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.token;

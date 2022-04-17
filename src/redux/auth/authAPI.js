@@ -30,6 +30,14 @@ const authAPI = emptySplitApi.injectEndpoints({
         providesTags: ['Users'],
       }),
     }),
+    addCategory: builder.mutation({
+      query: body => ({
+        url: `/users/category`,
+        method: 'POST',
+        invalidatesTags: ['Users', 'Finance'],
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -39,4 +47,5 @@ export const {
   useLogInUserMutation,
   useLogOutUserMutation,
   useGetCurrenthUserQuery,
+  useAddCategoryMutation,
 } = authAPI;

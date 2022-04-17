@@ -2,7 +2,7 @@ export const generalStyle = {
   boxShadow: 'none',
   width: '100%',
   marginBottom: '20px',
-  paddingLeft: '20px',
+  paddingLeft: '10px',
   fontSize: '18px',
   outline: 'none',
   borderTop: 'none',

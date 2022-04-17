@@ -12,7 +12,7 @@ export const selectUserName = state => state.auth.user.name;
 
 export const selectBalance = state => state.auth.user.balance;
 
-export const selectCategories = state => state.categories;
+export const selectCategories = state => state.auth.user.categories;
 
 export const selectTransactions = state => state.finance.transactions;
 
