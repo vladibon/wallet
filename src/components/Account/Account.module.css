@@ -1,0 +1,75 @@
+.accountForm {
+  width: 280px;
+  margin: 55px auto 0;
+  padding: 32px 0;
+  background: white;
+}
+
+.accountTitle {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.accountImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subscriptionIcon {
+}
+
+.subscriptionTite {
+  margin-bottom: 80px;
+  text-align: center;
+  color: var(--subscription-green-color);
+}
+
+.accountLabel {
+  position: relative;
+  width: 280px;
+  color: var(--grey-color);
+  transition: color var(--animation);
+}
+
+.accountLabel:hover,
+.accountLabel:focus-within {
+  color: var(--main-currency-bg-color);
+}
+
+.accountInput {
+  width: 280px;
+  height: 34px;
+  margin-bottom: 45px;
+  padding-left: 10px;
+  font-size: 18px;
+  line-height: 27px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px, solid;
+  border-color: #e7eaf2;
+}
+
+::placeholder {
+  color: #bdbdbd;
+}
+
+.accountPlaceholder {
+  position: absolute;
+  left: 10px;
+  bottom: 32px;
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.accountPlaceholder__title {
+  margin-left: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+}
