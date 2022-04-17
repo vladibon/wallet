@@ -10,6 +10,7 @@
     "deploy": "netlify deploy -p"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.4.4",
     "@pnotify/core": "^5.2.0",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.26.1",

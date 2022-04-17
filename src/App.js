@@ -1,8 +1,11 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { Player } from '@lottiefiles/react-lottie-player';
+import animationData from 'lotties/check-okey-done.json';
 
 import { FetchCurrentUser } from 'services/FetchCurrentUser';
 import { SaveCategories } from 'services/SaveCategories';
@@ -33,12 +36,37 @@ const NotFoundPage = lazy(() =>
 function App() {
   SaveCategories();
   const isFetching = FetchCurrentUser();
+  const [lottieRun, setLottieRun] = useState(false);
 
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
 
+  useEffect(() => {
+    if (lottieRun) {
+      setTimeout(() => setLottieRun(false), 3000);
+    }
+  }, [lottieRun]);
+
   return (
     <>
+      {lottieRun && (
+        <Player
+          id='addTransaction'
+          autoplay
+          loop='false'
+          src={animationData}
+          animationSpeed={1.5}
+          style={{
+            height: '120px',
+            width: '120px',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      )}
+
       {!isFetching ? (
         <>
           <Suspense
@@ -80,7 +108,9 @@ function App() {
           </Suspense>
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
-          {showModalAddTransaction && <Modal children={<ModalAddTransaction />} />}
+          {showModalAddTransaction && (
+            <Modal children={<ModalAddTransaction setLottieRun={setLottieRun} />} />
+          )}
           <ToastContainer autoClose={3000} theme='colored' limit={1} />
         </>
       ) : (
