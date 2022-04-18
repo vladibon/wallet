@@ -1,8 +1,20 @@
 .accountForm {
+  position: relative;
   width: 280px;
-  margin: 55px auto 0;
-  padding: 32px 0;
-  background: white;
+  margin: 15px auto 0;
+  padding: 30px 0;
+}
+
+.accountForm__bgColor {
+  position: absolute;
+  z-index: -1;
+  width: 320px;
+  height: 775px;
+  top: 0;
+  left: -20px;
+
+  border-radius: 30px;
+  background: var(--secondary-bg-color);
 }
 
 .accountTitle {
@@ -22,12 +34,12 @@
 .inputFile__button {
   width: 200px;
 
-  background: #4a56e2;
+  background: var(--btn-secondary-color);
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  color: #fff;
+  color: var(--text-white-color);
 
   display: block;
   cursor: pointer;
@@ -48,10 +60,11 @@
 
 .inputFile__iconWrapper {
   padding: 0 10px;
-  border-right: 1px solid #fff;
+  border-right: var(--model-border);
 }
 
 .inputFile__icon {
+  vertical-align: middle;
   height: 20px;
   width: 20px;
 }
@@ -61,10 +74,17 @@
   text-align: center;
 }
 
-.subscriptionTite {
+.subscription__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 70px;
-  text-align: center;
+
   color: var(--subscription-green-color);
+}
+
+.subscriptionTitle {
+  margin-left: 10px;
 }
 
 .accountLabel {
@@ -89,29 +109,55 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 0.5px, solid;
-  border-color: #e7eaf2;
+  border-bottom: var(--input-border);
+}
+
+.accountInput__marginButtom {
+  margin-bottom: 60px;
 }
 
 ::placeholder {
-  color: #bdbdbd;
+  color: var(--main-grey-color);
 }
 
 .accountPlaceholder {
+  width: 270px;
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   left: 10px;
-  bottom: 32px;
+  bottom: 30px;
   fill: currentColor;
   cursor: pointer;
+}
+
+.accountPlaceholder__iconWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .accountPlaceholder__title {
   margin-left: 10px;
 }
 
-.wrapper {
+.accountBtn__update {
+  width: 100px;
+  height: 25px;
+  border: none;
+  color: var(--text-white-color);
+  line-height: 1.25;
+  background: var(--btn-secondary-color);
+}
+
+.btn__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 120px;
+}
+
+@media (min-width: 768px) {
+  .accountForm__wrapper {
+    display: flex;
+  }
 }
