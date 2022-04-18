@@ -1,6 +1,9 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import deLocale from 'date-fns/locale/de';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -107,7 +110,9 @@ function App() {
 
           {showModalLogout && <Modal children={<ModalLogout />} />}
           {showModalAddTransaction && (
-            <Modal children={<ModalAddTransaction setLottieRun={setLottieRun} />} />
+            <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+              <Modal children={<ModalAddTransaction setLottieRun={setLottieRun} />} />
+            </LocalizationProvider>
           )}
           <ToastContainer autoClose={3000} theme='colored' limit={1} />
         </>

@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react';
-import CreatableSelect from 'react-select/creatable';
-
 import { useDispatch, useSelector } from 'react-redux';
+import CreatableSelect from 'react-select/creatable';
+import { MobileDateTimePicker } from '@mui/x-date-pickers';
+import TextField from '@mui/material/TextField';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
-
-import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
-
-import Icons from 'images/sprite.svg';
-import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
 import {
   useAddTransactionMutation,
@@ -20,10 +15,10 @@ import {
   setLatestTransactions,
   setError,
 } from 'redux/index';
-
-import { setCurrentDate } from './setCurrentDate';
 import Button from 'components/Button';
+import Icons from 'images/sprite.svg';
 import { selectionStyles } from './index.js';
+import s from './ModalAddTransaction.module.css';
 
 const rules = {
   category: 'required',
@@ -43,7 +38,6 @@ export default function ModalAddTransaction({ setLottieRun }) {
   const [type, setType] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [amount, setAmount] = useState('');
-  const currentDate = setCurrentDate();
   const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
 
@@ -124,11 +118,6 @@ export default function ModalAddTransaction({ setLottieRun }) {
 
       case 'amount':
         setAmount(value);
-        break;
-
-      case 'date':
-        if (value !== currentDate)
-          toast.error('sorry, only current date is available at the moment');
         break;
 
       case 'comment':
@@ -218,18 +207,19 @@ export default function ModalAddTransaction({ setLottieRun }) {
             placeholder='0.00'
             required
           />
-          <Datetime
-            className={s.formDate}
-            onChange={date => setDate(date._d)}
-            inputProps={{ style: { border: 'none', outline: 'none' } }}
-            dateFormat={'DD-MM-YYYY'}
-            initialValue={new Date()}
-            closeOnSelect={true}
+
+          <MobileDateTimePicker
+            value={date}
+            onChange={setDate}
+            ampm={false}
+            renderInput={props => (
+              <TextField className={s.formDate} variant='standard' {...props} />
+            )}
           />
+          <svg width='24' height='24' className={s.inputIcon}>
+            <use href={`${Icons}#icon-calendar`} />
+          </svg>
         </div>
-        <svg width='24' height='24' className={s.inputIcon}>
-          <use href={`${Icons}#icon-calendar`} />
-        </svg>
 
         <textarea
           className={s.formComent}

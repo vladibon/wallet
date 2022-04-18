@@ -10,6 +10,7 @@
   --balance-grey-color: #a6a6a6;
   --earnings-green-color: #24cca7;
   --expenditure-red-color: #ff6596;
+  --subscription-green-color: #24cca7;
 
   /* Modal Text Colors */
   --main-grey-color: #bdbdbd;
@@ -58,6 +59,7 @@
   --protection-line-middle: 3px solid rgb(234, 199, 124);
   --protection-line-strong: 3px solid #24cca7;
   --hometab-border-hr-section: 1px solid #e7e5f2;
+  --input-border: 0.5px solid #e7eaf2;
 
   /* Shadows */
   --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);

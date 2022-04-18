@@ -40,6 +40,12 @@
   border: var(--btn-secondary-border);
 }
 
+.btn__red {
+  composes: btn;
+  border: none;
+  background: var(--btn-tetriary-color);
+}
+
 .btn__secondary-logout {
   composes: btn__secondary;
   width: 100px;
