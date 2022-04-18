@@ -8,7 +8,6 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import animationData from 'lotties/check-okey-done.json';
 
 import { FetchCurrentUser } from 'services/FetchCurrentUser';
-import { SaveCategories } from 'services/SaveCategories';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
@@ -34,7 +33,6 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
-  SaveCategories();
   const isFetching = FetchCurrentUser();
   const [lottieRun, setLottieRun] = useState(false);
 

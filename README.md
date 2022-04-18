@@ -46,6 +46,7 @@ requests. Render page markup dynamically after fetching client's private data fr
 - VS Code;
 - Figma;
 - Trello;
+- Postman;
 - Git / github;
 - Netlify;
 - Heroku;
@@ -55,13 +56,13 @@ requests. Render page markup dynamically after fetching client's private data fr
 Live single page application connected to Mongo DB database by custom
 [web server](https://github.com/vladibon/wallet-api).
 
-To use our spp first thing you need is to create an account. After successfull registration you can
+To use our app first thing you need is to create an account. After successfull registration you can
 easily log in and out using your credentials. Your session is totally secure thanks to the unique
-session token created for you on server, which is valid for the next 24 hours. If you haven't
-loggged out - session can be restored and you don't need to sign in again within this time.
+session token created for you on server, which is valid for the next 24 hours. If you haven't logged
+out - session can be restored and you don't need to sign in again within this time.
 
 In the app you can add various transactions to your personal history and track it in the future.
-Also you can get statistical data about your past transactions - easy way to control past expences
+Also you can get statistical data about your past transactions - easy way to control past expenses
 and plan future ones.
 
 ## Developers team
