@@ -6,6 +6,7 @@ const initialState = {
   balance: 0,
   subscription: '',
   categories: { income: [], expense: [] },
+  avatarURL: '',
 };
 
 const userSlice = createSlice({
@@ -18,6 +19,7 @@ const userSlice = createSlice({
       state.balance = action.payload.balance;
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
+      state.avatarURL = action.payload.avatarURL;
     },
     resetUser: (state, _) => {
       state.name = null;
@@ -25,6 +27,7 @@ const userSlice = createSlice({
       state.balance = 0;
       state.subscription = '';
       state.categories = { income: [], expense: [] };
+      state.avatarURL = '';
     },
     setBalance: (state, action) => {
       state.balance = action.payload.balance;
@@ -36,9 +39,18 @@ const userSlice = createSlice({
       state.categories.income = [...action.payload.income];
       state.categories.expense = [...action.payload.expense];
     },
+    setAvatarURL: (state, action) => {
+      state.balance = action.payload.avatarURL;
+    },
   },
 });
 
-export const { setUser, resetUser, setBalance, updateSubscription, setUserCategories } =
-  userSlice.actions;
+export const {
+  setUser,
+  resetUser,
+  setBalance,
+  updateSubscription,
+  setUserCategories,
+  setAvatarURL,
+} = userSlice.actions;
 export const userReducer = userSlice.reducer;

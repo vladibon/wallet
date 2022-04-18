@@ -16,6 +16,7 @@ import {
   setBalance,
   updateSubscription,
   setUserCategories,
+  setAvatarURL,
 } from './user/user-slice';
 import {
   setLatestTransactions,
@@ -40,6 +41,7 @@ export {
   setBalance,
   updateSubscription,
   setUserCategories,
+  setAvatarURL,
   openModalLogout,
   setLatestTransactions,
   setMoreTransactions,

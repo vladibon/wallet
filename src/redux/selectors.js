@@ -16,6 +16,8 @@ export const selectCategories = state => state.user.categories;
 
 export const selectSubscription = state => state.user.subscription;
 
+export const selectAvatarURL = state => state.user.avatarURL;
+
 export const selectTransactions = state => state.finance.transactions;
 
 export const selectStatistics = state => state.finance.stats;

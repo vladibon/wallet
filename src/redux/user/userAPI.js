@@ -24,6 +24,7 @@ const userAPI = emptySplitApi.injectEndpoints({
         body,
       }),
     }),
+    updateAvatar: builder.mutation({}),
   }),
   overrideExisting: false,
 });
