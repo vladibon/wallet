@@ -1,6 +1,6 @@
 import AccountImg from '../../images/account.jpeg';
 import Icons from 'images/sprite.svg';
-import { MdOutlineFileUpload, MdWork, MdStars } from 'react-icons/md';
+import { MdOutlineFileUpload, MdWork } from 'react-icons/md';
 import Button from 'components/Button';
 
 import s from './Account.module.css';
