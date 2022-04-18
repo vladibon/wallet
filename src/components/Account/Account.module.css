@@ -48,6 +48,7 @@
 
 .inputFile {
   opacity: 0;
+  width: 200px;
   visibility: hidden;
   position: absolute;
 }
