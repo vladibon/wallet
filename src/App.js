@@ -65,7 +65,6 @@ function App() {
           }}
         />
       )}
-
       {!isFetching ? (
         <>
           <Suspense

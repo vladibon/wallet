@@ -14,6 +14,8 @@ export const selectBalance = state => state.user.balance;
 
 export const selectCategories = state => state.user.categories;
 
+export const selectSubscription = state => state.user.subscription;
+
 export const selectTransactions = state => state.finance.transactions;
 
 export const selectStatistics = state => state.finance.stats;

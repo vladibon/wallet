@@ -1,12 +1,22 @@
 import { useCreateUserMutation, useLogInUserMutation, useLogOutUserMutation } from './auth/authAPI';
-import { useGetCurrenthUserQuery, useAddCategoryMutation } from './user/userAPI';
+import {
+  useGetCurrenthUserQuery,
+  useAddCategoryMutation,
+  useUpdateSubscriptionMutation,
+} from './user/userAPI';
 import {
   useGetTransactionsQuery,
   useAddTransactionMutation,
   useGetStatisticsQuery,
 } from './finance/financeAPI';
 import { setAuth, resetAuth } from './auth/auth-slice';
-import { setUser, resetUser, setBalance, setUserCategories } from './user/user-slice';
+import {
+  setUser,
+  resetUser,
+  setBalance,
+  updateSubscription,
+  setUserCategories,
+} from './user/user-slice';
 import {
   setLatestTransactions,
   setMoreTransactions,
@@ -28,6 +38,7 @@ export {
   setUser,
   resetUser,
   setBalance,
+  updateSubscription,
   setUserCategories,
   openModalLogout,
   setLatestTransactions,
@@ -49,4 +60,5 @@ export {
   useAddTransactionMutation,
   useGetStatisticsQuery,
   useAddCategoryMutation,
+  useUpdateSubscriptionMutation,
 };

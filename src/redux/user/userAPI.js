@@ -16,8 +16,17 @@ const userAPI = emptySplitApi.injectEndpoints({
         body,
       }),
     }),
+    updateSubscription: builder.mutation({
+      query: body => ({
+        url: `/users/subscription`,
+        method: 'PATCH',
+        invalidatesTags: ['Users'],
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetCurrenthUserQuery, useAddCategoryMutation } = userAPI;
+export const { useGetCurrenthUserQuery, useAddCategoryMutation, useUpdateSubscriptionMutation } =
+  userAPI;
