@@ -6,7 +6,7 @@ import Button from 'components/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useCreateUserMutation, setUser, setError } from 'redux/index';
+import { useCreateUserMutation, setAuth, setUser, setError } from 'redux/index';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 
@@ -69,7 +69,8 @@ export default function RegisterForm() {
 
   useEffect(() => {
     if (data) {
-      dispatch(setUser(data));
+      dispatch(setAuth({ token: data.token }));
+      dispatch(setUser(data.user));
       resetForm();
     } else if (error) {
       if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
@@ -113,7 +114,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             value={email}
             autoFocus
-            autoComplete='false'
+            autoComplete='off'
           ></input>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
@@ -155,6 +156,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             name='name'
             value={name}
+            autoComplete='off'
           ></input>
           <svg width='18' height='18' className={s.inputIcon}>
             <use href={`${Icons}#icon-account_box`} />

@@ -39,10 +39,11 @@ function Account() {
                 // onChange={handleChange}
                 name='name'
                 // value={name}
-                autoFocus
-                autoComplete='false'
+                autoComplete='off'
               ></input>
-              <button className={s.accountBtn__update}>update</button>
+              <button className={s.accountBtn__update} type='button'>
+                update
+              </button>
               <div className={s.accountPlaceholder}>
                 <div className={s.accountPlaceholder__iconWrapper}>
                   <svg width='21' height='16'>
@@ -62,10 +63,11 @@ function Account() {
                 // onChange={handleChange}
                 name='email'
                 // value={email}
-                autoFocus
-                autoComplete='false'
+                autoComplete='off'
               ></input>
-              <button className={s.accountBtn__update}>update</button>
+              <button className={s.accountBtn__update} type='button'>
+                update
+              </button>
               <div className={s.accountPlaceholder}>
                 <div className={s.accountPlaceholder__iconWrapper}>
                   <svg width='21' height='16'>

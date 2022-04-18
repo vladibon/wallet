@@ -6,13 +6,17 @@ export const selectError = state => state.global.errorStatus;
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
-export const selectUser = state => state.auth.user;
+export const selectUser = state => state.user;
 
-export const selectUserName = state => state.auth.user.name;
+export const selectUserName = state => state.user.name;
 
-export const selectBalance = state => state.auth.user.balance;
+export const selectBalance = state => state.user.balance;
 
-export const selectCategories = state => state.auth.user.categories;
+export const selectCategories = state => state.user.categories;
+
+export const selectSubscription = state => state.user.subscription;
+
+export const selectAvatarURL = state => state.user.avatarURL;
 
 export const selectTransactions = state => state.finance.transactions;
 
