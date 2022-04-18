@@ -87,7 +87,6 @@ export default function LoginForm() {
             name='email'
             value={email}
             autoFocus
-            autoComplete='false'
           ></input>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />

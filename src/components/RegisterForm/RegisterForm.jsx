@@ -113,7 +113,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             value={email}
             autoFocus
-            autoComplete='false'
+            autoComplete='off'
           ></input>
           <svg width='21' height='16' className={s.inputIcon}>
             <use href={`${Icons}#icon-email`} />
@@ -155,6 +155,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             name='name'
             value={name}
+            autoComplete='off'
           ></input>
           <svg width='18' height='18' className={s.inputIcon}>
             <use href={`${Icons}#icon-account_box`} />

@@ -40,9 +40,10 @@ function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
 
   useEffect(() => {
-    if (lottieRun) {
-      setTimeout(() => setLottieRun(false), 3000);
-    }
+    if (!lottieRun) return;
+    const animation = setTimeout(() => setLottieRun(false), 3000);
+
+    return () => clearTimeout(animation);
   }, [lottieRun]);
 
   return (
