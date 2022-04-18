@@ -128,6 +128,12 @@
   transition: border-color var(--animation);
 }
 
+.formDate input {
+  padding-left: 20px;
+  font-family: var(--main-font);
+  font-size: 18px;
+}
+
 .formCategories:hover,
 .formInput:hover,
 .formDate:hover,
@@ -191,6 +197,15 @@ select {
   text-transform: capitalize;
 }
 
+.inputConatainer {
+  position: relative;
+}
+
+.inputConatainer > div:nth-child(2) {
+  min-width: 200px;
+  margin-bottom: 40px;
+}
+
 @media (min-width: 768px) {
   .inputConatainer {
     display: flex;
@@ -208,14 +223,9 @@ select {
 
 .inputIcon {
   position: absolute;
-  right: 10px;
-  top: 190px;
-}
-
-@media (min-width: 768px) {
-  .inputIcon {
-    top: 120px;
-  }
+  bottom: 48px;
+  right: 6px;
+  pointer-events: none;
 }
 
 /* validation errors */
