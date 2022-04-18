@@ -221,7 +221,7 @@ export default function ModalAddTransaction({ setLottieRun }) {
           </svg>
         </div>
 
-        <input
+        <textarea
           className={s.formComent}
           type='textarea'
           name='comment'
