@@ -391,49 +391,49 @@ export default function ImgError() {
       <path
         d='M142.2 209.1L149.5 216'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M142.2 220.2L149.5 204.9'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M165.8 195.4L173.1 202.4'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M165.8 206.6L173.1 191.3'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M141.9 237.5L173.4 219.3'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M161.6 226.2V235C161.6 237.7 163.4 238.8 165.5 237.6C167.7 236.3 169.4 233.2 169.4 230.5V221.7'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
       <path
         d='M165.5 223.9V232.4'
         stroke='#00BDDA'
-        stroke-width='2.2565'
+        strokeWidth='2.2565'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />

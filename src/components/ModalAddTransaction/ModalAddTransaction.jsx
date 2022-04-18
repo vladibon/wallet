@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
+
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 
 import Icons from 'images/sprite.svg';
 import s from './ModalAddTransaction.module.css';
 import { selectCategories } from 'redux/selectors';
 import {
   useAddTransactionMutation,
+  useAddCategoryMutation,
   closeModalWindow,
   setBalance,
+  setUserCategories,
   setLatestTransactions,
   setError,
 } from 'redux/index';
@@ -38,16 +44,24 @@ export default function ContactForm() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [amount, setAmount] = useState('');
   const currentDate = setCurrentDate();
-  const [date, setDate] = useState(currentDate);
+  const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
 
   const [addTransaction, { data, error, isLoading }] = useAddTransactionMutation();
+  const [addCategory, { data: categoryData }] = useAddCategoryMutation();
   const options = categories.map(category => ({ value: category, label: category }));
   const [validationError, setValidationError] = useState({ field: null, message: '' });
 
   useEffect(() => {
     type ? setCategories(income) : setCategories(expense);
   }, [expense, income, type]);
+
+  useEffect(() => {
+    if (!categoryData) return;
+
+    dispatch(setUserCategories(categoryData.categories));
+    toast.success(categoryData.message);
+  }, [categoryData, dispatch]);
 
   useEffect(() => {
     if (data) {
@@ -58,9 +72,7 @@ export default function ContactForm() {
       reset();
     } else if (error) {
       try {
-        if (error.data.message === 'Balance cannot be negative')
-          toast.error("Sorry, you don't have enough money for this expense");
-        else toast.error(error.data.message);
+        toast.error(error.data.message);
       } catch {
         dispatch(setError(500));
         dispatch(closeModalWindow());
@@ -68,19 +80,35 @@ export default function ContactForm() {
     }
   }, [data, dispatch, error]);
 
-  const handleChange = selectedOption => {
+  const handleChange = value => {
     setValidationError({ field: null, message: '' });
-    setSelectedOption(selectedOption);
+    setSelectedOption(value);
+  };
+
+  const handleCreate = value => {
+    value.toLowerCase().replace(/\W/g, '');
+
+    if (value.length > 20) {
+      toast.error("Category shouldn't be longer, than 20 symbols");
+      return;
+    }
+    const newOption = { label: value, value };
+    const newCategory = { type, category: value };
+
+    addCategory(newCategory)
+      .then(() => setSelectedOption(newOption))
+      .catch(err => toast.error(err));
   };
 
   const SelectCategory = () => (
-    <Select
+    <CreatableSelect
+      isClearable
       placeholder='Choose category'
       styles={selectionStyles}
-      defaultValue={selectedOption}
       onChange={handleChange}
+      onCreateOption={handleCreate}
       options={options}
-      name='category'
+      defaultValue={selectedOption}
     />
   );
 
@@ -125,7 +153,7 @@ export default function ContactForm() {
     validate({ category: selectedOption?.value, comment }, rules, messages)
       .then(() => {
         const transaction = {
-          date: new Date(),
+          date,
           type,
           category: selectedOption.value,
           comment,
@@ -190,12 +218,13 @@ export default function ContactForm() {
             placeholder='0.00'
             required
           />
-          <input
+          <Datetime
             className={s.formDate}
-            name='date'
-            value={date}
-            onChange={handleInputChange}
-            required
+            onChange={date => setDate(date._d)}
+            inputProps={{ style: { border: 'none', outline: 'none' } }}
+            dateFormat={'DD-MM-YYYY'}
+            initialValue={new Date()}
+            closeOnSelect={true}
           />
         </div>
         <svg width='24' height='24' className={s.inputIcon}>
