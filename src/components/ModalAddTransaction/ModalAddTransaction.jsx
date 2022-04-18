@@ -35,7 +35,7 @@ const messages = {
   'comment.max': 'only 40 characters allowed',
 };
 
-export default function ContactForm() {
+export default function ModalAddTransaction({ setLottieRun }) {
   const dispatch = useDispatch();
   const { income, expense } = useSelector(selectCategories);
   const [categories, setCategories] = useState([]);
@@ -68,8 +68,8 @@ export default function ContactForm() {
       dispatch(setBalance({ balance: data.balance }));
       dispatch(setLatestTransactions(data.transactions));
       dispatch(closeModalWindow());
-      toast.success('Transaction added');
       reset();
+      setLottieRun(true);
     } else if (error) {
       try {
         toast.error(error.data.message);
@@ -78,7 +78,7 @@ export default function ContactForm() {
         dispatch(closeModalWindow());
       }
     }
-  }, [data, dispatch, error]);
+  }, [data, dispatch, error, setLottieRun]);
 
   const handleChange = value => {
     setValidationError({ field: null, message: '' });
