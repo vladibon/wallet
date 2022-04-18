@@ -1,3 +1,7 @@
+/* * {
+  outline: 1px solid tomato;
+} */
+
 .accountForm {
   position: relative;
   width: 280px;
@@ -121,9 +125,6 @@
 }
 
 .accountPlaceholder {
-  width: 270px;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   left: 10px;
   bottom: 30px;
@@ -141,6 +142,10 @@
 }
 
 .accountBtn__update {
+  position: absolute;
+  right: 0;
+  bottom: 27px;
+
   width: 100px;
   height: 25px;
   border: none;
@@ -156,8 +161,67 @@
   height: 120px;
 }
 
+/* -------------------------------------------------------------- */
+
 @media (min-width: 768px) {
   .accountForm__wrapper {
     display: flex;
+    justify-content: space-between;
+  }
+
+  .accountForm {
+    width: 705px;
+    padding: 40px 50px;
+  }
+
+  .accountForm__bgColor {
+    width: 705px;
+    height: 550px;
+    left: 0;
+  }
+
+  .accountTitle {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .subscription__wrapper {
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-bottom: 65px;
+  }
+
+  .accountInput {
+    margin-bottom: 70px;
+  }
+
+  .accountInput__marginBottom {
+    margin-bottom: 60px;
+  }
+
+  .accountPlaceholder {
+    bottom: 40px;
+  }
+
+  .accountBtn__update {
+    position: relative;
+    bottom: 0;
+
+    height: 35px;
+    font-size: 18px;
+    line-height: 1.22;
+  }
+
+  .btn__wrapper {
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------- */
+
+@media (min-width: 1280px) {
+  .accountForm {
+    margin: 50px 0 0 auto;
   }
 }
