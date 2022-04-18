@@ -24,28 +24,8 @@ const authAPI = emptySplitApi.injectEndpoints({
         invalidatesTags: ['Users', 'Finance'],
       }),
     }),
-    getCurrenthUser: builder.query({
-      query: () => ({
-        url: `/users/current`,
-        providesTags: ['Users'],
-      }),
-    }),
-    addCategory: builder.mutation({
-      query: body => ({
-        url: `/users/category`,
-        method: 'POST',
-        invalidatesTags: ['Users', 'Finance'],
-        body,
-      }),
-    }),
   }),
   overrideExisting: false,
 });
 
-export const {
-  useCreateUserMutation,
-  useLogInUserMutation,
-  useLogOutUserMutation,
-  useGetCurrenthUserQuery,
-  useAddCategoryMutation,
-} = authAPI;
+export const { useCreateUserMutation, useLogInUserMutation, useLogOutUserMutation } = authAPI;

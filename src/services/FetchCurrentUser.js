@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { store } from 'redux/store';
 import {
   useGetCurrenthUserQuery,
+  setAuth,
+  resetAuth,
   setUser,
   resetUser,
   resetTransactions,
@@ -23,6 +25,7 @@ export const FetchCurrentUser = () => {
       if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
       else {
         toast.info('please, log in');
+        dispatch(resetAuth());
         dispatch(resetUser());
         dispatch(resetTransactions());
         dispatch(resetStatistics());
@@ -30,7 +33,8 @@ export const FetchCurrentUser = () => {
     }
     if (data) {
       dispatch(resetError());
-      dispatch(setUser({ user: data, token }));
+      dispatch(setAuth({ token }));
+      dispatch(setUser(data));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

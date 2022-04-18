@@ -3,6 +3,7 @@ import s from './ModalLogout.module.css';
 import {
   useLogOutUserMutation,
   closeModalWindow,
+  resetAuth,
   resetUser,
   resetTransactions,
   resetStatistics,
@@ -22,6 +23,7 @@ function ModalLogout() {
 
     dispatch(emptySplitApi.util.resetApiState());
     dispatch(closeModalWindow());
+    dispatch(resetAuth());
     dispatch(resetUser());
     dispatch(resetTransactions());
     dispatch(resetStatistics());

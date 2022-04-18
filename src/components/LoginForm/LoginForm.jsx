@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import Button from 'components/Button';
-import { useLogInUserMutation, setUser, setError } from 'redux/index';
+import { useLogInUserMutation, setAuth, setUser, setError } from 'redux/index';
 
 const rules = {
   email: 'required|email',
@@ -45,7 +45,8 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (data) {
-      dispatch(setUser(data));
+      dispatch(setAuth({ token: data.token }));
+      dispatch(setUser(data.user));
       resetForm();
     } else if (error) {
       if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));

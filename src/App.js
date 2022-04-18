@@ -41,7 +41,7 @@ function App() {
 
   useEffect(() => {
     if (!lottieRun) return;
-    const animation = setTimeout(() => setLottieRun(false), 3000);
+    const animation = setTimeout(() => setLottieRun(false), 1900);
 
     return () => clearTimeout(animation);
   }, [lottieRun]);
@@ -54,7 +54,7 @@ function App() {
           autoplay
           loop='false'
           src={animationData}
-          animationSpeed={1.5}
+          animationSpeed={2.3}
           style={{
             height: '120px',
             width: '120px',
