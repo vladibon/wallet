@@ -1,5 +1,6 @@
 import AccountImg from '../../images/account.jpeg';
 import Icons from 'images/sprite.svg';
+import { MdStars, MdOutlineFileUpload } from 'react-icons/md';
 import Button from 'components/Button';
 
 import s from './Account.module.css';
@@ -8,16 +9,22 @@ function Account() {
   return (
     <form className={s.accountForm}>
       <h2 className={s.accountTitle}>Account settings</h2>
-
       <img className={s.accountImg} src={AccountImg} width='200' height='220' alt='Transactions' />
-      <label>
-        <input type='file' name='foto'></input>
+
+      <label class={s.inputFile__button}>
+        <input className={s.inputFile} type='file' name='foto'></input>
+        <div class={s.inputFile__wrapper}>
+          <span className={s.inputFile__iconWrapper}>
+            <MdOutlineFileUpload class={s.inputFile__icon} />
+          </span>
+          <span className={s.inputFile__title}>upload photo</span>
+        </div>
       </label>
 
-      <svg className={s.subscriptionIcon} width='20' height='20'>
-        <use href='../../images/subscription.svg' />
-      </svg>
-      <p className={s.subscriptionTite}>Premiun subscription</p>
+      <p className={s.subscriptionTite}>
+        <MdStars />
+        Premiun subscription
+      </p>
 
       <label className={s.accountLabel}>
         <input
@@ -36,7 +43,6 @@ function Account() {
           <span className={s.accountPlaceholder__title}>Name</span>
         </div>
       </label>
-
       <label className={s.accountLabel}>
         <input
           className={s.accountInput}
@@ -54,7 +60,6 @@ function Account() {
           <span className={s.accountPlaceholder__title}>E-mail</span>
         </div>
       </label>
-
       <div className={s.wrapper}>
         <Button className='btn__primary' type='button' text='try premium' />
         <Button className='btn__red' type='button' text='delete account' />
