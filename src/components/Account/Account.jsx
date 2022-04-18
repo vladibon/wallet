@@ -14,11 +14,11 @@ function Account() {
       <div className={s.accountForm__wrapper}>
         <div>
           <img className={s.accountImg} src={AccountImg} width='200' height='220' alt='Avatar' />
-          <label class={s.inputFile__button}>
+          <label className={s.inputFile__button}>
             <input className={s.inputFile} type='file' name='foto'></input>
-            <div class={s.inputFile__wrapper}>
+            <div className={s.inputFile__wrapper}>
               <span className={s.inputFile__iconWrapper}>
-                <MdOutlineFileUpload class={s.inputFile__icon} />
+                <MdOutlineFileUpload className={s.inputFile__icon} />
               </span>
               <span className={s.inputFile__title}>upload photo</span>
             </div>
