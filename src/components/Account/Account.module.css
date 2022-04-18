@@ -1,0 +1,223 @@
+.accountForm {
+  position: relative;
+  width: 280px;
+  margin: 15px auto 0;
+  padding: 30px 0;
+}
+
+.accountForm__bgColor {
+  position: absolute;
+  z-index: -1;
+  width: 320px;
+  height: 775px;
+  top: 0;
+  left: -20px;
+
+  border-radius: 30px;
+  background: var(--secondary-bg-color);
+}
+
+.accountTitle {
+  margin-bottom: 12px;
+  text-align: center;
+
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.accountImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inputFile__button {
+  width: 200px;
+
+  background: var(--btn-secondary-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: var(--text-white-color);
+
+  display: block;
+  cursor: pointer;
+  margin: 0 auto 30px;
+}
+
+.inputFile {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.inputFile__wrapper {
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.inputFile__iconWrapper {
+  padding: 0 10px;
+  border-right: var(--model-border);
+}
+
+.inputFile__icon {
+  vertical-align: middle;
+  height: 20px;
+  width: 20px;
+}
+
+.inputFile__title {
+  width: 100%;
+  text-align: center;
+}
+
+.subscription__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+
+  color: var(--subscription-green-color);
+}
+
+.subscriptionTitle {
+  margin-left: 10px;
+}
+
+.accountLabel {
+  position: relative;
+  width: 280px;
+  color: var(--grey-color);
+  transition: color var(--animation);
+}
+
+.accountLabel:hover,
+.accountLabel:focus-within {
+  color: var(--main-currency-bg-color);
+}
+
+.accountInput {
+  width: 280px;
+  height: 34px;
+  margin-bottom: 45px;
+  padding-left: 10px;
+  font-size: 18px;
+  line-height: 27px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--input-border);
+}
+
+.accountInput__marginButtom {
+  margin-bottom: 60px;
+}
+
+::placeholder {
+  color: var(--main-grey-color);
+}
+
+.accountPlaceholder {
+  position: absolute;
+  left: 10px;
+  bottom: 30px;
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.accountPlaceholder__iconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.accountPlaceholder__title {
+  margin-left: 10px;
+}
+
+.accountBtn__update {
+  position: absolute;
+  right: 0;
+  bottom: 27px;
+
+  width: 100px;
+  height: 25px;
+  border: none;
+  color: var(--text-white-color);
+  line-height: 1.25;
+  background: var(--btn-secondary-color);
+}
+
+.btn__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+}
+
+/* -------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .accountForm__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .accountForm {
+    width: 705px;
+    padding: 40px 50px;
+  }
+
+  .accountForm__bgColor {
+    width: 705px;
+    height: 550px;
+    left: 0;
+  }
+
+  .accountTitle {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .subscription__wrapper {
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-bottom: 65px;
+  }
+
+  .accountInput {
+    margin-bottom: 70px;
+  }
+
+  .accountInput__marginBottom {
+    margin-bottom: 60px;
+  }
+
+  .accountPlaceholder {
+    bottom: 40px;
+  }
+
+  .accountBtn__update {
+    position: relative;
+    bottom: 0;
+
+    height: 35px;
+    font-size: 18px;
+    line-height: 1.22;
+  }
+
+  .btn__wrapper {
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------- */
+
+@media (min-width: 1280px) {
+  .accountForm {
+    margin: 50px 0 0 auto;
+  }
+}

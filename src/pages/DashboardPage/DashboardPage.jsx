@@ -9,6 +9,8 @@ import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency';
 import DiagramTab from 'components/DiagramTab';
+import Account from 'components/Account';
+import PrivateRoute from 'components/PrivateRoute';
 
 const HomeTab = lazy(() => import('components/HomeTab' /* webpackChunkName: "home-tab" */));
 
@@ -34,6 +36,14 @@ function DashboardPage() {
           <Routes>
             <Route path='*' element={<HomeTab />} />
             <Route path='statistics' element={<DiagramTab />} />
+            <Route
+              path='account'
+              element={
+                <PrivateRoute>
+                  <Account />
+                </PrivateRoute>
+              }
+            />
             {isMobile && <Route path='currency' element={<Currency />} />}
           </Routes>
         </Suspense>
