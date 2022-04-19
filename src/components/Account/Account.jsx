@@ -19,16 +19,16 @@ import {
   isSuccessResponse,
 } from 'redux/index';
 import {
-  // selectUserName,
-  // selectUserEmail,
+  selectUserName,
+  selectUserEmail,
   selectSubscription,
   selectAvatarURL,
 } from 'redux/selectors';
 
 function Account() {
   const dispatch = useDispatch();
-  // const userName = useSelector(selectUserName);
-  // const userEmail = useSelector(selectUserEmail);
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
   const userSubscription = useSelector(selectSubscription);
   const userAvatar = useSelector(selectAvatarURL);
 
@@ -114,7 +114,7 @@ function Account() {
                 placeholder='Name'
                 // onChange={handleChange}
                 name='name'
-                // value={name}
+                defaultValue={userName}
                 autoComplete='off'
               ></input>
               <button className={s.accountBtn__update} type='button'>
@@ -138,7 +138,7 @@ function Account() {
                 placeholder='E-mail'
                 // onChange={handleChange}
                 name='email'
-                // value={email}
+                defaultValue={userEmail}
                 autoComplete='off'
               ></input>
               <button className={s.accountBtn__update} type='button'>
