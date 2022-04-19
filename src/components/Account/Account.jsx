@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
 import Icons from 'images/sprite.svg';
-import { MdOutlineFileUpload, MdWork } from 'react-icons/md';
+import { MdOutlineFileUpload, MdWork, MdStars } from 'react-icons/md';
 import Button from 'components/Button';
 import Spinner from 'components/Spinner';
 
