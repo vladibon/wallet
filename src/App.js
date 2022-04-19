@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -6,9 +6,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import deLocale from 'date-fns/locale/de';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { Player } from '@lottiefiles/react-lottie-player';
-import animationData from 'lotties/check-okey-done.json';
 
 import { FetchCurrentUser } from 'services/FetchCurrentUser';
 
@@ -37,37 +34,12 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const isFetching = FetchCurrentUser();
-  const [lottieRun, setLottieRun] = useState(false);
 
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
 
-  useEffect(() => {
-    if (!lottieRun) return;
-    const animation = setTimeout(() => setLottieRun(false), 1900);
-
-    return () => clearTimeout(animation);
-  }, [lottieRun]);
-
   return (
     <>
-      {lottieRun && (
-        <Player
-          id='addTransaction'
-          autoplay
-          loop='false'
-          src={animationData}
-          animationSpeed={2.3}
-          style={{
-            height: '120px',
-            width: '120px',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-      )}
       {!isFetching ? (
         <>
           <Suspense
@@ -111,7 +83,7 @@ function App() {
           {showModalLogout && <Modal children={<ModalLogout />} />}
           {showModalAddTransaction && (
             <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
-              <Modal children={<ModalAddTransaction setLottieRun={setLottieRun} />} />
+              <Modal children={<ModalAddTransaction />} />
             </LocalizationProvider>
           )}
           <ToastContainer autoClose={3000} theme='colored' limit={1} />

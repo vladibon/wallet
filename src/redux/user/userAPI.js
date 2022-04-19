@@ -24,10 +24,21 @@ const userAPI = emptySplitApi.injectEndpoints({
         body,
       }),
     }),
-    updateAvatar: builder.mutation({}),
+    updateAvatar: builder.mutation({
+      query: body => ({
+        url: `/users/avatars`,
+        method: 'PATCH',
+        invalidatesTags: ['Users'],
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetCurrenthUserQuery, useAddCategoryMutation, useUpdateSubscriptionMutation } =
-  userAPI;
+export const {
+  useGetCurrenthUserQuery,
+  useAddCategoryMutation,
+  useUpdateSubscriptionMutation,
+  useUpdateAvatarMutation,
+} = userAPI;

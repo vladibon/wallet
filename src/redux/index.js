@@ -3,12 +3,14 @@ import {
   useGetCurrenthUserQuery,
   useAddCategoryMutation,
   useUpdateSubscriptionMutation,
+  useUpdateAvatarMutation,
 } from './user/userAPI';
 import {
   useGetTransactionsQuery,
   useAddTransactionMutation,
   useGetStatisticsQuery,
 } from './finance/financeAPI';
+
 import { setAuth, resetAuth } from './auth/auth-slice';
 import {
   setUser,
@@ -31,6 +33,8 @@ import {
   closeModalWindow,
   setError,
   resetError,
+  isSuccessResponse,
+  noSuccessResponse,
 } from './global/global-slice';
 
 export {
@@ -52,6 +56,8 @@ export {
   closeModalWindow,
   setError,
   resetError,
+  isSuccessResponse,
+  noSuccessResponse,
 };
 export {
   useCreateUserMutation,
@@ -63,4 +69,5 @@ export {
   useGetStatisticsQuery,
   useAddCategoryMutation,
   useUpdateSubscriptionMutation,
+  useUpdateAvatarMutation,
 };

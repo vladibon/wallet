@@ -4,11 +4,15 @@ export const selectIsModalAddTransactionOpen = state => state.global.isModalAddT
 
 export const selectError = state => state.global.errorStatus;
 
+export const selectSuccessResponse = state => state.global.successResponse;
+
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectUser = state => state.user;
 
 export const selectUserName = state => state.user.name;
+
+export const selectUserEmail = state => state.user.email;
 
 export const selectBalance = state => state.user.balance;
 
