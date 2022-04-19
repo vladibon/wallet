@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { BASE_URL } from 'variables';
 
 const initialState = {
   name: null,

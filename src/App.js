@@ -7,7 +7,7 @@ import deLocale from 'date-fns/locale/de';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { FetchCurrentUser } from 'services/FetchCurrentUser';
+import { FetchCurrentUser } from 'api/FetchCurrentUser';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
