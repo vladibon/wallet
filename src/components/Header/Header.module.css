@@ -18,9 +18,18 @@
   color: var(--header-grey-color);
 }
 
+.nav__wrapper {
+  display: flex;
+}
+
+.userAvatar {
+  border-radius: 50%;
+}
+
 .name {
   display: inline-flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 .name::after {

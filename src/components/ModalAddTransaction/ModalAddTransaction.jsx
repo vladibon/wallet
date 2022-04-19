@@ -14,7 +14,7 @@ import {
   setUserCategories,
   setLatestTransactions,
   setError,
-  isSuccessResponse,
+  setSuccessResponse,
 } from 'redux/index';
 import Button from 'components/Button';
 import Icons from 'images/sprite.svg';
@@ -64,7 +64,7 @@ export default function ModalAddTransaction() {
       dispatch(setLatestTransactions(data.transactions));
       dispatch(closeModalWindow());
       reset();
-      dispatch(isSuccessResponse());
+      dispatch(setSuccessResponse());
     } else if (error) {
       try {
         toast.error(error.data.message);
