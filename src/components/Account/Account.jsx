@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
@@ -19,16 +19,16 @@ import {
   isSuccessResponse,
 } from 'redux/index';
 import {
-  selectUserName,
-  selectUserEmail,
+  // selectUserName,
+  // selectUserEmail,
   selectSubscription,
   selectAvatarURL,
 } from 'redux/selectors';
 
 function Account() {
   const dispatch = useDispatch();
-  const userName = useSelector(selectUserName);
-  const userEmail = useSelector(selectUserEmail);
+  // const userName = useSelector(selectUserName);
+  // const userEmail = useSelector(selectUserEmail);
   const userSubscription = useSelector(selectSubscription);
   const userAvatar = useSelector(selectAvatarURL);
 
