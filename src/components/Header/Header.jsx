@@ -25,13 +25,7 @@ export default function Header() {
         <div className={s.nav}>
           <nav>
             <NavLink className={s.nav__wrapper} to='account'>
-              <img
-                className={s.userAvatar}
-                src={`https://wallet-proj.osc-fr1.scalingo.io/${userAvatar}`}
-                width='50'
-                height='50'
-                alt='Avatar'
-              />
+              <img className={s.userAvatar} src={userAvatar} width='50' height='50' alt='Avatar' />
               {isTabletOrDesktop && <div className={s.name}>{name}</div>}
             </NavLink>
           </nav>

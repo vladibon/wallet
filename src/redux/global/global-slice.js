@@ -27,10 +27,10 @@ const globalSlice = createSlice({
     resetError: (state, _) => {
       state.errorStatus = null;
     },
-    isSuccessResponse: (state, _) => {
+    setSuccessResponse: (state, _) => {
       state.successResponse = true;
     },
-    noSuccessResponse: (state, _) => {
+    resetSuccessResponse: (state, _) => {
       state.successResponse = false;
     },
   },
@@ -42,7 +42,7 @@ export const {
   closeModalWindow,
   setError,
   resetError,
-  isSuccessResponse,
-  noSuccessResponse,
+  setSuccessResponse,
+  resetSuccessResponse,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

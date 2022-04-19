@@ -16,7 +16,7 @@ import {
   updateSubscription,
   setAvatarURL,
   setError,
-  isSuccessResponse,
+  setSuccessResponse,
 } from 'redux/index';
 import {
   selectUserName,
@@ -43,13 +43,13 @@ function Account() {
   useEffect(() => {
     if (!subscrData) return;
     dispatch(updateSubscription(subscrData));
-    dispatch(isSuccessResponse());
+    dispatch(setSuccessResponse());
   }, [dispatch, subscrData]);
 
   useEffect(() => {
     if (avatarData) {
       dispatch(setAvatarURL(avatarData));
-      dispatch(isSuccessResponse());
+      dispatch(setSuccessResponse());
     } else if (avatarError) {
       try {
         toast.error(avatarError.data.message);
@@ -77,13 +77,7 @@ function Account() {
       <h2 className={s.accountTitle}>Account settings</h2>
       <div className={s.accountForm__wrapper}>
         <div style={{ position: 'relative', height: '100%' }}>
-          <img
-            className={s.accountImg}
-            src={`https://wallet-proj.osc-fr1.scalingo.io/${userAvatar}?${new Date().getTime()}`}
-            width='200'
-            height='220'
-            alt='Avatar'
-          />
+          <img className={s.accountImg} src={userAvatar} width='200' height='220' alt='Avatar' />
           {isLoading && <Spinner size={40} color='white' opacity='0.8' />}
           <label className={s.inputFile__button}>
             <input
