@@ -3,6 +3,7 @@ import {
   useGetCurrenthUserQuery,
   useAddCategoryMutation,
   useUpdateSubscriptionMutation,
+  useUpdateAvatarMutation,
 } from './user/userAPI';
 import {
   useGetTransactionsQuery,
@@ -63,4 +64,5 @@ export {
   useGetStatisticsQuery,
   useAddCategoryMutation,
   useUpdateSubscriptionMutation,
+  useUpdateAvatarMutation,
 };

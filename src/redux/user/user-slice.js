@@ -40,7 +40,7 @@ const userSlice = createSlice({
       state.categories.expense = [...action.payload.expense];
     },
     setAvatarURL: (state, action) => {
-      state.balance = action.payload.avatarURL;
+      state.avatarURL = action.payload.avatarURL;
     },
   },
 });

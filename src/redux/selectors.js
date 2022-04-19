@@ -10,6 +10,8 @@ export const selectUser = state => state.user;
 
 export const selectUserName = state => state.user.name;
 
+export const selectUserEmail = state => state.user.email;
+
 export const selectBalance = state => state.user.balance;
 
 export const selectCategories = state => state.user.categories;

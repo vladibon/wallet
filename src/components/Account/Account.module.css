@@ -27,6 +27,8 @@
 
 .accountImg {
   display: block;
+  object-fit: cover;
+  background-color: var(--primary-bg-color);
   margin-left: auto;
   margin-right: auto;
 }
@@ -44,6 +46,13 @@
   display: block;
   cursor: pointer;
   margin: 0 auto 30px;
+
+  opacity: 1;
+  transition: opacity var(--animation);
+}
+
+.inputFile__button:hover {
+  opacity: 0.86;
 }
 
 .inputFile {
@@ -212,6 +221,10 @@
 
   .btn__wrapper {
     align-items: center;
+  }
+
+  .inputFile__button {
+    margin-bottom: 0;
   }
 }
 
