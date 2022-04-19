@@ -1,6 +1,7 @@
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabDesktop from './HomeTabDesktop';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
+import SuccessAnimation from 'components/SuccessAnimation';
 
 import { useMediaQuery } from 'react-responsive';
 
@@ -14,6 +15,7 @@ function HomeTab() {
 
       {isTabletOrDesktop && <HomeTabDesktop />}
 
+      <SuccessAnimation />
       <ButtonAddTransactions />
     </>
   );

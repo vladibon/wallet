@@ -14,6 +14,7 @@ import {
   setUserCategories,
   setLatestTransactions,
   setError,
+  isSuccessResponse,
 } from 'redux/index';
 import Button from 'components/Button';
 import Icons from 'images/sprite.svg';
@@ -30,7 +31,7 @@ const messages = {
   'comment.max': 'only 40 characters allowed',
 };
 
-export default function ModalAddTransaction({ setLottieRun }) {
+export default function ModalAddTransaction() {
   const dispatch = useDispatch();
   const { income, expense } = useSelector(selectCategories);
   const [categories, setCategories] = useState([]);
@@ -63,7 +64,7 @@ export default function ModalAddTransaction({ setLottieRun }) {
       dispatch(setLatestTransactions(data.transactions));
       dispatch(closeModalWindow());
       reset();
-      setLottieRun(true);
+      dispatch(isSuccessResponse());
     } else if (error) {
       try {
         toast.error(error.data.message);
@@ -72,7 +73,7 @@ export default function ModalAddTransaction({ setLottieRun }) {
         dispatch(closeModalWindow());
       }
     }
-  }, [data, dispatch, error, setLottieRun]);
+  }, [data, dispatch, error]);
 
   const handleChange = value => {
     setValidationError({ field: null, message: '' });

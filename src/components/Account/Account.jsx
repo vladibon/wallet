@@ -8,6 +8,7 @@ import Button from 'components/Button';
 import Spinner from 'components/Spinner';
 
 import s from './Account.module.css';
+import SuccessAnimation from 'components/SuccessAnimation';
 
 import {
   useUpdateSubscriptionMutation,
@@ -15,6 +16,7 @@ import {
   updateSubscription,
   setAvatarURL,
   setError,
+  isSuccessResponse,
 } from 'redux/index';
 import {
   selectUserName,
@@ -25,8 +27,11 @@ import {
 
 function Account() {
   const dispatch = useDispatch();
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
   const userSubscription = useSelector(selectSubscription);
   const userAvatar = useSelector(selectAvatarURL);
+
   let isPremium = userSubscription === 'premium';
   const subscription = userSubscription[0].toUpperCase() + userSubscription.slice(1);
 
@@ -38,11 +43,13 @@ function Account() {
   useEffect(() => {
     if (!subscrData) return;
     dispatch(updateSubscription(subscrData));
+    dispatch(isSuccessResponse());
   }, [dispatch, subscrData]);
 
   useEffect(() => {
     if (avatarData) {
       dispatch(setAvatarURL(avatarData));
+      dispatch(isSuccessResponse());
     } else if (avatarError) {
       try {
         toast.error(avatarError.data.message);
@@ -68,12 +75,11 @@ function Account() {
     <form className={s.accountForm}>
       <div className={s.accountForm__bgColor}></div>
       <h2 className={s.accountTitle}>Account settings</h2>
-
       <div className={s.accountForm__wrapper}>
         <div style={{ position: 'relative', height: '100%' }}>
           <img
             className={s.accountImg}
-            src={`https://wallet-proj.osc-fr1.scalingo.io/${userAvatar}`}
+            src={`https://wallet-proj.osc-fr1.scalingo.io/${userAvatar}?${new Date().getTime()}`}
             width='200'
             height='220'
             alt='Avatar'
@@ -161,6 +167,7 @@ function Account() {
           </div>
         </div>
       </div>
+      <SuccessAnimation />
     </form>
   );
 }

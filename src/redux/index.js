@@ -10,6 +10,7 @@ import {
   useAddTransactionMutation,
   useGetStatisticsQuery,
 } from './finance/financeAPI';
+
 import { setAuth, resetAuth } from './auth/auth-slice';
 import {
   setUser,
@@ -32,6 +33,8 @@ import {
   closeModalWindow,
   setError,
   resetError,
+  isSuccessResponse,
+  noSuccessResponse,
 } from './global/global-slice';
 
 export {
@@ -53,6 +56,8 @@ export {
   closeModalWindow,
   setError,
   resetError,
+  isSuccessResponse,
+  noSuccessResponse,
 };
 export {
   useCreateUserMutation,
