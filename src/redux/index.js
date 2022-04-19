@@ -33,8 +33,8 @@ import {
   closeModalWindow,
   setError,
   resetError,
-  isSuccessResponse,
-  noSuccessResponse,
+  setSuccessResponse,
+  resetSuccessResponse,
 } from './global/global-slice';
 
 export {
@@ -56,8 +56,8 @@ export {
   closeModalWindow,
   setError,
   resetError,
-  isSuccessResponse,
-  noSuccessResponse,
+  setSuccessResponse,
+  resetSuccessResponse,
 };
 export {
   useCreateUserMutation,

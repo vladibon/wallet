@@ -20,7 +20,9 @@ const userSlice = createSlice({
       state.balance = action.payload.balance;
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
-      state.avatarURL = action.payload.avatarURL;
+      state.avatarURL = `https://wallet-proj.osc-fr1.scalingo.io/${
+        action.payload.avatarURL
+      }?${new Date()}`;
     },
     resetUser: (state, _) => {
       state.name = null;
@@ -41,7 +43,9 @@ const userSlice = createSlice({
       state.categories.expense = [...action.payload.expense];
     },
     setAvatarURL: (state, action) => {
-      state.avatarURL = action.payload.avatarURL;
+      state.avatarURL = `https://wallet-proj.osc-fr1.scalingo.io/${
+        action.payload.avatarURL
+      }?${new Date()}`;
     },
   },
 });

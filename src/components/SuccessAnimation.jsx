@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Player } from '@lottiefiles/react-lottie-player';
 import animationData from 'lotties/check-okey-done.json';
 
-import { noSuccessResponse } from 'redux/index';
+import { resetSuccessResponse } from 'redux/index';
 import { selectSuccessResponse } from 'redux/selectors';
 
 export default function SuccessAnimation() {
@@ -13,10 +13,10 @@ export default function SuccessAnimation() {
 
   useEffect(() => {
     if (!success) return;
-    const animation = setTimeout(() => dispatch(noSuccessResponse()), 2000);
+    const animation = setTimeout(() => dispatch(resetSuccessResponse()), 2000);
 
     return () => {
-      dispatch(noSuccessResponse());
+      dispatch(resetSuccessResponse());
       clearTimeout(animation);
     };
   }, [dispatch, success]);
