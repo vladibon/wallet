@@ -202,6 +202,11 @@
     margin-bottom: 70px;
   }
 
+  .accountInput:focus {
+    outline: none;
+    background-color: rgb(247, 246, 246);
+  }
+
   .accountInput__marginBottom {
     margin-bottom: 60px;
   }

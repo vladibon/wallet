@@ -21,7 +21,7 @@
 .btn:hover {
   background-color: var(--btn-secondary-color);
   color: var(--btn-primary-color);
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .btn:active {
