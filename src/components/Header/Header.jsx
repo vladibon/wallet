@@ -1,18 +1,22 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+import { MdStars } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
+
 import Logo from 'components/Logo';
 import Icons from 'images/sprite.svg';
 import s from './Header.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import { selectUserName, selectAvatarURL } from 'redux/selectors';
+
+import { selectUserName, selectAvatarURL, selectSubscription } from 'redux/selectors';
 import { openModalLogout } from 'redux/index';
 
-import { useMediaQuery } from 'react-responsive';
-
 export default function Header() {
+  const dispatch = useDispatch();
   const name = useSelector(selectUserName);
   const userAvatar = useSelector(selectAvatarURL);
-  const dispatch = useDispatch();
+  const userSubscription = useSelector(selectSubscription);
 
+  let isPremium = userSubscription === 'premium';
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 450px)' });
 
   return (
@@ -25,7 +29,10 @@ export default function Header() {
         <div className={s.nav}>
           <nav>
             <NavLink className={s.nav__wrapper} to='account'>
-              <img className={s.userAvatar} src={userAvatar} width='50' height='50' alt='Avatar' />
+              <div className={s.userAvatarWrapper}>
+                <img className={s.userAvatar} src={userAvatar} alt='Avatar' />
+                {isPremium && <MdStars className={s.premiumIcon} />}
+              </div>
               {isTabletOrDesktop && <div className={s.name}>{name}</div>}
             </NavLink>
           </nav>
