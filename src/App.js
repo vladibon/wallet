@@ -86,7 +86,8 @@ function App() {
               <Modal children={<ModalAddTransaction />} />
             </LocalizationProvider>
           )}
-          <ToastContainer autoClose={3000} theme='colored' limit={1} />
+
+          <ToastContainer autoClose={3000} theme='colored' limit={2} />
         </>
       ) : (
         <Loader />

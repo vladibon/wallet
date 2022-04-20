@@ -5,38 +5,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
-import { selectStatistics } from 'redux/selectors';
+import { selectStatistics, selectSignupDate } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
 
-const colors = [
-  '#FED057',
-  '#FFD8D0',
-  '#FD9498',
-  '#C5BAFF',
-  '#4A56E2',
-  '#81E1FF',
-  '#24CCA7',
-  '#00AD84',
-  '#ad0090',
-  '#e21373',
-];
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import { colors, months } from './diagramData';
 
 const monthStyle = {
   option: (provided, state) => ({
@@ -87,11 +61,23 @@ export default function DiagramTab() {
 
   const { data, error } = useGetStatisticsQuery({ month: month.value, year: year.value });
   const stats = useSelector(selectStatistics);
+  const signupDate = useSelector(selectSignupDate);
 
-  const monthsSelection = months
-    .map((el, idx) => ({ value: idx, label: el }))
-    .splice(0, date.getMonth() + 1);
-  const yearSelection = [{ value: 2022, label: '2022' }];
+  const getDateSelections = () => {
+    let m = [];
+    let y = [];
+    const S = new Date(signupDate);
+
+    m = [...months.slice(S.getMonth()), ...months.slice(0, date.getMonth() + 1)];
+    for (let i = S.getFullYear(); i <= date.getFullYear(); i += 1) {
+      y.push(i);
+    }
+
+    return {
+      months: m.map((el, idx) => ({ value: idx, label: el })),
+      years: [...y].map((el, idx) => ({ value: idx, label: el })),
+    };
+  };
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
   const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
@@ -109,7 +95,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={month}
       onChange={value => setMonth(value)}
-      options={monthsSelection}
+      options={getDateSelections().months}
     />
   );
 
@@ -119,7 +105,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={year}
       onChange={value => setYear(value)}
-      options={yearSelection}
+      options={getDateSelections().years}
     />
   );
 

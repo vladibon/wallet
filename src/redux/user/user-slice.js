@@ -8,6 +8,7 @@ const initialState = {
   subscription: '',
   categories: { income: [], expense: [] },
   avatarURL: '',
+  signupDate: '11.12.2021',
 };
 
 const userSlice = createSlice({

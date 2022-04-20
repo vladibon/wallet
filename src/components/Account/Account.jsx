@@ -32,11 +32,13 @@ import { useState } from 'react';
 
 function Account() {
   const dispatch = useDispatch();
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
   const userSubscription = useSelector(selectSubscription);
   const userAvatar = useSelector(selectAvatarURL);
 
-  const [newName, setNewName] = useState(useSelector(selectUserName));
-  const [newEmail, setNewEmail] = useState(useSelector(selectUserEmail));
+  const [newName, setNewName] = useState(userName);
+  const [newEmail, setNewEmail] = useState(userEmail);
 
   let isPremium = userSubscription === 'premium';
   const subscription = userSubscription[0].toUpperCase() + userSubscription.slice(1);
@@ -96,10 +98,14 @@ function Account() {
   const onInputSubmit = e => {
     switch (e.target.name) {
       case 'name':
-        updateName({ name: newName });
+        userName === newName
+          ? toast.warning('This name is up to date')
+          : updateName({ name: newName });
         break;
       case 'email':
-        updateEmail({ email: newEmail });
+        userEmail === newEmail
+          ? toast.warning('This email is up to date')
+          : updateEmail({ email: newEmail });
         break;
       default:
         return;
