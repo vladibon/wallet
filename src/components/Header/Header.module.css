@@ -20,10 +20,34 @@
 
 .nav__wrapper {
   display: flex;
+  color: var(--header-grey-color);
+  cursor: pointer;
+
+  transition: color var(--animation);
+}
+
+.nav__wrapper:hover {
+  color: var(--main-currency-bg-color);
+}
+
+.userAvatarWrapper {
+  position: relative;
 }
 
 .userAvatar {
   border-radius: 50%;
+  background-color: rgb(245, 245, 245);
+  width: 50px;
+  height: 50px;
+}
+
+.premiumIcon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: -5px;
+  right: -5px;
+  fill: var(--subscription-green-color);
 }
 
 .name {
@@ -80,5 +104,10 @@
   .logoutText {
     display: block;
     margin-left: 8px;
+  }
+
+  .userAvatar {
+    width: 54px;
+    height: 54px;
   }
 }

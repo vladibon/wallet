@@ -40,7 +40,7 @@
   border: var(--btn-secondary-border);
 }
 
-.btn__red {
+.btn__tetriary {
   composes: btn;
   border: none;
   background: var(--btn-tetriary-color);

@@ -13,9 +13,13 @@ import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
 
 import Modal from 'components/Modal';
-import ModalLogout from 'components/ModalLogout';
+import ModalLogoutAndDelete from 'components/ModalLogoutAndDelete';
 import ModalAddTransaction from 'components/ModalAddTransaction';
-import { selectIsModalLogoutOpen, selectIsModalAddTransactionOpen } from 'redux/selectors';
+import {
+  selectIsModalLogoutOpen,
+  selectIsModalAddTransactionOpen,
+  selectIsModalDeleteUserOpen,
+} from 'redux/selectors';
 
 import Spinner from 'components/Spinner';
 import Loader from 'components/Loader';
@@ -37,6 +41,7 @@ function App() {
 
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
+  const showModalDeleteUser = useSelector(selectIsModalDeleteUserOpen);
 
   return (
     <>
@@ -80,7 +85,8 @@ function App() {
             </Routes>
           </Suspense>
 
-          {showModalLogout && <Modal children={<ModalLogout />} />}
+          {showModalLogout && <Modal children={<ModalLogoutAndDelete action='logout' />} />}
+          {showModalDeleteUser && <Modal children={<ModalLogoutAndDelete action='delete' />} />}
           {showModalAddTransaction && (
             <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
               <Modal children={<ModalAddTransaction />} />
