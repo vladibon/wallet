@@ -7,7 +7,7 @@ const initialState = {
     expense: [],
     totalIncome: 0,
     totalExpense: 0,
-    firstTransactionDate: null,
+    firstTransactionDate: '',
   },
 };
 
@@ -36,7 +36,7 @@ const financeSlice = createSlice({
       state.stats.expense = [];
       state.stats.totalIncome = 0;
       state.stats.totalExpense = 0;
-      state.stats.firstTransactionDate = null;
+      state.stats.firstTransactionDate = '';
     },
   },
 });

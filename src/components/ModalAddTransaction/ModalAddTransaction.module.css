@@ -224,7 +224,7 @@ select {
 .inputIcon {
   position: absolute;
   bottom: 48px;
-  right: 6px;
+  right: 4px;
   pointer-events: none;
 }
 
