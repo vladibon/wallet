@@ -73,8 +73,8 @@ export default function DiagramTab() {
   const getYearOptions = () => {
     const years = [];
 
-    for (let i = signupDate.getFullYear(); i <= currentDate.getFullYear(); i += 1) {
-      years.push({ value: i, label: i });
+    for (let year = signupDate.getFullYear(); year <= currentDate.getFullYear(); year += 1) {
+      years.push({ value: year, label: year });
     }
     return years;
   };
