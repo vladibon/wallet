@@ -15,7 +15,7 @@ import {
   resetError,
 } from 'redux/index';
 
-export const FetchCurrentUser = () => {
+export const useFetchCurrentUser = () => {
   const token = store.getState().auth?.token;
   const dispatch = useDispatch();
   const { data, error, isFetching } = useGetCurrenthUserQuery();
