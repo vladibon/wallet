@@ -48,6 +48,13 @@ const userAPI = emptySplitApi.injectEndpoints({
         body,
       }),
     }),
+    deleteUser: builder.mutation({
+      query: () => ({
+        url: `/users/delete`,
+        method: 'DELETE',
+        invalidatesTags: ['Users'],
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -59,4 +66,5 @@ export const {
   useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
+  useDeleteUserMutation,
 } = userAPI;

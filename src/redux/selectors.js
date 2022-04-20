@@ -2,6 +2,8 @@ export const selectIsModalLogoutOpen = state => state.global.isModalLogoutOpen;
 
 export const selectIsModalAddTransactionOpen = state => state.global.isModalAddTransactionOpen;
 
+export const selectIsModalDeleteUserOpen = state => state.global.isModalDeleteUserOpen;
+
 export const selectError = state => state.global.errorStatus;
 
 export const selectSuccessResponse = state => state.global.successResponse;

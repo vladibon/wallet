@@ -21,6 +21,7 @@ import {
   setAvatarURL,
   setError,
   setSuccessResponse,
+  openModalDeleteUser,
 } from 'redux/index';
 import {
   selectUserName,
@@ -225,7 +226,12 @@ function Account() {
               onClick={onSubscriptionChange}
               isLoading={subscrLoading}
             />
-            <Button className='btn__red' type='button' text='delete account' />
+            <Button
+              className='btn__tetriary'
+              type='button'
+              text='delete account'
+              onClick={() => dispatch(openModalDeleteUser())}
+            />
           </div>
         </div>
       </div>
