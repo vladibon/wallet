@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
-import { selectStatistics, selectSignupDate } from 'redux/selectors';
+import { selectStatistics } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
@@ -57,30 +57,31 @@ export default function DiagramTab() {
     value: currentDate.getFullYear(),
     label: currentDate.getFullYear().toString(),
   });
-  const signupDate = new Date(useSelector(selectSignupDate));
   const [showExpense, setShowExpence] = useState(true);
 
   const { data, error } = useGetStatisticsQuery({ month: month.value, year: year.value });
-  const stats = useSelector(selectStatistics);
+  const { income, expense, totalIncome, totalExpense, firstTransactionDate } =
+    useSelector(selectStatistics);
+  const firstDate = new Date(firstTransactionDate);
 
   const getMonthOptions = months =>
-    signupDate.getFullYear() === currentDate.getFullYear()
+    firstDate.getFullYear() === currentDate.getFullYear()
       ? months
-          .slice(signupDate.getMonth(), currentDate.getMonth() + 1)
+          .slice(firstDate.getMonth(), currentDate.getMonth() + 1)
           .map((el, idx) => ({ value: idx, label: el }))
       : months.map((el, idx) => ({ value: idx, label: el }));
 
   const getYearOptions = () => {
     const years = [];
 
-    for (let year = signupDate.getFullYear(); year <= currentDate.getFullYear(); year += 1) {
+    for (let year = firstDate.getFullYear(); year <= currentDate.getFullYear(); year += 1) {
       years.push({ value: year, label: year });
     }
     return years;
   };
 
-  const statsToRender = () => (showExpense ? stats.expense : stats.income);
-  const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
+  const statsToRender = () => (showExpense ? expense : income);
+  const totalToRender = () => (showExpense ? totalExpense : totalIncome);
 
   useEffect(() => {
     if (error?.status >= 500 || error?.status === 'FETCH_ERROR') dispatch(setError(500));
@@ -131,14 +132,14 @@ export default function DiagramTab() {
             onClick={() => setShowExpence(true)}
           >
             <span className={s.spentText}>Spent:</span>
-            <span className={s.spentMinus}>{stats.totalExpense}</span>
+            <span className={s.spentMinus}>{totalExpense}</span>
           </p>
           <p
             className={s[showExpense ? 'spent' : 'spentActive']}
             onClick={() => setShowExpence(false)}
           >
             <span className={s.spentText}>Income:</span>
-            <span className={s.spentPlus}>{stats.totalIncome}</span>
+            <span className={s.spentPlus}>{totalIncome}</span>
           </p>
         </div>
       </div>

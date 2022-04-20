@@ -8,7 +8,6 @@ const initialState = {
   subscription: '',
   categories: { income: [], expense: [] },
   avatarURL: '',
-  signupDate: '',
 };
 
 const userSlice = createSlice({
@@ -22,7 +21,6 @@ const userSlice = createSlice({
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
       state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
-      state.signupDate = action.payload.signupDate;
     },
     resetUser: (state, _) => {
       state.name = null;
