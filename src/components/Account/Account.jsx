@@ -51,47 +51,51 @@ function Account() {
     useUpdateAvatarMutation();
 
   useEffect(() => {
-    if (nameData) {
-      dispatch(setName(nameData));
-      dispatch(setSuccessResponse());
-    } else if (nameError) {
-      try {
+    try {
+      if (nameData) {
+        dispatch(setName(nameData));
+        dispatch(setSuccessResponse());
+      } else if (nameError) {
         toast.error(nameError.data.message);
-      } catch {
-        dispatch(setError(500));
       }
+    } catch {
+      dispatch(setError(500));
     }
   }, [dispatch, nameData, nameError]);
 
   useEffect(() => {
-    if (emailData) {
-      dispatch(setEmail(emailData));
-      dispatch(setSuccessResponse());
-    } else if (emailError) {
-      try {
+    try {
+      if (emailData) {
+        dispatch(setEmail(emailData));
+        dispatch(setSuccessResponse());
+      } else if (emailError) {
         toast.error(emailError.data.message);
-      } catch {
-        dispatch(setError(500));
       }
+    } catch {
+      dispatch(setError(500));
     }
   }, [dispatch, emailData, emailError]);
 
   useEffect(() => {
-    if (!subscrData) return;
-    dispatch(updateSubscription(subscrData));
-    dispatch(setSuccessResponse());
+    try {
+      if (!subscrData) return;
+      dispatch(updateSubscription(subscrData));
+      dispatch(setSuccessResponse());
+    } catch {
+      dispatch(setError(500));
+    }
   }, [dispatch, subscrData]);
 
   useEffect(() => {
-    if (avatarData) {
-      dispatch(setAvatarURL(avatarData));
-      dispatch(setSuccessResponse());
-    } else if (avatarError) {
-      try {
+    try {
+      if (avatarData) {
+        dispatch(setAvatarURL(avatarData));
+        dispatch(setSuccessResponse());
+      } else if (avatarError) {
         toast.error(avatarError.data.message);
-      } catch {
-        dispatch(setError(500));
       }
+    } catch {
+      dispatch(setError(500));
     }
   }, [dispatch, avatarData, avatarError, isLoading]);
 
@@ -117,6 +121,7 @@ function Account() {
   };
 
   const onAvatarChange = e => {
+    if (!e.target.files[0]) return;
     const file = e.target.files[0];
     const formData = new FormData();
 

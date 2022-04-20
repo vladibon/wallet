@@ -158,6 +158,13 @@
   color: var(--text-white-color);
   line-height: 1.25;
   background: var(--btn-secondary-color);
+
+  opacity: 1;
+  transition: opacity var(--animation);
+}
+
+.accountBtn__update:hover {
+  opacity: 0.86;
 }
 
 .btn__wrapper {

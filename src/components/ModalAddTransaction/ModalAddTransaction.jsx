@@ -59,19 +59,19 @@ export default function ModalAddTransaction() {
   }, [categoryData, dispatch]);
 
   useEffect(() => {
-    if (data) {
-      dispatch(setBalance({ balance: data.balance }));
-      dispatch(setLatestTransactions(data.transactions));
-      dispatch(closeModalWindow());
-      reset();
-      dispatch(setSuccessResponse());
-    } else if (error) {
-      try {
-        toast.error(error.data.message);
-      } catch {
-        dispatch(setError(500));
+    try {
+      if (data) {
+        dispatch(setBalance({ balance: data.balance }));
+        dispatch(setLatestTransactions(data.transactions));
         dispatch(closeModalWindow());
+        reset();
+        dispatch(setSuccessResponse());
+      } else if (error) {
+        toast.error(error.data.message);
       }
+    } catch {
+      dispatch(setError(500));
+      dispatch(closeModalWindow());
     }
   }, [data, dispatch, error]);
 
@@ -81,14 +81,14 @@ export default function ModalAddTransaction() {
   };
 
   const handleCreate = value => {
-    value.toLowerCase().replace(/\W/g, '');
+    const trimmedValue = value.trim();
 
-    if (value.length > 20) {
+    if (trimmedValue.length > 20) {
       toast.error("Category shouldn't be longer, than 20 symbols");
       return;
     }
-    const newOption = { label: value, value };
-    const newCategory = { type, category: value };
+    const newOption = { label: trimmedValue, value: trimmedValue };
+    const newCategory = { type, category: trimmedValue };
 
     addCategory(newCategory)
       .then(() => setSelectedOption(newOption))
