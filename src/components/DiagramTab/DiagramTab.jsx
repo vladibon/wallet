@@ -64,10 +64,7 @@ export default function DiagramTab() {
     useSelector(selectStatistics);
   const firstDate = new Date(firstTransactionDate);
 
-  const getMonthOptions = months =>
-    firstDate.getFullYear() === currentDate.getFullYear()
-      ? months.slice(0, currentDate.getMonth() + 1).map((el, idx) => ({ value: idx, label: el }))
-      : months.map((el, idx) => ({ value: idx, label: el }));
+  const getMonthOptions = months => months.map((el, idx) => ({ value: idx, label: el }));
 
   const getYearOptions = () => {
     const years = [];
