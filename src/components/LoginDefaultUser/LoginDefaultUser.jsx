@@ -21,7 +21,7 @@ export default function LoginDefaultUser() {
 
   const onLogin = () => {
     try {
-      loginUser({ user: { email: 'mango@gmail.com', password: '123456' } });
+      loginUser({ user: { email: 'guest@mail.com', password: 'pAp5QdfFUqmwATk' } });
     } catch (error) {
       dispatch(setError(error));
     }
