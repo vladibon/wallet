@@ -6,6 +6,7 @@ import {
   useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
+  useDeleteUserMutation,
 } from './user/userAPI';
 import {
   useGetTransactionsQuery,
@@ -34,6 +35,7 @@ import {
 import {
   openModalLogout,
   openModalAddTransaction,
+  openModalDeleteUser,
   closeModalWindow,
   setError,
   resetError,
@@ -53,6 +55,7 @@ export {
   setUserCategories,
   setAvatarURL,
   openModalLogout,
+  openModalDeleteUser,
   setLatestTransactions,
   setMoreTransactions,
   resetTransactions,
@@ -78,4 +81,5 @@ export {
   useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
+  useDeleteUserMutation,
 };

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isModalLogoutOpen: false,
   isModalAddTransactionOpen: false,
+  isModalDeleteUserOpen: false,
   errorStatus: null,
   successResponse: false,
 };
@@ -17,9 +18,13 @@ const globalSlice = createSlice({
     openModalAddTransaction: (state, _) => {
       state.isModalAddTransactionOpen = true;
     },
+    openModalDeleteUser: (state, _) => {
+      state.isModalDeleteUserOpen = true;
+    },
     closeModalWindow: (state, _) => {
       state.isModalLogoutOpen = false;
       state.isModalAddTransactionOpen = false;
+      state.isModalDeleteUserOpen = false;
     },
     setError: (state, action) => {
       state.errorStatus = action.payload;
@@ -39,6 +44,7 @@ const globalSlice = createSlice({
 export const {
   openModalLogout,
   openModalAddTransaction,
+  openModalDeleteUser,
   closeModalWindow,
   setError,
   resetError,
