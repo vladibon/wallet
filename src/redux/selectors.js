@@ -10,6 +10,8 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectUser = state => state.user;
 
+export const selectSignupDate = state => state.user.signupDate;
+
 export const selectUserName = state => state.user.name;
 
 export const selectUserEmail = state => state.user.email;

@@ -2,6 +2,8 @@ import { useCreateUserMutation, useLogInUserMutation, useLogOutUserMutation } fr
 import {
   useGetCurrenthUserQuery,
   useAddCategoryMutation,
+  useUpdateNameMutation,
+  useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
 } from './user/userAPI';
@@ -16,6 +18,8 @@ import {
   setUser,
   resetUser,
   setBalance,
+  setName,
+  setEmail,
   updateSubscription,
   setUserCategories,
   setAvatarURL,
@@ -43,6 +47,8 @@ export {
   setUser,
   resetUser,
   setBalance,
+  setName,
+  setEmail,
   updateSubscription,
   setUserCategories,
   setAvatarURL,
@@ -68,6 +74,8 @@ export {
   useAddTransactionMutation,
   useGetStatisticsQuery,
   useAddCategoryMutation,
+  useUpdateNameMutation,
+  useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
 };

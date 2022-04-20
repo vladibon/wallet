@@ -5,38 +5,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useGetStatisticsQuery, setStatistics, setError } from 'redux/index';
-import { selectStatistics } from 'redux/selectors';
+import { selectStatistics, selectSignupDate } from 'redux/selectors';
 import DiagramChart from 'components/DiagramChart';
 import DiagramTable from 'components/DiagramTable';
 import { generalStyle, menuStyle } from '../ModalAddTransaction/ModalAddTransaction.styled';
 
-const colors = [
-  '#FED057',
-  '#FFD8D0',
-  '#FD9498',
-  '#C5BAFF',
-  '#4A56E2',
-  '#81E1FF',
-  '#24CCA7',
-  '#00AD84',
-  '#ad0090',
-  '#e21373',
-];
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import { colors, months } from './diagramData';
 
 const monthStyle = {
   option: (provided, state) => ({
@@ -74,24 +48,36 @@ const monthStyle = {
 
 export default function DiagramTab() {
   const dispatch = useDispatch();
-  const date = new Date();
+  const currentDate = new Date();
   const [month, setMonth] = useState({
-    value: date.getMonth(),
-    label: months[date.getMonth()],
+    value: currentDate.getMonth(),
+    label: months[currentDate.getMonth()],
   });
   const [year, setYear] = useState({
-    value: date.getFullYear(),
-    label: date.getFullYear().toString(),
+    value: currentDate.getFullYear(),
+    label: currentDate.getFullYear().toString(),
   });
+  const signupDate = new Date(useSelector(selectSignupDate));
   const [showExpense, setShowExpence] = useState(true);
 
   const { data, error } = useGetStatisticsQuery({ month: month.value, year: year.value });
   const stats = useSelector(selectStatistics);
 
-  const monthsSelection = months
-    .map((el, idx) => ({ value: idx, label: el }))
-    .splice(0, date.getMonth() + 1);
-  const yearSelection = [{ value: 2022, label: '2022' }];
+  const getMonthOptions = months =>
+    signupDate.getFullYear() === currentDate.getFullYear()
+      ? months
+          .slice(signupDate.getMonth(), currentDate.getMonth() + 1)
+          .map((el, idx) => ({ value: idx, label: el }))
+      : months.map((el, idx) => ({ value: idx, label: el }));
+
+  const getYearOptions = () => {
+    const years = [];
+
+    for (let year = signupDate.getFullYear(); year <= currentDate.getFullYear(); year += 1) {
+      years.push({ value: year, label: year });
+    }
+    return years;
+  };
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
   const totalToRender = () => (showExpense ? stats.totalExpense : stats.totalIncome);
@@ -109,7 +95,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={month}
       onChange={value => setMonth(value)}
-      options={monthsSelection}
+      options={getMonthOptions(months)}
     />
   );
 
@@ -119,7 +105,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={year}
       onChange={value => setYear(value)}
-      options={yearSelection}
+      options={getYearOptions()}
     />
   );
 

@@ -11,8 +11,12 @@ import s from './Account.module.css';
 import SuccessAnimation from 'components/SuccessAnimation';
 
 import {
+  useUpdateNameMutation,
+  useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
+  setName,
+  setEmail,
   updateSubscription,
   setAvatarURL,
   setError,
@@ -24,6 +28,7 @@ import {
   selectSubscription,
   selectAvatarURL,
 } from 'redux/selectors';
+import { useState } from 'react';
 
 function Account() {
   const dispatch = useDispatch();
@@ -32,38 +37,91 @@ function Account() {
   const userSubscription = useSelector(selectSubscription);
   const userAvatar = useSelector(selectAvatarURL);
 
+  const [newName, setNewName] = useState(userName);
+  const [newEmail, setNewEmail] = useState(userEmail);
+
   let isPremium = userSubscription === 'premium';
   const subscription = userSubscription[0].toUpperCase() + userSubscription.slice(1);
 
+  const [updateName, { data: nameData, error: nameError }] = useUpdateNameMutation();
+  const [updateEmail, { data: emailData, error: emailError }] = useUpdateEmailMutation();
   const [updateSubscr, { data: subscrData, isLoading: subscrLoading }] =
     useUpdateSubscriptionMutation();
   const [updateAvatar, { data: avatarData, error: avatarError, isLoading }] =
     useUpdateAvatarMutation();
 
   useEffect(() => {
-    if (!subscrData) return;
-    dispatch(updateSubscription(subscrData));
-    dispatch(setSuccessResponse());
+    try {
+      if (nameData) {
+        dispatch(setName(nameData));
+        dispatch(setSuccessResponse());
+      } else if (nameError) {
+        toast.error(nameError.data.message);
+      }
+    } catch {
+      dispatch(setError(500));
+    }
+  }, [dispatch, nameData, nameError]);
+
+  useEffect(() => {
+    try {
+      if (emailData) {
+        dispatch(setEmail(emailData));
+        dispatch(setSuccessResponse());
+      } else if (emailError) {
+        toast.error(emailError.data.message);
+      }
+    } catch {
+      dispatch(setError(500));
+    }
+  }, [dispatch, emailData, emailError]);
+
+  useEffect(() => {
+    try {
+      if (!subscrData) return;
+      dispatch(updateSubscription(subscrData));
+      dispatch(setSuccessResponse());
+    } catch {
+      dispatch(setError(500));
+    }
   }, [dispatch, subscrData]);
 
   useEffect(() => {
-    if (avatarData) {
-      dispatch(setAvatarURL(avatarData));
-      dispatch(setSuccessResponse());
-    } else if (avatarError) {
-      try {
+    try {
+      if (avatarData) {
+        dispatch(setAvatarURL(avatarData));
+        dispatch(setSuccessResponse());
+      } else if (avatarError) {
         toast.error(avatarError.data.message);
-      } catch {
-        dispatch(setError(500));
       }
+    } catch {
+      dispatch(setError(500));
     }
   }, [dispatch, avatarData, avatarError, isLoading]);
+
+  const onInputSubmit = e => {
+    switch (e.target.name) {
+      case 'name':
+        userName === newName
+          ? toast.warning('This name is up to date')
+          : updateName({ name: newName });
+        break;
+      case 'email':
+        userEmail === newEmail
+          ? toast.warning('This email is up to date')
+          : updateEmail({ email: newEmail });
+        break;
+      default:
+        return;
+    }
+  };
 
   const onSubscriptionChange = () => {
     updateSubscr({ subscription: isPremium ? 'basic' : 'premium' });
   };
 
   const onAvatarChange = e => {
+    if (!e.target.files[0]) return;
     const file = e.target.files[0];
     const formData = new FormData();
 
@@ -106,12 +164,17 @@ function Account() {
               <input
                 className={`${s.accountInput} ${s.accountInput__marginBottom}`}
                 placeholder='Name'
-                // onChange={handleChange}
+                onChange={e => setNewName(e.target.value)}
                 name='name'
-                defaultValue={userName}
+                defaultValue={newName}
                 autoComplete='off'
               ></input>
-              <button className={s.accountBtn__update} type='button'>
+              <button
+                className={s.accountBtn__update}
+                type='button'
+                onClick={onInputSubmit}
+                name='name'
+              >
                 update
               </button>
               <div className={s.accountPlaceholder}>
@@ -130,12 +193,17 @@ function Account() {
               <input
                 className={s.accountInput}
                 placeholder='E-mail'
-                // onChange={handleChange}
+                onChange={e => setNewEmail(e.target.value)}
                 name='email'
-                defaultValue={userEmail}
+                defaultValue={newEmail}
                 autoComplete='off'
               ></input>
-              <button className={s.accountBtn__update} type='button'>
+              <button
+                className={s.accountBtn__update}
+                type='button'
+                onClick={onInputSubmit}
+                name='email'
+              >
                 update
               </button>
               <div className={s.accountPlaceholder}>

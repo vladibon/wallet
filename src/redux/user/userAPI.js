@@ -16,6 +16,22 @@ const userAPI = emptySplitApi.injectEndpoints({
         body,
       }),
     }),
+    updateName: builder.mutation({
+      query: body => ({
+        url: `/users/name`,
+        method: 'PATCH',
+        invalidatesTags: ['Users'],
+        body,
+      }),
+    }),
+    updateEmail: builder.mutation({
+      query: body => ({
+        url: `/users/email`,
+        method: 'PATCH',
+        invalidatesTags: ['Users'],
+        body,
+      }),
+    }),
     updateSubscription: builder.mutation({
       query: body => ({
         url: `/users/subscription`,
@@ -39,6 +55,8 @@ const userAPI = emptySplitApi.injectEndpoints({
 export const {
   useGetCurrenthUserQuery,
   useAddCategoryMutation,
+  useUpdateNameMutation,
+  useUpdateEmailMutation,
   useUpdateSubscriptionMutation,
   useUpdateAvatarMutation,
 } = userAPI;

@@ -7,7 +7,7 @@ import deLocale from 'date-fns/locale/de';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { FetchCurrentUser } from 'services/FetchCurrentUser';
+import { useFetchCurrentUser } from 'hooks/useFetchCurrentUser';
 
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
@@ -33,7 +33,7 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
-  const isFetching = FetchCurrentUser();
+  const isFetching = useFetchCurrentUser();
 
   const showModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
@@ -86,7 +86,8 @@ function App() {
               <Modal children={<ModalAddTransaction />} />
             </LocalizationProvider>
           )}
-          <ToastContainer autoClose={3000} theme='colored' limit={1} />
+
+          <ToastContainer autoClose={3000} theme='colored' limit={2} />
         </>
       ) : (
         <Loader />

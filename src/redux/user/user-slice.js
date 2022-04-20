@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { BASE_URL } from 'variables';
 
 const initialState = {
   name: null,
@@ -7,6 +8,7 @@ const initialState = {
   subscription: '',
   categories: { income: [], expense: [] },
   avatarURL: '',
+  signupDate: '',
 };
 
 const userSlice = createSlice({
@@ -19,9 +21,8 @@ const userSlice = createSlice({
       state.balance = action.payload.balance;
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
-      state.avatarURL = `https://wallet-proj.osc-fr1.scalingo.io/${
-        action.payload.avatarURL
-      }?${new Date()}`;
+      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
+      state.signupDate = action.payload.signupDate;
     },
     resetUser: (state, _) => {
       state.name = null;
@@ -34,6 +35,12 @@ const userSlice = createSlice({
     setBalance: (state, action) => {
       state.balance = action.payload.balance;
     },
+    setName: (state, action) => {
+      state.name = action.payload.name;
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload.email;
+    },
     updateSubscription: (state, action) => {
       state.subscription = action.payload.subscription;
     },
@@ -42,9 +49,7 @@ const userSlice = createSlice({
       state.categories.expense = [...action.payload.expense];
     },
     setAvatarURL: (state, action) => {
-      state.avatarURL = `https://wallet-proj.osc-fr1.scalingo.io/${
-        action.payload.avatarURL
-      }?${new Date()}`;
+      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
     },
   },
 });
@@ -53,6 +58,8 @@ export const {
   setUser,
   resetUser,
   setBalance,
+  setName,
+  setEmail,
   updateSubscription,
   setUserCategories,
   setAvatarURL,
