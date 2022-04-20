@@ -44,7 +44,7 @@
 }
 
 .listItem {
-  width: 280px;
+  width: 100%;
   display: table;
   height: 50px;
   border-color: #dcdcdf;
@@ -105,10 +105,6 @@
   .tableTop2 {
     padding: 0;
   }
-
-  .listItem {
-    width: 336px;
-  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -133,9 +129,5 @@
 
   .tableTop {
     width: 270px;
-  }
-
-  .listItem {
-    width: 395px;
   }
 }
