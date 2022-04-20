@@ -66,9 +66,7 @@ export default function DiagramTab() {
 
   const getMonthOptions = months =>
     firstDate.getFullYear() === currentDate.getFullYear()
-      ? months
-          .slice(firstDate.getMonth(), currentDate.getMonth() + 1)
-          .map((el, idx) => ({ value: idx, label: el }))
+      ? months.slice(0, currentDate.getMonth() + 1).map((el, idx) => ({ value: idx, label: el }))
       : months.map((el, idx) => ({ value: idx, label: el }));
 
   const getYearOptions = () => {
