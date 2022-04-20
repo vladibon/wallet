@@ -8,7 +8,7 @@ const initialState = {
   subscription: '',
   categories: { income: [], expense: [] },
   avatarURL: '',
-  signupDate: '11.12.2021',
+  signupDate: '',
 };
 
 const userSlice = createSlice({
@@ -21,7 +21,8 @@ const userSlice = createSlice({
       state.balance = action.payload.balance;
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
-      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date()}`;
+      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
+      state.signupDate = action.payload.signupDate;
     },
     resetUser: (state, _) => {
       state.name = null;
@@ -48,7 +49,7 @@ const userSlice = createSlice({
       state.categories.expense = [...action.payload.expense];
     },
     setAvatarURL: (state, action) => {
-      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date()}`;
+      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
     },
   },
 });

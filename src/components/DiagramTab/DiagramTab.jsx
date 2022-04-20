@@ -48,35 +48,35 @@ const monthStyle = {
 
 export default function DiagramTab() {
   const dispatch = useDispatch();
-  const date = new Date();
+  const currentDate = new Date();
   const [month, setMonth] = useState({
-    value: date.getMonth(),
-    label: months[date.getMonth()],
+    value: currentDate.getMonth(),
+    label: months[currentDate.getMonth()],
   });
   const [year, setYear] = useState({
-    value: date.getFullYear(),
-    label: date.getFullYear().toString(),
+    value: currentDate.getFullYear(),
+    label: currentDate.getFullYear().toString(),
   });
+  const signupDate = new Date(useSelector(selectSignupDate));
   const [showExpense, setShowExpence] = useState(true);
 
   const { data, error } = useGetStatisticsQuery({ month: month.value, year: year.value });
   const stats = useSelector(selectStatistics);
-  const signupDate = useSelector(selectSignupDate);
 
-  const getDateSelections = () => {
-    let m = [];
-    let y = [];
-    const S = new Date(signupDate);
+  const getMonthOptions = months =>
+    signupDate.getFullYear() === currentDate.getFullYear()
+      ? months
+          .slice(signupDate.getMonth(), currentDate.getMonth() + 1)
+          .map((el, idx) => ({ value: idx, label: el }))
+      : months.map((el, idx) => ({ value: idx, label: el }));
 
-    m = [...months.slice(S.getMonth()), ...months.slice(0, date.getMonth() + 1)];
-    for (let i = S.getFullYear(); i <= date.getFullYear(); i += 1) {
-      y.push(i);
+  const getYearOptions = () => {
+    const years = [];
+
+    for (let i = signupDate.getFullYear(); i <= currentDate.getFullYear(); i += 1) {
+      years.push({ value: i, label: i });
     }
-
-    return {
-      months: m.map((el, idx) => ({ value: idx, label: el })),
-      years: [...y].map((el, idx) => ({ value: idx, label: el })),
-    };
+    return years;
   };
 
   const statsToRender = () => (showExpense ? stats.expense : stats.income);
@@ -95,7 +95,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={month}
       onChange={value => setMonth(value)}
-      options={getDateSelections().months}
+      options={getMonthOptions(months)}
     />
   );
 
@@ -105,7 +105,7 @@ export default function DiagramTab() {
       styles={monthStyle}
       defaultValue={year}
       onChange={value => setYear(value)}
-      options={getDateSelections().years}
+      options={getYearOptions()}
     />
   );
 
