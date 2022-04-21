@@ -58,8 +58,7 @@ export default function LoginForm() {
     e.preventDefault();
     validate({ email, password }, rules, messages)
       .then(() => {
-        const user = { email, password };
-        loginUser({ user });
+        loginUser({ user: { email, password } });
       })
       .catch(errors => {
         setValidationError({ field: errors[0].field, message: errors[0].message });
@@ -107,6 +106,7 @@ export default function LoginForm() {
             <use href={`${Icons}#icon-lock`} />
           </svg>
         </label>
+
         <div className={s.wrapper}>
           <Button className='btn__primary' type='submit' text='log in' isLoading={isLoading} />
           <Link to='/register' className={s.authLink}>
