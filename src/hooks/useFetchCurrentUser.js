@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import { store } from 'redux/store';
 import {
@@ -24,7 +24,7 @@ export const useFetchCurrentUser = () => {
     if (error) {
       if (error.status >= 500 || error.status === 'FETCH_ERROR') dispatch(setError(500));
       else {
-        toast.info('please, log in');
+        // toast.info('please, log in');
         dispatch(resetAuth());
         dispatch(resetUser());
         dispatch(resetTransactions());
