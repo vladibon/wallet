@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLogInUserMutation, setAuth, setUser, setError } from 'redux/index';
 import Button from 'components/Button';
+import { TEST_USER } from 'variables';
 import s from './LoginDefaultUser.module.css';
 
 export default function LoginDefaultUser() {
@@ -21,7 +22,7 @@ export default function LoginDefaultUser() {
 
   const onLogin = () => {
     try {
-      loginUser({ user: { email: 'guest@mail.com', password: 'pAp5QdfFUqmwATk' } });
+      loginUser({ user: TEST_USER });
     } catch (error) {
       dispatch(setError(error));
     }

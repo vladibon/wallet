@@ -8,7 +8,7 @@ export default function RegisterPage() {
   const [showTestMode, setShowTestMode] = useState(false);
 
   useEffect(() => {
-    const onComponentMount = setTimeout(() => setShowTestMode(true), 2000);
+    const onComponentMount = setTimeout(() => setShowTestMode(true), 1000);
 
     return () => clearTimeout(onComponentMount);
   }, []);
