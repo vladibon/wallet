@@ -15,7 +15,7 @@
 
 .modalContainerHidden {
   composes: modalContainer;
-  transform: translateY(-200%) translateX(50%);
+  transform: translateY(-300%) translateX(50%);
 }
 
 @media screen and (min-width: 768px) {
@@ -27,7 +27,7 @@
   }
 
   .modalContainerHidden {
-    transform: translateY(-200%);
+    transform: translateY(-300%);
   }
 }
 

@@ -1,7 +1,6 @@
 import s from './LoginPage.module.css';
 import React from 'react';
 import LoginForm from 'components/LoginForm';
-import LoginDefaultUser from 'components/LoginDefaultUser';
 
 export default function LoginPage() {
   return (
@@ -15,7 +14,6 @@ export default function LoginPage() {
       </div>
       <div className={s.desktopContainer}>
         <LoginForm />
-        <LoginDefaultUser />
       </div>
     </div>
   );

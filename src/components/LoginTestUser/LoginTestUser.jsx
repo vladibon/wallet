@@ -42,9 +42,9 @@ export default function LoginTestUser({ showTestMode, onClose }) {
           </svg>
         </button>
         <p className={s.text}>
-          If you don't have time to register an account, you can
+          Before creating your personal account you can
           <button className={s.button} type='button' onClick={onLogin}>
-            run test mode
+            run demo verion
           </button>
         </p>
       </div>
