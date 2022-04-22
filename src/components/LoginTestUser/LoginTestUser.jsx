@@ -42,9 +42,9 @@ export default function LoginTestUser({ showTestMode, onClose }) {
           </svg>
         </button>
         <p className={s.text}>
-          Before creating your personal account you can
+          Before creating your personal account you can {'   '}
           <button className={s.button} type='button' onClick={onLogin}>
-            run demo verion
+            run demo version
           </button>
         </p>
       </div>
