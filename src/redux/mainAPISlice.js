@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const { BASE_URL } = process.env;
+const { API_BASE_URL } = process.env;
 
 export const emptySplitApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/api`,
+    baseUrl: `${API_BASE_URL}/api`,
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.token;

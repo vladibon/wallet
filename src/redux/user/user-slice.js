@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const { BASE_URL } = process.env;
+const { API_BASE_URL } = process.env;
 
 const initialState = {
   name: null,
@@ -21,7 +21,7 @@ const userSlice = createSlice({
       state.balance = action.payload.balance;
       state.subscription = action.payload.subscription;
       state.categories = { ...action.payload.categories };
-      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
+      state.avatarURL = `${API_BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
     },
     resetUser: (state, _) => {
       state.name = null;
@@ -48,7 +48,7 @@ const userSlice = createSlice({
       state.categories.expense = [...action.payload.expense];
     },
     setAvatarURL: (state, action) => {
-      state.avatarURL = `${BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
+      state.avatarURL = `${API_BASE_URL}/${action.payload.avatarURL}?${new Date().getTime()}`;
     },
   },
 });
