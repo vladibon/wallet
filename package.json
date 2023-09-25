@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://wallet-proj.netlify.app",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "netlify deploy -p"
