@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BASE_URL } from 'variables';
+
+const { BASE_URL } = process.env;
 
 const initialState = {
   name: null,
