@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const { API_BASE_URL } = process.env;
+import { API_BASE_URL } from 'variables';
 
 export const emptySplitApi = createApi({
   baseQuery: fetchBaseQuery({
